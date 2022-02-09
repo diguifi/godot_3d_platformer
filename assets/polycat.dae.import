@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/polycat.dae-15402bf986e08e1f5a694bbdd780a257.scn"
+path="res://.import/polycat.dae-f28fcc334d2a37fb76075ae67aab8d2a.scn"
 
 [deps]
 
-source_file="res://polycat.dae"
-dest_files=[ "res://.import/polycat.dae-15402bf986e08e1f5a694bbdd780a257.scn" ]
+source_file="res://assets/polycat.dae"
+dest_files=[ "res://.import/polycat.dae-f28fcc334d2a37fb76075ae67aab8d2a.scn" ]
 
 [params]
 
