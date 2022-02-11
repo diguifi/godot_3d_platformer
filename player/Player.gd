@@ -1,22 +1,40 @@
 extends KinematicBody
 
+enum JUMP_STATE {
+	GROUNDED,
+	JUMP,
+	DOUBLE_JUMP
+}
+
+export var has_double_jump = false
 onready var anim_player = $Graphics/AnimationPlayer
 const WALK_SPEED = 5
 const SPRINT_SPEED = 7
 const JUMP_FORCE = 12
+const D_JUMP_FORCE = 8
 const GRAVITY = 24
 const MAX_FALL_SPEED = 40
 var y_velo = 0
 var facing_right = true
 var falling = false
+var just_jumped = false
+var jump_state = JUMP_STATE.GROUNDED
+
+func _ready():
+	Signals.connect("get_power_up", self, "_get_power_up")
  
 func _physics_process(delta):
 	transform.origin.z = 0
 	var grounded = is_on_floor()
+	if grounded:
+		falling = false
+		jump_state = JUMP_STATE.GROUNDED
+
 	var move_dir = apply_movement()
-	var just_jumped = apply_jump(grounded, delta)
+	apply_jump(grounded, delta)
+	apply_double_jump(delta)
 	check_fall()
-	play_animations(just_jumped, grounded, move_dir)
+	play_animations(grounded, move_dir)
  
 func flip():
 	$Graphics.rotation_degrees.y *= -1
@@ -40,7 +58,7 @@ func apply_movement():
 	return move_dir
 	
 func apply_jump(grounded, delta):
-	var just_jumped = false
+	just_jumped = false
 	y_velo -= GRAVITY * delta
 	if y_velo < -MAX_FALL_SPEED:
 		y_velo = -MAX_FALL_SPEED
@@ -49,19 +67,25 @@ func apply_jump(grounded, delta):
 		if Input.is_action_pressed("jump"):
 			y_velo = JUMP_FORCE
 			just_jumped = true
+			jump_state = JUMP_STATE.JUMP
 	else:
-		if Input.is_action_just_released("jump") and y_velo > 0:
+		if Input.is_action_just_released("jump"):
 			falling = true
-	return just_jumped
+
+func apply_double_jump(delta):
+	if Input.is_action_pressed("jump"):
+		if jump_state == JUMP_STATE.JUMP and has_double_jump and falling:
+			y_velo = D_JUMP_FORCE
+			just_jumped = true
+			jump_state = JUMP_STATE.DOUBLE_JUMP
+			falling = false
 	
 func check_fall():
 	if falling:
 		if y_velo > 0:
 			y_velo = lerp(y_velo, 0, 0.15)
-		else:
-			falling = false
 
-func play_animations(just_jumped, grounded, move_dir):
+func play_animations(grounded, move_dir):
 	if move_dir == DirectionEnum.LEFT and facing_right:
 		flip()
 	if move_dir == DirectionEnum.RIGHT and !facing_right:
@@ -74,3 +98,8 @@ func play_animations(just_jumped, grounded, move_dir):
 			play_anim("idle")
 		else:
 			play_anim("walk")
+
+func _get_power_up(power):
+	if power == "double_jump":
+		has_double_jump = true
+	

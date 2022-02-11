@@ -24,6 +24,10 @@ config/name="3d_platform_godot"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Signals="*res://managers/Signals.gd"
+
 [input]
 
 move_right={
