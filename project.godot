@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "DirectionEnum",
 "language": "GDScript",
 "path": "res://enums/DirectionEnum.gd"
+}, {
+"base": "Reference",
+"class": "JumpStateEnum",
+"language": "GDScript",
+"path": "res://enums/JumpStateEnum.gd"
 } ]
 _global_script_class_icons={
-"DirectionEnum": ""
+"DirectionEnum": "",
+"JumpStateEnum": ""
 }
 
 [application]
