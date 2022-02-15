@@ -18,6 +18,7 @@ var y_velo = 0
 var facing_right = true
 var falling = false
 var just_jumped = false
+var walk_speed = 1.3
 var jump_state = JUMP_STATE.GROUNDED
 
 func _ready():
@@ -40,12 +41,14 @@ func flip():
 	$Graphics.rotation_degrees.y *= -1
 	facing_right = !facing_right
  
-func play_anim(anim):
-	if anim_player.current_animation == anim:
+func play_anim(anim, speed = 1):
+	if anim_player.current_animation == anim and anim_player.get_playing_speed() == speed:
 		return
+	anim_player.set_speed_scale(speed)
 	anim_player.play(anim)
 
 func apply_movement():
+	walk_speed = 1.3
 	var move_dir = DirectionEnum.IDLE
 	var movement_modifier = WALK_SPEED
 	if Input.is_action_pressed("move_right"):
@@ -53,6 +56,7 @@ func apply_movement():
 	if Input.is_action_pressed("move_left"):
 		move_dir = DirectionEnum.LEFT
 	if Input.is_action_pressed("sprint"):
+		walk_speed = 2
 		movement_modifier = SPRINT_SPEED
 	move_and_slide(Vector3(move_dir * movement_modifier, y_velo, 0), Vector3(0,1,0))
 	return move_dir
@@ -92,12 +96,12 @@ func play_animations(grounded, move_dir):
 		flip()
 
 	if just_jumped:
-		play_anim("jump")
+		play_anim("jump", 1.2)
 	elif grounded:
 		if move_dir == DirectionEnum.IDLE:
 			play_anim("idle")
 		else:
-			play_anim("walk")
+			play_anim("walk", walk_speed)
 
 func _get_power_up(power):
 	if power == "double_jump":
