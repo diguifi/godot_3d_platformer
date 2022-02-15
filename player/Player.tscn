@@ -14,6 +14,7 @@ extents = Vector3( 0.251079, 0.278502, 1 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
+coyote_timer = null
 
 [node name="Graphics" parent="." instance=ExtResource( 1 )]
 
