@@ -1,6 +1,4 @@
 extends Node
+class_name Globals
 
 var is_player_alive = true
-
-func _ready():
-	print(is_player_alive)

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enums/DirectionEnum.gd"
 }, {
+"base": "Node",
+"class": "Globals",
+"language": "GDScript",
+"path": "res://managers/GobalState.gd"
+}, {
 "base": "Reference",
 "class": "JumpStateEnum",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "DirectionEnum": "",
+"Globals": "",
 "JumpStateEnum": ""
 }
 
@@ -32,8 +38,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GobalState="*res://managers/GobalState.gd"
 Signals="*res://managers/Signals.gd"
+GobalState="*res://managers/GobalState.gd"
 
 [input]
 

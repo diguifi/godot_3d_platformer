@@ -14,7 +14,6 @@ extents = Vector3( 0.251079, 0.278502, 1 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
-coyote_timer = null
 
 [node name="Graphics" parent="." instance=ExtResource( 1 )]
 
@@ -35,7 +34,7 @@ transform = Transform( 0.239, 0, 0, 0, 1.79, 0, 0, 0, 0.34, -0.32482, 0.626438, 
 shape = SubResource( 2 )
 
 [node name="AreaBottom" type="Area" parent="."]
-transform = Transform( 0.799737, 0, 0, 0, 0.0498686, 0, 0, 0, 0.33881, 0, -0.095, 0 )
+transform = Transform( 0.799737, 0, 0, 0, 0.0299303, 0, 0, 0, 0.33881, 0, -0.0902308, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="AreaBottom"]
 shape = SubResource( 3 )

@@ -7,3 +7,11 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.3,
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.13, 0, -0.3 )
+
+[node name="RightHandPlaceholder" type="BoneAttachment" parent="Armature/Skeleton" index="0"]
+transform = Transform( 0.359329, -0.0684238, 0.9307, 0.533882, -0.80291, -0.265152, 0.765411, 0.59216, -0.251978, -1.17981, 0.274241, 0.657721 )
+bone_name = "mao.r"
+
+[node name="LeftHandPlaceholder" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
+transform = Transform( 0.989057, 0.0323631, -0.143938, 0.00344309, -0.980441, -0.196783, -0.147491, 0.194135, -0.969824, 0.549503, 0.318072, 0.463997 )
+bone_name = "mao.l"

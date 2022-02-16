@@ -11,7 +11,8 @@ const SPRINT_SPEED = 7
 const JUMP_FORCE = 10.5
 const D_JUMP_FORCE = 8
 const GRAVITY = 24
-const MAX_FALL_SPEED = 40
+const MAX_FALL_SPEED = 70
+const FALL_MULTIPLIER = 1.5
 
 # movement
 var y_velo = -0.1
@@ -21,6 +22,7 @@ var colliding_right = false
 var colliding_left = false
 var just_jumped = false
 var jump_state = JumpStateEnum.GROUNDED
+var gravity_multiplier = 1
 
 # animation
 var facing_right = true
@@ -29,10 +31,20 @@ var walk_anim_speed = 1.3
 # power ups
 var has_double_jump = false
 
+# gear
+onready var right_hand_holder = $Graphics/Armature/Skeleton/RightHandPlaceholder
+onready var left_hand_holder = $Graphics/Armature/Skeleton/LeftHandPlaceholder
+var weapon = null
+var shield = null
+var items = {
+	"sword1": preload("res://items/attack/Sword.tscn")
+}
+
 
 # ------ start and loop ------
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
+	equipWeapon(items.sword1)
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -66,7 +78,7 @@ func apply_movement():
 	
 func apply_jump(delta):
 	just_jumped = false
-	y_velo -= GRAVITY * delta
+	y_velo -= GRAVITY * delta * gravity_multiplier
 	if y_velo < -MAX_FALL_SPEED:
 		y_velo = -MAX_FALL_SPEED
 	if can_jump:
@@ -93,7 +105,13 @@ func check_fall():
 	var falling = jump_state == JumpStateEnum.JUMP_FALL or jump_state == JumpStateEnum.DOUBLE_JUMP_FALL
 	if falling:
 		if y_velo > 0:
-			y_velo = lerp(y_velo, 0, 0.15)
+			y_velo = lerp(y_velo, 0, 0.2)
+		else:
+			gravity_multiplier = FALL_MULTIPLIER
+	elif jump_state == JumpStateEnum.JUMP and y_velo < 0:
+		gravity_multiplier = FALL_MULTIPLIER
+	else:
+		gravity_multiplier = 1
 
 func play_animations(move_dir):
 	var falling = jump_state == JumpStateEnum.JUMP_FALL or jump_state == JumpStateEnum.DOUBLE_JUMP_FALL
@@ -103,7 +121,7 @@ func play_animations(move_dir):
 		flip()
 
 	if just_jumped:
-		play_anim("jump", 1.2)
+		play_anim("walk", 1.2) # mudar pra jump qnd animação certa
 	elif !grounded and falling:
 		play_anim("fall")
 	elif grounded:
@@ -126,6 +144,14 @@ func flip():
 func coyote_time():
 	yield(get_tree().create_timer(coyote_timer),"timeout")
 	can_jump = false
+	
+func equipWeapon(preloadedItem):
+	weapon = preloadedItem.instance()
+	left_hand_holder.add_child(weapon)
+	
+func equipShield(preloadedItem):
+	shield = preloadedItem.instance()
+	right_hand_holder.add_child(shield)
 
 
 # ------ signals ------
