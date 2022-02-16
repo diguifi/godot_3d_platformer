@@ -20,5 +20,5 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform( 2.8, 0, 0, 0, 2.8, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 3.1, 0, 0, 0, 3.4, 0, 0, 0, 1, 0, 0.5, 0 )
 frames = SubResource( 2 )

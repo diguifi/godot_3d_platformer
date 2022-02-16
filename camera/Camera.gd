@@ -3,7 +3,7 @@ extends Camera
 onready var player = get_parent().get_node("Player")
 export var smooth_speed = 5.0
 export var offset: Vector3
-var offset_x = 4
+var offset_x = 5
 
 func _physics_process(delta):
 	if(player != null):

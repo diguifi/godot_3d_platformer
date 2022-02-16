@@ -8,8 +8,8 @@ onready var anim_player = $Graphics/AnimationPlayer
 # constants
 const WALK_SPEED = 5
 const SPRINT_SPEED = 7
-const JUMP_FORCE = 10.5
-const D_JUMP_FORCE = 8
+const JUMP_FORCE = 10.6
+const D_JUMP_FORCE = 8.6
 const GRAVITY = 24
 const MAX_FALL_SPEED = 70
 const FALL_MULTIPLIER = 1.5
