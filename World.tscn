@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/block.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://powerups/DoubleJump.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/res/world.tres" type="Environment" id=5]
 [ext_resource path="res://managers/Background.tscn" type="PackedScene" id=6]
+[ext_resource path="res://enemies/Rocky.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Spatial"]
 
@@ -21,6 +22,9 @@ offset = Vector3( 0, 2.8, 9 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2518, 0 )
+
+[node name="EnemyRocky" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.72728, 9.23141, 0 )
 
 [node name="DoubleJump" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1925, 0.834666, 0 )
