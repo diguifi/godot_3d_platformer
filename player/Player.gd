@@ -5,6 +5,8 @@ export var coyote_timer = 0.05
 onready var graphics = $Graphics
 onready var anim_player = $Graphics/AnimationPlayer
 onready var gravity_manager = $KinematicGravity
+onready var ground_check_right = $GroundCheckRayRight
+onready var ground_check_left = $GroundCheckRayLeft
 
 # constants
 const WALK_SPEED = 7
@@ -65,7 +67,7 @@ func apply_movement():
 		move_dir = DirectionEnum.RIGHT
 	if Input.is_action_pressed("move_left") and !colliding_left:
 		move_dir = DirectionEnum.LEFT
-	if Input.is_action_pressed("crouch"):
+	if Input.is_action_pressed("dash"):
 		walk_anim_speed = 1.3
 		movement_modifier = CROUCH_SPEED
 	var move_result = move_and_slide(Vector3(move_dir * movement_modifier, gravity_manager.y_velo, 0), Vector3(0,1,0))
@@ -124,6 +126,7 @@ func play_animations(move_dir):
 			play_anim("walk", walk_anim_speed)
 			
 func check_grounded():
+	grounded = ground_check_right.is_colliding() or ground_check_left.is_colliding()
 	if grounded:
 		can_jump = true
 		jump_state = JumpStateEnum.GROUNDED
@@ -169,9 +172,7 @@ func _on_AreaLeft_body_exited(body):
 		colliding_left = false
 
 func _on_AreaBottom_body_entered(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		grounded = true
+	pass
 
 func _on_AreaBottom_body_exited(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		grounded = false
+	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/glb/dino.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -9,9 +9,6 @@ extents = Vector3( 0.5, 1, 1 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.275079, 0.397436, 1 )
-
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.251079, 0.278502, 1 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
@@ -37,15 +34,17 @@ transform = Transform( 0.239, 0, 0, 0, 1.79, 0, 0, 0, 0.34, -0.32482, 0.626438, 
 [node name="CollisionShape" type="CollisionShape" parent="AreaLeft"]
 shape = SubResource( 2 )
 
-[node name="AreaBottom" type="Area" parent="."]
-transform = Transform( 0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.339, 0, -0.0948859, 0 )
+[node name="GroundCheckRayRight" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.0756892, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.1, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="AreaBottom"]
-shape = SubResource( 3 )
+[node name="GroundCheckRayLeft" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.0756892, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.1, 0 )
 
 [connection signal="body_entered" from="AreaRight" to="." method="_on_AreaRight_body_entered"]
 [connection signal="body_exited" from="AreaRight" to="." method="_on_AreaRight_body_exited"]
 [connection signal="body_entered" from="AreaLeft" to="." method="_on_AreaLeft_body_entered"]
 [connection signal="body_exited" from="AreaLeft" to="." method="_on_AreaLeft_body_exited"]
-[connection signal="body_entered" from="AreaBottom" to="." method="_on_AreaBottom_body_entered"]
-[connection signal="body_exited" from="AreaBottom" to="." method="_on_AreaBottom_body_exited"]

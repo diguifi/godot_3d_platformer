@@ -6,7 +6,7 @@
 [ext_resource path="res://powerups/DoubleJump.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/res/world.tres" type="Environment" id=5]
 [ext_resource path="res://managers/Background.tscn" type="PackedScene" id=6]
-[ext_resource path="res://enemies/Rocky.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/EnemyRocky.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Spatial"]
 
