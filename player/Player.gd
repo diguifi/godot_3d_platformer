@@ -62,6 +62,7 @@ func _physics_process(delta):
 	apply_jump(delta)
 	apply_double_jump(delta)
 	check_fall_modifiers()
+	check_combat_moves()
 	play_animations(move_dir)
 	check_grounded()
  
@@ -75,8 +76,6 @@ func apply_movement():
 	walk_anim_speed = 2
 	var move_dir = DirectionEnum.IDLE
 	var movement_modifier = WALK_SPEED
-	if !damaged:
-		x_axis_damage_kick = 0
 	if Input.is_action_pressed("move_right") and !colliding_right:
 		move_dir = DirectionEnum.RIGHT
 	if Input.is_action_pressed("move_left") and !colliding_left:
@@ -126,6 +125,11 @@ func check_fall_modifiers():
 		gravity_manager.gravity_multiplier = gravity_manager.FALL_MULTIPLIER
 	else:
 		gravity_manager.gravity_multiplier = 1
+		
+func check_combat_moves():
+	if Input.is_action_just_pressed("attack") and weapon:
+		pass
+
 	
 func apply_damage_kick(direction):
 	if !damaged:
@@ -142,7 +146,6 @@ func play_animations(move_dir):
 		flip()
 		
 	if damaged:
-		play_anim("walk") # damaged
 		visible = false if Engine.get_frames_drawn() % 4 == 0 else true
 	if !damaged:
 		visible = true
@@ -176,6 +179,7 @@ func coyote_time():
 func damage_time():
 	yield(get_tree().create_timer(damage_timer),"timeout")
 	damaged = false
+	x_axis_damage_kick = 0
 	
 func equipWeapon(preloadedItem):
 	weapon = preloadedItem.instance()

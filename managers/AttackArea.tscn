@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area
+
+onready var player = get_node(\"/root/World/Player\")
+var attack_damage = 1
+
+func _on_AttackArea_body_entered(body):
+	if \"Enemy\" in body.name:
+		var difference = player.global_transform.origin.x - body.global_transform.origin.x
+		Signals.emit_signal(\"damage_enemy\", attack_damage, difference >= 0)
+"
+
+[node name="AttackArea" type="Area"]
+script = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_AttackArea_body_entered"]

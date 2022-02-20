@@ -10,6 +10,7 @@ export var view_distance = 10
 export var chasing_view_distance_modifier = 1.2
 export var patrol_speed = 1.5
 export var chase_speed = 3
+onready var player_node = get_node("/root/World/Player")
 onready var front_check = $FrontRayCast
 onready var rear_check = $RearRayCast
 onready var enemy: KinematicBody = get_parent()
@@ -38,7 +39,7 @@ func _physics_process(delta):
 	check_flip()
 	apply_current_state()
 	
-	enemy.move_and_slide(Vector3(move_dir * move_speed, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
+	enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
 	
 func check_move_dir():
 	on_ledge_or_wall = false
@@ -68,17 +69,20 @@ func update_y_range_check(delta):
 			range_check_going_up = true
 
 func check_player_visible():
-	var body_front = front_check.get_collider()
-	var body_back = rear_check.get_collider()
 	var player = null
 	var player_direction = 1
-	if body_front:
-		if body_front.name == "Player":
-			player = body_front
-	elif body_back:
-		if body_back.name == "Player":
-			player_direction = -1
-			player = body_back
+	if enemy.damaged:
+		player = player_node
+	else:
+		var body_front = front_check.get_collider()
+		var body_back = rear_check.get_collider()
+		if body_front:
+			if body_front.name == "Player":
+				player = body_front
+		elif body_back:
+			if body_back.name == "Player":
+				player_direction = -1
+				player = body_back
 
 	if player and state != states.CHASING:
 		player_ref = player
