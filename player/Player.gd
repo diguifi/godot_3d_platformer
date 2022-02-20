@@ -1,18 +1,24 @@
 extends KinematicBody
 
 # ------ variables ------
+export var health = 10
 export var coyote_timer = 0.05
+export var damage_timer = 0.15
 onready var graphics = $Graphics
 onready var anim_player = $Graphics/AnimationPlayer
 onready var gravity_manager = $KinematicGravity
 onready var ground_check_right = $GroundCheckRayRight
 onready var ground_check_left = $GroundCheckRayLeft
+onready var area_right = $AreaRight
+onready var area_left = $AreaLeft
+onready var area_bottom = $AreaBottom
 
 # constants
 const WALK_SPEED = 7
 const CROUCH_SPEED = 5
 const JUMP_FORCE = 12
 const D_JUMP_FORCE = 9
+const DAMAGE_KICK = 14
 
 # movement
 var grounded = false
@@ -22,6 +28,10 @@ var colliding_right = false
 var colliding_left = false
 var just_jumped = false
 var jump_state = JumpStateEnum.GROUNDED
+
+# combat
+var damaged = false
+var x_axis_damage_kick = 0
 
 # animation
 var facing_right = true
@@ -43,6 +53,7 @@ var items = {
 # ------ start and loop ------
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
+	Signals.connect("damage_player", self, "_damage_player")
 	equipWeapon(items.sword1)
  
 func _physics_process(delta):
@@ -64,6 +75,8 @@ func apply_movement():
 	walk_anim_speed = 2
 	var move_dir = DirectionEnum.IDLE
 	var movement_modifier = WALK_SPEED
+	if !damaged:
+		x_axis_damage_kick = 0
 	if Input.is_action_pressed("move_right") and !colliding_right:
 		move_dir = DirectionEnum.RIGHT
 	if Input.is_action_pressed("move_left") and !colliding_left:
@@ -71,7 +84,7 @@ func apply_movement():
 	if Input.is_action_pressed("crouch"):
 		walk_anim_speed = 1.3
 		movement_modifier = CROUCH_SPEED
-	var move_result = move_and_slide(Vector3(move_dir * movement_modifier, gravity_manager.y_velo, 0), Vector3(0,1,0))
+	var move_result = move_and_slide(Vector3((move_dir * movement_modifier) + x_axis_damage_kick, gravity_manager.y_velo, 0), Vector3(0,1,0))
 	return move_dir
 	
 func apply_jump(delta):
@@ -113,6 +126,13 @@ func check_fall_modifiers():
 		gravity_manager.gravity_multiplier = gravity_manager.FALL_MULTIPLIER
 	else:
 		gravity_manager.gravity_multiplier = 1
+	
+func apply_damage_kick(direction):
+	if !damaged:
+		damaged = true
+		gravity_manager.y_velo = DAMAGE_KICK
+		x_axis_damage_kick = DAMAGE_KICK * direction
+		damage_time()
 
 func play_animations(move_dir):
 	var falling = jump_state == JumpStateEnum.JUMP_FALL or jump_state == JumpStateEnum.DOUBLE_JUMP_FALL
@@ -120,7 +140,13 @@ func play_animations(move_dir):
 		flip()
 	if move_dir == DirectionEnum.RIGHT and !facing_right:
 		flip()
-
+		
+	if damaged:
+		play_anim("walk") # damaged
+		visible = false if Engine.get_frames_drawn() % 4 == 0 else true
+	if !damaged:
+		visible = true
+		
 	if just_jumped:
 		play_anim("walk", 1.2) # jump
 	elif !grounded and falling:
@@ -147,6 +173,10 @@ func coyote_time():
 	yield(get_tree().create_timer(coyote_timer),"timeout")
 	can_jump = false
 	
+func damage_time():
+	yield(get_tree().create_timer(damage_timer),"timeout")
+	damaged = false
+	
 func equipWeapon(preloadedItem):
 	weapon = preloadedItem.instance()
 	left_hand_holder.add_child(weapon)
@@ -160,19 +190,21 @@ func equipShield(preloadedItem):
 func _get_power_up(power):
 	if power == "double_jump":
 		has_double_jump = true
+		
+func _damage_player(damage, on_right):
+	if on_right:
+		apply_damage_kick(-1)
+	else:
+		apply_damage_kick(1)
 
 func _on_AreaRight_body_entered(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		colliding_right = true
+	colliding_right = true
 
 func _on_AreaLeft_body_entered(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		colliding_left = true
+	colliding_left = true
 		
 func _on_AreaRight_body_exited(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		colliding_right = false
+	colliding_right = false
 
 func _on_AreaLeft_body_exited(body):
-	if body.name == "GridMap" or ("Enemy" in body.name):
-		colliding_left = false
+	colliding_left = false

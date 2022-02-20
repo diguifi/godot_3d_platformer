@@ -13,6 +13,10 @@ export var chase_speed = 3
 onready var front_check = $FrontRayCast
 onready var rear_check = $RearRayCast
 onready var enemy: KinematicBody = get_parent()
+var y_check_speed = 20
+var y_max_range_check = 8
+var range_check_going_up = true
+var current_y_check = 0
 var default_chase_speed = 0
 var player_ref = null
 var facing_right = true
@@ -28,6 +32,7 @@ func _ready():
 	default_chase_speed = chase_speed
 
 func _physics_process(delta):
+	update_y_range_check(delta)
 	check_player_visible()
 	check_move_dir()
 	check_flip()
@@ -48,7 +53,20 @@ func check_move_dir():
 		if !enemy.left_floor_ray.is_colliding():
 			move_dir = DirectionEnum.RIGHT
 			on_ledge_or_wall = true
-	
+
+func update_y_range_check(delta):
+	var new_factor = delta * y_check_speed
+	if range_check_going_up:
+		current_y_check += 2
+		front_check.cast_to = Vector3( view_distance, current_y_check, 0 )
+		if current_y_check >= y_max_range_check:
+			range_check_going_up = false
+	else:
+		current_y_check -= new_factor
+		front_check.cast_to = Vector3( view_distance, current_y_check, 0 )
+		if current_y_check <= 0:
+			range_check_going_up = true
+
 func check_player_visible():
 	var body_front = front_check.get_collider()
 	var body_back = rear_check.get_collider()
