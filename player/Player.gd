@@ -17,6 +17,7 @@ const D_JUMP_FORCE = 9
 # movement
 var grounded = false
 var can_jump = false
+var released_jump = true
 var colliding_right = false
 var colliding_left = false
 var just_jumped = false
@@ -67,7 +68,7 @@ func apply_movement():
 		move_dir = DirectionEnum.RIGHT
 	if Input.is_action_pressed("move_left") and !colliding_left:
 		move_dir = DirectionEnum.LEFT
-	if Input.is_action_pressed("dash"):
+	if Input.is_action_pressed("crouch"):
 		walk_anim_speed = 1.3
 		movement_modifier = CROUCH_SPEED
 	var move_result = move_and_slide(Vector3(move_dir * movement_modifier, gravity_manager.y_velo, 0), Vector3(0,1,0))
@@ -75,9 +76,14 @@ func apply_movement():
 	
 func apply_jump(delta):
 	just_jumped = false
+	if jump_state == JumpStateEnum.JUMP or jump_state == JumpStateEnum.DOUBLE_JUMP:
+		released_jump = Input.is_action_just_released("jump")
+	elif Input.is_action_just_released("jump"):
+		released_jump = true
+		
 	if can_jump:
 		gravity_manager.y_velo = -0.1
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("jump") and released_jump:
 			gravity_manager.y_velo = JUMP_FORCE
 			just_jumped = true
 			can_jump = false
@@ -116,9 +122,9 @@ func play_animations(move_dir):
 		flip()
 
 	if just_jumped:
-		play_anim("walk", 1.2) # mudar pra jump qnd animação certa
+		play_anim("walk", 1.2) # jump
 	elif !grounded and falling:
-		play_anim("fall")
+		play_anim("walk") # fall
 	elif grounded:
 		if move_dir == DirectionEnum.IDLE:
 			play_anim("idle")
@@ -170,9 +176,3 @@ func _on_AreaRight_body_exited(body):
 func _on_AreaLeft_body_exited(body):
 	if body.name == "GridMap" or ("Enemy" in body.name):
 		colliding_left = false
-
-func _on_AreaBottom_body_entered(body):
-	pass
-
-func _on_AreaBottom_body_exited(body):
-	pass

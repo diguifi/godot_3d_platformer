@@ -7,14 +7,16 @@ enum states {
 }
 
 export var view_distance = 10
+export var chasing_view_distance_modifier = 1.2
 export var patrol_speed = 1.5
 export var chase_speed = 3
 onready var front_check = $FrontRayCast
+onready var rear_check = $RearRayCast
 onready var enemy: KinematicBody = get_parent()
 var default_chase_speed = 0
 var player_ref = null
 var facing_right = true
-var on_ledge = false
+var on_ledge_or_wall = false
 var chasing_direction = 1
 var move_dir = DirectionEnum.RIGHT
 var move_speed = 1.5
@@ -22,6 +24,7 @@ var state = states.PATROLLING
 
 func _ready():
 	front_check.cast_to = Vector3( view_distance, 0, 0 )
+	rear_check.cast_to = Vector3( -(view_distance * 0.3), 0, 0 )
 	default_chase_speed = chase_speed
 
 func _physics_process(delta):
@@ -33,36 +36,45 @@ func _physics_process(delta):
 	enemy.move_and_slide(Vector3(move_dir * move_speed, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
 	
 func check_move_dir():
-	on_ledge = false
+	on_ledge_or_wall = false
 	if enemy.is_on_wall():
 		move_dir = -move_dir
+		on_ledge_or_wall = true
 	if "right_floor_ray" in enemy:
 		if !enemy.right_floor_ray.is_colliding():
 			move_dir = DirectionEnum.LEFT
-			on_ledge = true
+			on_ledge_or_wall = true
 	if "left_floor_ray" in enemy:
 		if !enemy.left_floor_ray.is_colliding():
 			move_dir = DirectionEnum.RIGHT
-			on_ledge = true
+			on_ledge_or_wall = true
 	
 func check_player_visible():
-	var body = front_check.get_collider()
-	if body:
-		if (body.name == "Player"):
-			player_ref = body
-			chasing_direction = move_dir
-			state = states.CHASING
-		else:
-			pursuit_player()
-	else:
+	var body_front = front_check.get_collider()
+	var body_back = rear_check.get_collider()
+	var player = null
+	var player_direction = 1
+	if body_front:
+		if body_front.name == "Player":
+			player = body_front
+	elif body_back:
+		if body_back.name == "Player":
+			player_direction = -1
+			player = body_back
+
+	if player and state != states.CHASING:
+		player_ref = player
+		chasing_direction = move_dir * player_direction
+		state = states.CHASING
+	elif state == states.CHASING:
 		pursuit_player()
 
 func pursuit_player():
 	if state == states.CHASING:
 		var difference = global_transform.origin.x - player_ref.global_transform.origin.x
-		if difference > 0 and difference < view_distance:
+		if difference > 0 and difference < (view_distance * chasing_view_distance_modifier):
 			chasing_direction = DirectionEnum.LEFT
-		elif difference < 0 and difference > -view_distance:
+		elif difference < 0 and difference > (-view_distance * chasing_view_distance_modifier):
 			chasing_direction = DirectionEnum.RIGHT
 		else:
 			player_ref = null
@@ -79,9 +91,9 @@ func apply_current_state():
 			move_dir = chasing_direction
 
 func check_flip():
-	if move_dir == DirectionEnum.LEFT and facing_right and !on_ledge:
+	if move_dir == DirectionEnum.LEFT and facing_right and !on_ledge_or_wall:
 		flip()
-	if move_dir == DirectionEnum.RIGHT and !facing_right and !on_ledge:
+	if move_dir == DirectionEnum.RIGHT and !facing_right and !on_ledge_or_wall:
 		flip()
 
 func flip():
@@ -90,3 +102,4 @@ func flip():
 	if !facing_right:
 		degrees = 180
 	rotation_degrees.y = degrees
+	enemy.graphics.rotation_degrees.y = degrees

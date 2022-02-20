@@ -8,3 +8,7 @@ script = ExtResource( 1 )
 [node name="FrontRayCast" type="RayCast" parent="."]
 enabled = true
 cast_to = Vector3( 10, 0, 0 )
+
+[node name="RearRayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( -3, 0, 0 )

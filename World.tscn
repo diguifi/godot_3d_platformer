@@ -24,7 +24,7 @@ offset = Vector3( 0, 2.8, 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2518, 0 )
 
 [node name="EnemyRocky" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.72728, 9.23141, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98429, 8.52983, 0 )
 
 [node name="DoubleJump" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1925, 0.834666, 0 )
