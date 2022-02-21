@@ -1,23 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://managers/KinematicGravity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://enemies/ai/SimpleChaseAI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://managers/DamageArea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/glb/enemies/enemyrocky.tscn" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.5, 0.5 )
 
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 1, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="PrismMesh" id=4]
-size = Vector3( 0.5, 0.5, 0.5 )
-
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.274953, 0.397653, 1 )
 
 [node name="EnemyRocky" type="KinematicBody"]
@@ -29,43 +21,35 @@ script = ExtResource( 1 )
 chase_speed = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260022, 0 )
 shape = SubResource( 1 )
 
-[node name="Graphics" type="Spatial" parent="."]
-
-[node name="MeshInstance" type="MeshInstance" parent="Graphics"]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="Graphics"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2, 0.75, 0 )
-mesh = SubResource( 4 )
-material/0 = null
+[node name="Graphics" parent="." instance=ExtResource( 5 )]
 
 [node name="DamageAreaRight" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.3, 0, 0, 0, 1.25, 0, 0, 0, 0.5, 0.6, 0, 0 )
+transform = Transform( 0.3, 0, 0, 0, 1.2499, 0, 0, 0, 0.5, 0.579951, 0.26, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DamageAreaRight"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="DamageAreaLeft" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.3, 0, 0, 0, 1.25, 0, 0, 0, 0.5, -0.6, 0, 0 )
+transform = Transform( 0.3, 0, 0, 0, 1.25, 0, 0, 0, 0.5, -0.579951, 0.26, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DamageAreaLeft"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="DamageAreaTop" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1.8, 0, 0, 0, 0.3, 0, 0, 0, 0.5, 0, 0.6, 0 )
+transform = Transform( 1.8, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 0.88, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DamageAreaTop"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="FloorCheckRight" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, -0.7, 0 )
 
 [node name="FloorCheckLeft" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, -0.7, 0 )

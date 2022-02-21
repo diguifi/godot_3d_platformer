@@ -151,9 +151,9 @@ func play_animations(move_dir):
 		visible = true
 		
 	if just_jumped:
-		play_anim("walk", 1.2) # jump
+		play_anim("jump", 1.2)
 	elif !grounded and falling:
-		play_anim("walk") # fall
+		play_anim("fall")
 	elif grounded:
 		if move_dir == DirectionEnum.IDLE:
 			play_anim("idle")

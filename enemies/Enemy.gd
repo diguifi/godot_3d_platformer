@@ -4,6 +4,7 @@ onready var gravity_manager = $KinematicGravity
 onready var right_floor_ray = $FloorCheckRight
 onready var left_floor_ray = $FloorCheckLeft
 onready var graphics = $Graphics
+onready var anim_player = $Graphics/AnimationPlayer
 export var hp = 10
 const DAMAGE_KICK = 10
 var damage_timer = 0.5
@@ -25,6 +26,13 @@ func apply_damage_kick(direction):
 		gravity_manager.y_velo = DAMAGE_KICK
 		x_axis_damage_kick = DAMAGE_KICK * direction
 		damage_time()
+		
+func play_anim(anim, speed = 1):
+	if anim_player:
+		if anim_player.current_animation == anim and anim_player.get_playing_speed() == speed:
+			return
+		anim_player.set_speed_scale(speed)
+		anim_player.play(anim)
 		
 func play_animations():
 	if damaged:

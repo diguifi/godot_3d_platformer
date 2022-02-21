@@ -36,8 +36,8 @@ func _physics_process(delta):
 	update_y_range_check(delta)
 	check_player_visible()
 	check_move_dir()
-	check_flip()
 	apply_current_state()
+	play_animations()
 	
 	enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
 	
@@ -112,11 +112,18 @@ func apply_current_state():
 				move_speed = 0
 			move_dir = chasing_direction
 
-func check_flip():
+func play_animations():
 	if move_dir == DirectionEnum.LEFT and facing_right and !on_ledge_or_wall:
 		flip()
 	if move_dir == DirectionEnum.RIGHT and !facing_right and !on_ledge_or_wall:
 		flip()
+		
+	if enemy.damaged:
+		enemy.play_anim("hit")
+	elif states.PATROLLING:
+		enemy.play_anim("walk")
+	elif states.CHASING:
+		enemy.play_anim("chase")
 
 func flip():
 	var degrees = 0
