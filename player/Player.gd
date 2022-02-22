@@ -93,7 +93,7 @@ func apply_jump(delta):
 	elif Input.is_action_just_released("jump"):
 		released_jump = true
 		
-	if can_jump:
+	if can_jump and !GlobalState.on_dialog_area:
 		gravity_manager.y_velo = -0.1
 		if Input.is_action_pressed("jump") and released_jump:
 			gravity_manager.y_velo = JUMP_FORCE

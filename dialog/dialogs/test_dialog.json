@@ -1,0 +1,18 @@
+{
+    "0" : 
+    {
+        "npc_img": "res://assets/img/npcs/test.jpeg",
+        "text": {
+                "pt": "Olá, bem vindo a primeira versão do diálogo" ,
+                "en": "Hi, welcome to the first version of the dialog"
+            }
+    },
+    "1" : 
+    {
+        "npc_img": "res://assets/img/npcs/test.jpeg",
+        "text": {
+                "pt": "No futuro isso pode ficar mais rebuscado" ,
+                "en": "In the future this might get prettier"
+            }
+    }
+}
