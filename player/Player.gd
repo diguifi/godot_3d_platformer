@@ -49,7 +49,6 @@ var items = {
 	"sword1": preload("res://items/attack/Sword.tscn")
 }
 
-
 # ------ start and loop ------
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
@@ -58,11 +57,12 @@ func _ready():
  
 func _physics_process(delta):
 	transform.origin.z = 0
-	var move_dir = apply_movement()
-	apply_jump(delta)
-	apply_double_jump(delta)
+	var move_dir = DirectionEnum.IDLE
+	if !GlobalState.camera.on_cutscene:
+		move_dir = apply_movement()
+		apply_jump(delta)
+		apply_double_jump(delta)
 	check_fall_modifiers()
-	check_combat_moves()
 	play_animations(move_dir)
 	check_grounded()
  
@@ -125,11 +125,6 @@ func check_fall_modifiers():
 		gravity_manager.gravity_multiplier = gravity_manager.FALL_MULTIPLIER
 	else:
 		gravity_manager.gravity_multiplier = 1
-		
-func check_combat_moves():
-	if Input.is_action_just_pressed("attack") and weapon:
-		pass
-
 	
 func apply_damage_kick(direction):
 	if !damaged:

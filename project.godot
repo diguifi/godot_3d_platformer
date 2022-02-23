@@ -27,13 +27,14 @@ _global_script_class_icons={
 [application]
 
 config/name="3d_platform_godot"
-run/main_scene="res://World.tscn"
+run/main_scene="res://menus/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Signals="*res://managers/Signals.gd"
 GlobalState="*res://managers/GlobalState.gd"
+Transition="*res://menus/Transition.tscn"
 
 [display]
 

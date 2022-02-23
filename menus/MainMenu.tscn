@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://managers/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/res/back_menu.jpg" type="Texture" id=4]
+[ext_resource path="res://assets/res/background_test.jpeg" type="Texture" id=5]
+[ext_resource path="res://assets/MainMenuSceneryTest.tscn" type="PackedScene" id=6]
+[ext_resource path="res://menus/MainMenu.gd" type="Script" id=7]
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 7
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 1600, 900 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 7
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 1600, 900 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=1]
+size = 104
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/fonts/dpcomic.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = SubResource( 2 )
+
+[node name="MainMenu" type="Spatial"]
+script = ExtResource( 7 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -61.9849 )
+
+[node name="AnimatedSprite3D" parent="Background" index="0"]
+frames = SubResource( 6 )
+frame = 1
+
+[node name="Spatial" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.655312 )
+
+[node name="Camera" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.12753, 10 )
+offset = Vector3( 0, 2.8, 9 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enable = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_left = 3.0
+margin_right = 1282.0
+margin_bottom = 722.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+margin_left = 334.363
+margin_top = 70.8542
+margin_right = 1200.36
+margin_bottom = 198.854
+custom_fonts/font = SubResource( 1 )
+text = "Super Mariovania 3D"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayBtn" type="Button" parent="CanvasLayer/Control"]
+margin_left = 88.9514
+margin_top = 523.049
+margin_right = 327.951
+margin_bottom = 588.049
+custom_fonts/font = SubResource( 3 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitBtn" type="Button" parent="CanvasLayer/Control"]
+margin_left = 88.9514
+margin_top = 615.049
+margin_right = 327.951
+margin_bottom = 680.049
+custom_fonts/font = SubResource( 3 )
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/Control/PlayBtn" to="." method="_on_PlayBtn_pressed"]
+
+[editable path="Background"]

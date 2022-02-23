@@ -9,6 +9,7 @@ func _ready():
 	starting_z = global_transform.origin.z
 	if camera:
 		starting_distance_z = starting_z - camera.transform.origin.z
+	fit_background()
 
 func _process(delta):
 	if camera:
@@ -18,5 +19,5 @@ func _process(delta):
 func fit_background():
 	var viewportWidth = get_viewport().size.x
 	var frame = sprite.frames.get_frame("default", 0)
-	var new_scale = viewportWidth / (frame.get_size().x / (-starting_z/7))
+	var new_scale = viewportWidth / (frame.get_size().x / (-starting_z/7.3))
 	sprite.pixel_size = 0.01 * new_scale

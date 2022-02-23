@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/block.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -9,8 +9,10 @@
 [ext_resource path="res://enemies/EnemyRocky.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dialog/DialogManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://npcs/Test.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World.gd" type="Script" id=10]
 
 [node name="World" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
