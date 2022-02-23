@@ -33,20 +33,20 @@ animations = [ {
 } ]
 
 [sub_resource type="BoxShape" id=7]
+extents = Vector3( 9.97924, 8.98854, 1 )
 
 [node name="SlashEffect" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 pixel_size = 0.12
 frames = SubResource( 6 )
 frame = 1
 playing = true
 
 [node name="AttackArea" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.16, 0, 0, 0, 0.16, 0, 0, 0, 1, -0.17, 0, 0 )
+transform = Transform( 0.16, 0, 0, 0, 0.16, 0, 0, 0, 1, -0.37, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="AttackArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )

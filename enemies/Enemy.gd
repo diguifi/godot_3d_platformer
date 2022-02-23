@@ -45,11 +45,12 @@ func damage_time():
 	damaged = false
 	x_axis_damage_kick = 0
 
-func _damage_enemy(damage, on_right):
-	hp -= damage
-	if hp <= 0:
-		queue_free()
-	if on_right:
-		apply_damage_kick(-1)
-	else:
-		apply_damage_kick(1)
+func _damage_enemy(unique_name, damage, on_right):
+	if unique_name == name:
+		hp -= damage
+		if hp <= 0:
+			queue_free()
+		if on_right:
+			apply_damage_kick(-1)
+		else:
+			apply_damage_kick(1)

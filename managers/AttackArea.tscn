@@ -9,7 +9,7 @@ var attack_damage = 1
 func _on_AttackArea_body_entered(body):
 	if \"Enemy\" in body.name:
 		var difference = player.global_transform.origin.x - body.global_transform.origin.x
-		Signals.emit_signal(\"damage_enemy\", attack_damage, difference >= 0)
+		Signals.emit_signal(\"damage_enemy\", body.name, attack_damage, difference >= 0)
 "
 
 [node name="AttackArea" type="Area"]
