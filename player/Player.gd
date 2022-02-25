@@ -53,7 +53,7 @@ var items = {
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
 	Signals.connect("damage_player", self, "_damage_player")
-	equipWeapon(items.sword1)
+	equip_weapon(items.sword1)
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -176,11 +176,11 @@ func damage_time():
 	damaged = false
 	x_axis_damage_kick = 0
 	
-func equipWeapon(preloadedItem):
+func equip_weapon(preloadedItem):
 	weapon = preloadedItem.instance()
 	left_hand_holder.add_child(weapon)
 	
-func equipShield(preloadedItem):
+func equip_shield(preloadedItem):
 	shield = preloadedItem.instance()
 	right_hand_holder.add_child(shield)
 

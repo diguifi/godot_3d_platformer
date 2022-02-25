@@ -26,7 +26,5 @@ func attack():
 	
 func attack_time():
 	var time_delay = ((MAX_ATTACK_SPEED+1.0)/attack_speed)/MAX_ATTACK_SPEED
-	print(time_delay)
 	yield(get_tree().create_timer(time_delay),"timeout")
-	print("time_delay fin")
 	can_attack = true

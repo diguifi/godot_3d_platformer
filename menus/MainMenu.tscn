@@ -8,34 +8,34 @@
 [ext_resource path="res://assets/MainMenuSceneryTest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://menus/MainMenu.gd" type="Script" id=7]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=1]
 flags = 7
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 1600, 900 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 flags = 7
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 1600, 900 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 104
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="DynamicFontData" id=5]
 font_path = "res://assets/fonts/dpcomic.ttf"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 size = 64
-font_data = SubResource( 2 )
+font_data = SubResource( 5 )
 
 [node name="MainMenu" type="Spatial"]
 script = ExtResource( 7 )
@@ -44,7 +44,7 @@ script = ExtResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -61.9849 )
 
 [node name="AnimatedSprite3D" parent="Background" index="0"]
-frames = SubResource( 6 )
+frames = SubResource( 3 )
 frame = 1
 
 [node name="Spatial" parent="." instance=ExtResource( 6 )]
@@ -71,7 +71,7 @@ margin_left = 334.363
 margin_top = 70.8542
 margin_right = 1200.36
 margin_bottom = 198.854
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Super Mariovania 3D"
 align = 1
 valign = 1
@@ -85,7 +85,7 @@ margin_left = 88.9514
 margin_top = 523.049
 margin_right = 327.951
 margin_bottom = 588.049
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -96,7 +96,7 @@ margin_left = 88.9514
 margin_top = 615.049
 margin_right = 327.951
 margin_bottom = 680.049
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/Control/PlayBtn" to="." method="_on_PlayBtn_pressed"]
