@@ -3,7 +3,7 @@
     {
         "npc_img": "res://assets/img/npcs/test.jpeg",
         "text": {
-                "pt": "Olá, bem vindo a primeira versão do diálogo" ,
+                "pt": "Cuidado que ali em cima o bixo pega" ,
                 "en": "Hi, welcome to the first version of the dialog"
             }
     },
@@ -11,7 +11,7 @@
     {
         "npc_img": "res://assets/img/npcs/test.jpeg",
         "text": {
-                "pt": "No futuro isso pode ficar mais rebuscado" ,
+                "pt": "Tem o primeiro miniboss bolado 60hp" ,
                 "en": "In the future this might get prettier"
             }
     }

@@ -10,6 +10,7 @@ albedo_color = Color( 0.862745, 1, 0.996078, 1 )
 
 [node name="Sword" type="Spatial"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
 script = ExtResource( 1 )
 damage = 2
 

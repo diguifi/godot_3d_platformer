@@ -1,7 +1,7 @@
 extends KinematicBody
 
 # ------ variables ------
-export var health = 10
+export var hp = 10
 export var coyote_timer = 0.05
 export var damage_timer = 0.15
 onready var graphics = $Graphics
@@ -22,20 +22,24 @@ const DAMAGE_KICK = 14
 
 # movement
 var grounded = false
+var previous_grounded = false
 var can_jump = false
 var released_jump = true
 var colliding_right = false
 var colliding_left = false
 var just_jumped = false
+var just_landed = false
 var jump_state = JumpStateEnum.GROUNDED
 
 # combat
 var damaged = false
 var x_axis_damage_kick = 0
+var attacking = false
+var attack_anim_speed = 1
 
 # animation
 var facing_right = true
-var walk_anim_speed = 1.3
+var walk_anim_speed = 0.8
 
 # power ups
 var has_double_jump = false
@@ -53,7 +57,7 @@ var items = {
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
 	Signals.connect("damage_player", self, "_damage_player")
-	equipWeapon(items.sword1)
+	equip_weapon(items.sword1)
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -73,7 +77,7 @@ func play_anim(anim, speed = 1):
 	anim_player.play(anim)
 
 func apply_movement():
-	walk_anim_speed = 2
+	walk_anim_speed = 1
 	var move_dir = DirectionEnum.IDLE
 	var movement_modifier = WALK_SPEED
 	if Input.is_action_pressed("move_right") and !colliding_right:
@@ -81,10 +85,17 @@ func apply_movement():
 	if Input.is_action_pressed("move_left") and !colliding_left:
 		move_dir = DirectionEnum.LEFT
 	if Input.is_action_pressed("crouch"):
-		walk_anim_speed = 1.3
+		walk_anim_speed = 0.8
 		movement_modifier = CROUCH_SPEED
+	reset_damage_kick()
 	var move_result = move_and_slide(Vector3((move_dir * movement_modifier) + x_axis_damage_kick, gravity_manager.y_velo, 0), Vector3(0,1,0))
 	return move_dir
+	
+func reset_damage_kick():
+	if !damaged and x_axis_damage_kick != 0:
+		x_axis_damage_kick = lerp(x_axis_damage_kick, 0, 0.1)
+		if x_axis_damage_kick > -0.1 and x_axis_damage_kick < 0.1:
+			x_axis_damage_kick = 0
 	
 func apply_jump(delta):
 	just_jumped = false
@@ -93,7 +104,7 @@ func apply_jump(delta):
 	elif Input.is_action_just_released("jump"):
 		released_jump = true
 		
-	if can_jump and !GlobalState.on_dialog_area:
+	if can_jump:
 		gravity_manager.y_velo = -0.1
 		if Input.is_action_pressed("jump") and released_jump:
 			gravity_manager.y_velo = JUMP_FORCE
@@ -126,12 +137,16 @@ func check_fall_modifiers():
 	else:
 		gravity_manager.gravity_multiplier = 1
 	
-func apply_damage_kick(direction):
+func apply_damage_kick(direction, strenght):
 	if !damaged:
 		damaged = true
-		gravity_manager.y_velo = DAMAGE_KICK
-		x_axis_damage_kick = DAMAGE_KICK * direction
-		damage_time()
+		gravity_manager.y_velo = DAMAGE_KICK * 0.8
+		if strenght > 1:
+			x_axis_damage_kick = (DAMAGE_KICK * strenght) * direction
+			damage_time()
+		else:
+			x_axis_damage_kick = DAMAGE_KICK * direction
+			damage_time()
 
 func play_animations(move_dir):
 	var falling = jump_state == JumpStateEnum.JUMP_FALL or jump_state == JumpStateEnum.DOUBLE_JUMP_FALL
@@ -146,26 +161,40 @@ func play_animations(move_dir):
 		visible = true
 		
 	if just_jumped:
-		play_anim("jump", 1.2)
-	elif !grounded and falling:
-		play_anim("fall")
+		play_anim("jump")
+	elif !grounded and gravity_manager.y_velo < 0:
+		play_anim("fall", 0.5)
+	elif just_landed:
+		play_anim("land", 1.5)
 	elif grounded:
-		if move_dir == DirectionEnum.IDLE:
+		if move_dir == DirectionEnum.IDLE and !attacking:
 			play_anim("idle")
+		elif attacking:
+			play_anim("attack_sword", attack_anim_speed)
 		else:
 			play_anim("walk", walk_anim_speed)
+				
+func attack(anim_speed):
+	attack_anim_speed = anim_speed
+	attack_timer(0.5)
 			
 func check_grounded():
 	grounded = ground_check_right.is_colliding() or ground_check_left.is_colliding()
 	if grounded:
+		if !previous_grounded:
+			land_timer(0.25)
 		can_jump = true
 		jump_state = JumpStateEnum.GROUNDED
 	if !grounded and can_jump and jump_state == JumpStateEnum.GROUNDED:
 		coyote_time()
+	previous_grounded = grounded
 
 func flip():
-	graphics.rotation_degrees.y *= -1
+	var degrees = 0
 	facing_right = !facing_right
+	if !facing_right:
+		degrees = 180
+	graphics.rotation_degrees.y = degrees
 
 func coyote_time():
 	yield(get_tree().create_timer(coyote_timer),"timeout")
@@ -174,13 +203,22 @@ func coyote_time():
 func damage_time():
 	yield(get_tree().create_timer(damage_timer),"timeout")
 	damaged = false
-	x_axis_damage_kick = 0
 	
-func equipWeapon(preloadedItem):
+func land_timer(time):
+	just_landed = true
+	yield(get_tree().create_timer(time),"timeout")
+	just_landed = false
+	
+func attack_timer(time):
+	attacking = true
+	yield(get_tree().create_timer(time),"timeout")
+	attacking = false
+	
+func equip_weapon(preloadedItem):
 	weapon = preloadedItem.instance()
 	left_hand_holder.add_child(weapon)
 	
-func equipShield(preloadedItem):
+func equip_shield(preloadedItem):
 	shield = preloadedItem.instance()
 	right_hand_holder.add_child(shield)
 
@@ -190,11 +228,14 @@ func _get_power_up(power):
 	if power == "double_jump":
 		has_double_jump = true
 		
-func _damage_player(damage, on_right):
+func _damage_player(damage, on_right, strenght):
 	if on_right:
-		apply_damage_kick(-1)
+		apply_damage_kick(-1, strenght)
 	else:
-		apply_damage_kick(1)
+		apply_damage_kick(1, strenght)
+	hp -= damage
+	if hp <= 0:
+		get_tree().reload_current_scene()
 
 func _on_AreaRight_body_entered(body):
 	colliding_right = true

@@ -3,6 +3,7 @@ extends KinematicBody
 onready var gravity_manager = $KinematicGravity
 onready var right_floor_ray = $FloorCheckRight
 onready var left_floor_ray = $FloorCheckLeft
+onready var collision = $CollisionShape
 onready var graphics = $Graphics
 onready var anim_player = $Graphics/AnimationPlayer
 export var hp = 10
@@ -10,6 +11,8 @@ const DAMAGE_KICK = 10
 var damage_timer = 0.5
 var damaged = false
 var x_axis_damage_kick = 0
+var dead = false
+var vulnerable = false
 
 func _ready():
 	Signals.connect("damage_enemy", self, "_damage_enemy")
@@ -25,7 +28,7 @@ func apply_damage_kick(direction):
 		damaged = true
 		gravity_manager.y_velo = DAMAGE_KICK
 		x_axis_damage_kick = DAMAGE_KICK * direction
-		damage_time()
+		damage_time(damage_timer)
 		
 func play_anim(anim, speed = 1):
 	if anim_player:
@@ -40,16 +43,26 @@ func play_animations():
 	if !damaged:
 		visible = true
 		
-func damage_time():
-	yield(get_tree().create_timer(damage_timer),"timeout")
+func die():
+	collision.disabled = true
+	dead = true
+	play_anim("Die")
+	wait_before_free(1.5)
+		
+func damage_time(time):
+	yield(get_tree().create_timer(time),"timeout")
 	damaged = false
 	x_axis_damage_kick = 0
+	
+func wait_before_free(time):
+	yield(get_tree().create_timer(time),"timeout")
+	queue_free()
 
 func _damage_enemy(unique_name, damage, on_right):
 	if unique_name == name:
 		hp -= damage
 		if hp <= 0:
-			queue_free()
+			die()
 		if on_right:
 			apply_damage_kick(-1)
 		else:

@@ -13,10 +13,11 @@ func _process(delta):
 	check_combat_moves()
 	
 func check_combat_moves():
-	if Input.is_action_just_pressed("attack") and can_attack:
+	if Input.is_action_just_pressed("attack") and can_attack and !GlobalState.on_dialog_area:
 		attack()
 		
 func attack():
+	player.attack(1)
 	can_attack = false
 	var attack_effect = slash_effect.instance()
 	attack_effect.flip = !player.facing_right
@@ -26,7 +27,5 @@ func attack():
 	
 func attack_time():
 	var time_delay = ((MAX_ATTACK_SPEED+1.0)/attack_speed)/MAX_ATTACK_SPEED
-	print(time_delay)
 	yield(get_tree().create_timer(time_delay),"timeout")
-	print("time_delay fin")
 	can_attack = true
