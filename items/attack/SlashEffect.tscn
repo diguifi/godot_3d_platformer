@@ -42,7 +42,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 pixel_size = 0.12
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="AttackArea" parent="." instance=ExtResource( 3 )]

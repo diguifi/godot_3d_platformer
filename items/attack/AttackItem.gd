@@ -13,10 +13,11 @@ func _process(delta):
 	check_combat_moves()
 	
 func check_combat_moves():
-	if Input.is_action_just_pressed("attack") and can_attack:
+	if Input.is_action_just_pressed("attack") and can_attack and !GlobalState.on_dialog_area:
 		attack()
 		
 func attack():
+	player.attack(1)
 	can_attack = false
 	var attack_effect = slash_effect.instance()
 	attack_effect.flip = !player.facing_right

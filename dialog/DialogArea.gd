@@ -11,7 +11,7 @@ func _ready():
 	total_steps = parsed_dialog.size()
 
 func _process(delta):
-	if GlobalState.on_dialog_area and Input.is_action_just_pressed("jump"):
+	if GlobalState.on_dialog_area and Input.is_action_just_pressed("attack"):
 		GlobalState.dialog_happening = true
 		_next_step_dialog()
 		

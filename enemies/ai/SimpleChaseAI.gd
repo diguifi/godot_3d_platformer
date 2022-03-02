@@ -29,17 +29,18 @@ var state = states.PATROLLING
 
 func _ready():
 	front_check.cast_to = Vector3( view_distance, 0, 0 )
-	rear_check.cast_to = Vector3( -(view_distance * 0.3), 0, 0 )
+	rear_check.cast_to = Vector3( -(view_distance * 0.4), 0, 0 )
 	default_chase_speed = chase_speed
 
 func _physics_process(delta):
-	update_y_range_check(delta)
-	check_player_visible()
-	check_move_dir()
-	apply_current_state()
-	play_animations()
+	if !enemy.dead:
+		update_y_range_check(delta)
+		check_player_visible()
+		check_move_dir()
+		apply_current_state()
+		play_animations()
 	
-	enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
+		enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
 	
 func check_move_dir():
 	on_ledge_or_wall = false
@@ -119,11 +120,11 @@ func play_animations():
 		flip()
 		
 	if enemy.damaged:
-		enemy.play_anim("hit")
+		enemy.play_anim("hit", 1.1)
 	elif states.PATROLLING:
 		enemy.play_anim("walk")
 	elif states.CHASING:
-		enemy.play_anim("chase")
+		enemy.play_anim("walk", 1.5)
 
 func flip():
 	var degrees = 0
