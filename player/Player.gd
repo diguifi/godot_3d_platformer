@@ -40,6 +40,8 @@ var attack_anim_speed = 1
 # animation
 var facing_right = true
 var walk_anim_speed = 0.8
+var is_on_edge_left = false
+var is_on_edge_right = false
 
 # power ups
 var has_double_jump = false
@@ -49,15 +51,15 @@ onready var right_hand_holder = $Graphics/Armature/Skeleton/RightHandPlaceholder
 onready var left_hand_holder = $Graphics/Armature/Skeleton/LeftHandPlaceholder
 var weapon = null
 var shield = null
-var items = {
-	"sword1": preload("res://items/attack/Sword.tscn")
-}
+#var items = {
+#	"sword1": preload("res://items/attack/Sword.tscn")
+#}
 
 # ------ start and loop ------
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
 	Signals.connect("damage_player", self, "_damage_player")
-	equip_weapon(items.sword1)
+	#equip_weapon(items.sword1)
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -165,9 +167,11 @@ func play_animations(move_dir):
 	elif !grounded and gravity_manager.y_velo < 0:
 		play_anim("fall", 0.5)
 	elif just_landed:
-		play_anim("land", 1.5)
+		play_anim("land", 1.6)
 	elif grounded:
-		if move_dir == DirectionEnum.IDLE and !attacking:
+		if move_dir == DirectionEnum.IDLE and (is_on_edge_left or is_on_edge_right):
+			play_anim("edge", 0.8)
+		elif move_dir == DirectionEnum.IDLE and !attacking:
 			play_anim("idle")
 		elif attacking:
 			play_anim("attack_sword", attack_anim_speed)
@@ -179,6 +183,8 @@ func attack(anim_speed):
 	attack_timer(0.5)
 			
 func check_grounded():
+	is_on_edge_left = ground_check_right.is_colliding() and !ground_check_left.is_colliding()
+	is_on_edge_right = !ground_check_right.is_colliding() and ground_check_left.is_colliding()
 	grounded = ground_check_right.is_colliding() or ground_check_left.is_colliding()
 	if grounded:
 		if !previous_grounded:

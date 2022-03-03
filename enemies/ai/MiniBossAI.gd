@@ -6,15 +6,19 @@ enum states {
 	FLOOR_HIT,
 	STUCK,
 	RELEASING,
-	THROWING,
+	THROW_START,
+	THROW_MISS,
 	THREW
 }
 
+export var boss_speed_modifier = 1.0
 export var chase_speed = 1.8
 export var throw_damage = 2
 export var floor_hit_damage = 2
 export var floor_hit_delay = 0.4
-export var throwing_time = 3.2
+export var throw_start_time = 0.5
+export var throw_miss_time = 1.6
+export var throwing_time = 2.1
 export var floor_hit_time = 2.3
 export var stuck_time = 3.3
 export var releasing_time = 2.2
@@ -39,8 +43,16 @@ var amount_hit_ground_effect = 4
 var hit_ground_effect_preload = preload("res://enemies/bosses/BossPowerEffect.tscn")
 
 func _ready():
-	Signals.connect("start_boss", self, "_start_boss")
+	chase_speed *= boss_speed_modifier
+	floor_hit_delay /= boss_speed_modifier
+	throw_start_time /= boss_speed_modifier
+	throw_miss_time /= boss_speed_modifier
+	throwing_time /= boss_speed_modifier
+	floor_hit_time /= boss_speed_modifier
+	stuck_time /= boss_speed_modifier
+	releasing_time /= boss_speed_modifier
 	default_chase_speed = chase_speed
+	Signals.connect("start_boss", self, "_start_boss")
 	boss.play_anim("idle", 1)
 
 func _physics_process(delta):
@@ -86,7 +98,7 @@ func apply_current_state():
 			set_vulnerability(false)
 			move_speed = 0
 			if state_changed:
-				floor_hit_timer(1.8)
+				floor_hit_timer(1.8 / boss_speed_modifier)
 				next_state_timer(floor_hit_time, states.STUCK)
 		states.STUCK:
 			set_vulnerability(true)
@@ -98,19 +110,26 @@ func apply_current_state():
 			move_speed = 0
 			if state_changed:
 				next_state_timer(releasing_time, states.CHASING)
-		states.THROWING:
+		states.THROW_START:
 			set_vulnerability(false)
 			move_speed = 0
 			if state_changed:
-				grab_timer(1, true)
-				grab_timer(throwing_time - 0.7, false)
-				next_state_timer(throwing_time, states.THREW)
-			if grabbing:
-				player_node.global_transform.origin = claw.global_transform.origin
+				throw_check_timer(throw_start_time)
+		states.THROW_MISS:
+			set_vulnerability(false)
+			move_speed = 0
+			if state_changed:
+				next_state_timer(throw_miss_time, states.CHASING)
 		states.THREW:
 			set_vulnerability(false)
+			move_speed = 0
 			if state_changed:
-				set_state(states.CHASING)
+				grabbing = true
+				grab_timer(throwing_time - (0.7 / boss_speed_modifier), false)
+				next_state_timer(throwing_time, states.CHASING)
+			if grabbing:
+				player_node.global_transform.origin = claw.global_transform.origin
+				
 	if state_changed and frame_state_changed != Engine.get_frames_drawn():
 		state_changed = false
 		frame_state_changed = 0
@@ -167,16 +186,22 @@ func play_animations():
 			flip()
 		
 	match state:
+		states.IDLE:
+			boss.play_anim("idle")
 		states.CHASING:
-			boss.play_anim("walk", 1.2)
+			boss.play_anim("walk", 1.3 * boss_speed_modifier)
 		states.FLOOR_HIT:
-			boss.play_anim("punch", 1.4)
+			boss.play_anim("punch", 1.4 * boss_speed_modifier)
 		states.STUCK:
-			boss.play_anim("stun")
+			boss.play_anim("stun", 1 * boss_speed_modifier)
 		states.RELEASING:
-			boss.play_anim("recover", 1.5)
-		states.THROWING:
-			boss.play_anim("throw", 1)
+			boss.play_anim("recover", 1.5 * boss_speed_modifier)
+		states.THROW_START:
+			boss.play_anim("throw_start", 1.5 * boss_speed_modifier)
+		states.THROW_MISS:
+			boss.play_anim("throw_miss", 1.5 * boss_speed_modifier)
+		states.THREW:
+			boss.play_anim("throw_success", 1.5 * boss_speed_modifier)
 
 func flip():
 	var degrees = 0
@@ -188,7 +213,7 @@ func flip():
 func chasing_timer(time):
 	yield(get_tree().create_timer(time),"timeout")
 	if is_player_close():
-		set_state(states.THROWING)
+		set_state(states.THROW_START)
 	else:
 		set_state(states.FLOOR_HIT)
 		
@@ -196,13 +221,19 @@ func next_state_timer(time, next_state):
 	yield(get_tree().create_timer(time),"timeout")
 	set_state(next_state)
 	
+func throw_check_timer(time):
+	yield(get_tree().create_timer(time),"timeout")
+	if is_player_close():
+		check_throw_side()
+		set_state(states.THREW)
+	else:
+		set_state(states.THROW_MISS)
+	
 func grab_timer(time, flag):
 	yield(get_tree().create_timer(time),"timeout")
 	grabbing = flag
 	if !flag:
 		Signals.emit_signal("damage_player", throw_damage, !facing_right, 2)
-	else:
-		check_throw_side()
 	
 func spawn_hit_delay(time, iteration):
 	yield(get_tree().create_timer(time),"timeout")

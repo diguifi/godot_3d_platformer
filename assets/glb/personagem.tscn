@@ -7,14 +7,10 @@
 [node name="Armature" parent="." index="0"]
 transform = Transform( -2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, 0 )
 
-[node name="Skeleton" parent="Armature" index="0"]
-bones/16/bound_children = [ NodePath("RightHandPlaceholder") ]
-bones/28/bound_children = [ NodePath("LeftHandPlaceholder") ]
-
 [node name="RightHandPlaceholder" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
-transform = Transform( 0.218624, -0.975482, 0.0252791, -0.0911726, 0.00537255, 0.995821, -0.971541, -0.220015, -0.0877625, -0.399261, 1.41801, 0.468013 )
+transform = Transform( 0.204072, -0.97894, -0.00561856, 0.0893213, 0.0243348, -0.995706, 0.974873, 0.202694, 0.0924063, -0.394506, 1.00006, -0.505168 )
 bone_name = "shield"
 
 [node name="LeftHandPlaceholder" type="BoneAttachment" parent="Armature/Skeleton" index="2"]
-transform = Transform( -0.706821, -0.117876, 0.697502, -0.484539, 0.799064, -0.355974, -0.515388, -0.589577, -0.621912, 0.451113, 1.53446, 0.392254 )
+transform = Transform( -0.71443, -0.0828586, 0.694784, 0.134014, 0.958377, 0.252099, -0.686753, 0.273218, -0.67359, 0.444484, 0.836544, 0.341424 )
 bone_name = "weapon"

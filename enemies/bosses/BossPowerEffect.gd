@@ -12,7 +12,7 @@ func _ready():
 	if flip:
 		flip_modifier = -1
 		rotation_degrees.y = 180
-	global_transform.origin.x += (distance_modifier * 8.5) * flip_modifier
+	global_transform.origin.x += (distance_modifier * 7) * flip_modifier
 	visible = true
 	spawn_time()
 

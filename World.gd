@@ -19,4 +19,5 @@ var play_cutscene = {
 }
 
 func _ready():
-	GlobalState.camera.start_cutscene(play_cutscene)
+	#GlobalState.camera.start_cutscene(play_cutscene)
+	pass
