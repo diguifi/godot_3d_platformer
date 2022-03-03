@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://managers/AttackArea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/items/attack/SlashEffect.gd" type="Script" id=2]
+[ext_resource path="res://assets/img/slash_effect.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 96, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 128, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 9.97924, 8.98854, 1 )
+
+[node name="SlashEffect" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.12
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="AttackArea" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.16, 0, 0, 0, 0.16, 0, 0, 0, 1, -0.37, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AttackArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+shape = SubResource( 7 )
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_AnimatedSprite3D_animation_finished"]
