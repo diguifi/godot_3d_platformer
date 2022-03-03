@@ -8,6 +8,7 @@ func fade_to(scn_path):
 	animation.play("Fade")
 
 func change_scene():
+	print(path)
 	if path != "":
 		get_tree().change_scene(path)
 
