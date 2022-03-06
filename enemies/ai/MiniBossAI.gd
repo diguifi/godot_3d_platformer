@@ -32,7 +32,6 @@ var grab_distance = 5
 var grabbing = false
 var default_chase_speed = 0
 var facing_right = true
-var on_ledge_or_wall = false
 var chasing_direction = 1
 var move_dir = DirectionEnum.RIGHT
 var move_speed = 1.5
@@ -56,17 +55,10 @@ func _ready():
 	boss.play_anim("idle", 1)
 
 func _physics_process(delta):
-	check_move_dir()
 	apply_current_state()
 	play_animations()
 	
 	boss.move_and_slide(Vector3((move_dir * move_speed), boss.gravity_manager.y_velo, 0), Vector3(0,1,0))
-	
-func check_move_dir():
-	on_ledge_or_wall = false
-	if boss.is_on_wall():
-		move_dir = -move_dir
-		on_ledge_or_wall = true
 
 func pursuit_player():
 	if state == states.CHASING:
@@ -93,6 +85,7 @@ func apply_current_state():
 			move_dir = chasing_direction
 			pursuit_player()
 			if state_changed:
+				shake_on_step_timer()
 				chasing_timer(chasing_time)
 		states.FLOOR_HIT:
 			set_vulnerability(false)
@@ -166,7 +159,7 @@ func check_throw_side():
 		facing_right = true
 	else:
 		facing_right = false
-	
+		
 	if move_dir == DirectionEnum.LEFT and facing_right:
 		facing_right = !facing_right
 		flip()
@@ -180,9 +173,9 @@ func set_vulnerability(flag):
 
 func play_animations():
 	if state == states.CHASING:
-		if move_dir == DirectionEnum.LEFT and facing_right and !on_ledge_or_wall:
+		if move_dir == DirectionEnum.LEFT and facing_right:
 			flip()
-		if move_dir == DirectionEnum.RIGHT and !facing_right and !on_ledge_or_wall:
+		if move_dir == DirectionEnum.RIGHT and !facing_right:
 			flip()
 		
 	match state:
@@ -209,6 +202,12 @@ func flip():
 	if !facing_right:
 		degrees = 180
 	boss.graphics.rotation_degrees.y = degrees
+	
+func shake_on_step_timer():
+	yield(get_tree().create_timer(1.3/boss_speed_modifier),"timeout")
+	if state == states.CHASING:
+		GlobalState.camera.add_trauma(0.2)
+		shake_on_step_timer()
 	
 func chasing_timer(time):
 	yield(get_tree().create_timer(time),"timeout")
@@ -241,6 +240,7 @@ func spawn_hit_delay(time, iteration):
 	
 func floor_hit_timer(time):
 	yield(get_tree().create_timer(time),"timeout")
+	GlobalState.camera.add_trauma(0.6)
 	spawn_hit_ground_effect()
 	
 func _start_boss(boss_name, _focal_point):

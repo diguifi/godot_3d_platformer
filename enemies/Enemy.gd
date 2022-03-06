@@ -6,7 +6,10 @@ onready var left_floor_ray = $FloorCheckLeft
 onready var collision = $CollisionShape
 onready var graphics = $Graphics
 onready var anim_player = $Graphics/AnimationPlayer
+onready var health_bar = $HealthBar3D
+onready var hit_count_spawner = $HitCountSpawner
 export var hp = 10
+var max_hp = 10
 const DAMAGE_KICK = 10
 var damage_timer = 0.5
 var damaged = false
@@ -16,6 +19,7 @@ var vulnerable = false
 
 func _ready():
 	Signals.connect("damage_enemy", self, "_damage_enemy")
+	max_hp = hp
 
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -60,7 +64,12 @@ func wait_before_free(time):
 
 func _damage_enemy(unique_name, damage, on_right):
 	if unique_name == name:
+		GlobalState.camera.add_trauma(0.3)
 		hp -= damage
+		if is_instance_valid(hit_count_spawner):
+			hit_count_spawner.spawn_hit_count(damage)
+		if is_instance_valid(health_bar):
+			health_bar.update_healthbar(hp, max_hp)
 		if hp <= 0:
 			die()
 		if on_right:

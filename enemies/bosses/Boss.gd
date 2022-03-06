@@ -3,7 +3,12 @@ extends KinematicBody
 onready var gravity_manager = $KinematicGravity
 onready var graphics = $Graphics
 onready var anim_player = $Graphics/AnimationPlayer
+onready var health_bar = $HealthBar3D
+onready var right_foot = $Graphics/Armature/Skeleton/RightFoot/RayCast
+onready var left_foot = $Graphics/Armature/Skeleton/LeftFoot/RayCast
+onready var hit_count_spawner = $HitCountSpawner
 export var hp = 60
+var max_hp = 60
 var damage_timer = 0.5
 var damaged = false
 var x_axis_damage_kick = 0
@@ -12,6 +17,7 @@ var vulnerable = false
 
 func _ready():
 	Signals.connect("damage_enemy", self, "_damage_enemy")
+	max_hp = hp
 
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -43,7 +49,12 @@ func damage_time():
 
 func _damage_enemy(unique_name, damage, _direction):
 	if unique_name == name and vulnerable:
+		GlobalState.camera.add_trauma(0.3)
 		hp -= damage
+		if is_instance_valid(hit_count_spawner):
+			hit_count_spawner.spawn_hit_count(damage)
+		if is_instance_valid(health_bar):
+			health_bar.update_healthbar(hp, max_hp)
 		if hp <= 0:
 			queue_free()
 			Signals.emit_signal("kill_boss")

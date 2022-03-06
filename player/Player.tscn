@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://managers/HitCountSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://managers/KinematicGravity.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/glb/personagem.tscn" type="PackedScene" id=4]
@@ -17,6 +18,9 @@ script = ExtResource( 2 )
 
 [node name="KinematicGravity" parent="." instance=ExtResource( 3 )]
 automatic_fall = false
+
+[node name="HitCountSpawner" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0 )
 
 [node name="Graphics" parent="." instance=ExtResource( 4 )]
 

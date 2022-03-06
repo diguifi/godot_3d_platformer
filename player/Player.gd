@@ -12,6 +12,7 @@ onready var ground_check_left = $GroundCheckRayLeft
 onready var area_right = $AreaRight
 onready var area_left = $AreaLeft
 onready var area_bottom = $AreaBottom
+onready var hit_count_spawner = $HitCountSpawner
 
 # constants
 const WALK_SPEED = 7
@@ -51,15 +52,15 @@ onready var right_hand_holder = $Graphics/Armature/Skeleton/RightHandPlaceholder
 onready var left_hand_holder = $Graphics/Armature/Skeleton/LeftHandPlaceholder
 var weapon = null
 var shield = null
-#var items = {
-#	"sword1": preload("res://items/attack/Sword.tscn")
-#}
+var items = {
+	"sword1": preload("res://player/items/attack/Sword.tscn")
+}
 
 # ------ start and loop ------
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
 	Signals.connect("damage_player", self, "_damage_player")
-	#equip_weapon(items.sword1)
+	equip_weapon(items.sword1)
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -240,6 +241,8 @@ func _damage_player(damage, on_right, strenght):
 	else:
 		apply_damage_kick(1, strenght)
 	hp -= damage
+	if is_instance_valid(hit_count_spawner):
+		hit_count_spawner.spawn_hit_count(damage)
 	if hp <= 0:
 		get_tree().reload_current_scene()
 
