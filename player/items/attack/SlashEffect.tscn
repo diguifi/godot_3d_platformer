@@ -40,9 +40,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.654213, 0.75631, 0, -0.75631, 0.654213, 0, 0, 0 )
 pixel_size = 0.12
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="AttackArea" parent="." instance=ExtResource( 1 )]

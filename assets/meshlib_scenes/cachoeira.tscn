@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/meshes/pedraM_mesh.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/meshes/pedraP_mesh.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/meshes/pedraG_mesh.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://managers/VisibilityManager.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+albedo_color = Color( 0.0862745, 0.596078, 0.835294, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 1 )
+radial_segments = 4
+rings = 4
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.0931373, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.884091 ), -2.31818, 0.0, 0, 0 ]
+
+[node name="Waterfall" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0169039, -1.75054, 0.0162735 )
+visible = false
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 0.190078, 0, 0, 0, 0.190078, 0, 0, 0, 0.190078, -0.498211, 5.29872, -0.0468264 )
+amount = 60
+lifetime = 2.0
+local_coords = false
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 1.18
+direction = Vector3( 1, 3.638, 0 )
+spread = 0.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 8.0
+linear_accel = -3.67
+radial_accel = -0.47
+scale_amount = 0.2
+scale_amount_curve = SubResource( 3 )
+
+[node name="pedraP" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( 2.98053, 0, 0, 0, 2.91999, 0.597676, 0, -0.597676, 2.91999, -3.97589, -0.0195351, -1.46459 )
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="pedraP2" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( -2.24009, -2.31317, -0.988347, 2.51546, -2.05995, -0.880152, 0, -1.32344, 3.09744, 3.22008, 0.0420456, -1.62587 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("../pedraP")
+material/0 = null
+
+[node name="pedraG" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( 3.74793, 0, 0, 0, 3.74793, 0, 0, 0, 2.60973, -0.372745, 2.34893, -2.27208 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="pedraG2" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( 3.74793, 0, 0, 0, 3.74793, 0, 0, 0, 2.60973, 0.157758, -3.22136, -2.27208 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="PedraM" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( 2.2897, 0, 0, 0, -0.0233378, 2.28958, 0, -2.28958, -0.0233378, -4.67234, 2.41947, -1.72554 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="PedraM2" type="MeshInstance" parent="CPUParticles"]
+transform = Transform( -2.24149, -0.0718794, 0.461841, 0.415704, 0.727679, 2.13082, -0.213667, 2.1698, -0.699306, 3.9122, 3.41962, -2.25682 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="VisibilityManager" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429131, 0.701065, 0 )
+aabb = AABB( -1.4, -5.6, -1, 2.8, 11.3, 2 )

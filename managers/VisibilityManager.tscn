@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://managers/VisibilityManager.gd" type="Script" id=1]
+
+[node name="VisibilityManager" type="VisibilityNotifier"]
+script = ExtResource( 1 )
+
+[connection signal="camera_entered" from="." to="." method="_on_VisibilityManager_camera_entered"]
+[connection signal="camera_exited" from="." to="." method="_on_VisibilityManager_camera_exited"]
