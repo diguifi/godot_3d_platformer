@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/damage_stone.ogg-82e29ece1cca42b50bde72405dec19f0.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/damage_stone.ogg"
+dest_files=[ "res://.import/damage_stone.ogg-82e29ece1cca42b50bde72405dec19f0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -7,6 +7,7 @@ onready var health_bar = $HealthBar3D
 onready var right_foot = $Graphics/Armature/Skeleton/RightFoot/RayCast
 onready var left_foot = $Graphics/Armature/Skeleton/LeftFoot/RayCast
 onready var hit_count_spawner = $HitCountSpawner
+onready var sound_manager = $SoundManager
 export var hp = 60
 var max_hp = 60
 var damage_timer = 0.5
@@ -14,6 +15,7 @@ var damaged = false
 var x_axis_damage_kick = 0
 var dead = false
 var vulnerable = false
+var play_damage_sound = false
 
 func _ready():
 	Signals.connect("damage_enemy", self, "_damage_enemy")
@@ -24,6 +26,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		 gravity_manager.y_velo = -0.1
 	play_animations()
+	play_sounds()
 		
 func apply_damage_effect():
 	if !damaged:
@@ -43,6 +46,11 @@ func play_animations():
 	if !damaged:
 		visible = true
 		
+func play_sounds():
+	if play_damage_sound:
+		play_damage_sound = false
+		sound_manager.play_damage(5,0.5)
+		
 func damage_time():
 	yield(get_tree().create_timer(damage_timer),"timeout")
 	damaged = false
@@ -51,6 +59,7 @@ func _damage_enemy(unique_name, damage, _direction):
 	if unique_name == name and vulnerable:
 		GlobalState.camera.add_trauma(0.3)
 		hp -= damage
+		play_damage_sound = true
 		if is_instance_valid(hit_count_spawner):
 			hit_count_spawner.spawn_hit_count(damage)
 		if is_instance_valid(health_bar):

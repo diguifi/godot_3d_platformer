@@ -13,6 +13,7 @@ onready var area_right = $AreaRight
 onready var area_left = $AreaLeft
 onready var area_bottom = $AreaBottom
 onready var hit_count_spawner = $HitCountSpawner
+onready var sound_manager = $SoundManager
 
 # constants
 const WALK_SPEED = 7
@@ -34,8 +35,10 @@ var jump_state = JumpStateEnum.GROUNDED
 
 # combat
 var damaged = false
+var play_damaged_sound = false
 var x_axis_damage_kick = 0
 var attacking = false
+var play_attack_sound = false
 var attack_anim_speed = 1
 
 # animation
@@ -71,6 +74,7 @@ func _physics_process(delta):
 		apply_double_jump(delta)
 	check_fall_modifiers()
 	play_animations(move_dir)
+	play_sounds(move_dir)
 	check_grounded()
  
 func play_anim(anim, speed = 1):
@@ -178,8 +182,21 @@ func play_animations(move_dir):
 			play_anim("attack_sword", attack_anim_speed)
 		else:
 			play_anim("walk", walk_anim_speed)
+			
+func play_sounds(move_dir):
+	if play_damaged_sound:
+		play_damaged_sound = false
+		sound_manager.play_damage(5)
+		sound_manager.play_pain(5, 1.4)
+	if play_attack_sound:
+		play_attack_sound = false
+		sound_manager.play_attack(2, 1)
+	if grounded and (move_dir != DirectionEnum.IDLE):
+		sound_manager.play_grass_step(2, 1.6)
+			
 				
 func attack(anim_speed):
+	play_attack_sound = true
 	attack_anim_speed = anim_speed
 	attack_timer(0.5)
 			
@@ -240,6 +257,7 @@ func _damage_player(damage, on_right, strenght):
 		apply_damage_kick(-1, strenght)
 	else:
 		apply_damage_kick(1, strenght)
+	play_damaged_sound = true
 	hp -= damage
 	if is_instance_valid(hit_count_spawner):
 		hit_count_spawner.spawn_hit_count(damage)

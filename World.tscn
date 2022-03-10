@@ -151,11 +151,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.29988, 4.7723, 0 )
 [node name="EnemyRocky19" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95847, 0.761873, 0 )
 
-[node name="DoubleJump2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9142, 15.4722, 0 )
-
-[node name="DoubleJump" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4028, 5.03666, 0 )
+[node name="PowerDoubleJump" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4028, 3.40963, 0 )
 
 [node name="BossArea" parent="." instance=ExtResource( 11 )]
 transform = Transform( 7.45917, 0, 0, 0, 7.95645, 0, 0, 0, 0.994556, 45.5, 22.5, 0 )

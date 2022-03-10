@@ -24,24 +24,22 @@ var valid_children = []
 
 func _ready():
 	#GlobalState.camera.start_cutscene(play_cutscene)
+	MusicManager.change_music("Game")
 	if test_ligh:
 		test_ligh.visible = false
 	for child in children:
 		var is_valid = true
-		if (child is DirectionalLight) or (child is WorldEnvironment) or (child is Camera):
-			is_valid = false
-		elif "Torch" in child.name:
-			is_valid = false
-		elif "Waterfall" in child.name:
-			is_valid = false
-		elif "Backgrounds" in child.name:
+		if !(child is KinematicBody):
 			is_valid = false
 			
 		if is_valid:
 			valid_children.append(child)
-			
 	
 func _process(delta):
 	for child in valid_children:
 		if is_instance_valid(child):
-			child.visible = false
+			if "dead" in child:
+				if !child.dead:
+					child.visible = false
+			else:
+				child.visible = false

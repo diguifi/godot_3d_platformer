@@ -35,6 +35,7 @@ config/icon="res://icon.png"
 Signals="*res://managers/Signals.gd"
 GlobalState="*res://managers/GlobalState.gd"
 Transition="*res://menus/Transition.tscn"
+MusicManager="*res://managers/MusicManager.tscn"
 
 [display]
 
