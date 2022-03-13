@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/giant_attack_1.ogg-5fd08acb03776c8f905cf58c1279548e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/giant_attack_1.ogg"
+dest_files=[ "res://.import/giant_attack_1.ogg-5fd08acb03776c8f905cf58c1279548e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

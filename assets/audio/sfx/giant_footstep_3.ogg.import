@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/giant_footstep_3.ogg-b5e99e17cea22686801b3979d87c1ce9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/giant_footstep_3.ogg"
+dest_files=[ "res://.import/giant_footstep_3.ogg-b5e99e17cea22686801b3979d87c1ce9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

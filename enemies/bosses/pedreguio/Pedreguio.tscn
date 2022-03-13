@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://enemies/bosses/Boss.gd" type="Script" id=1]
 [ext_resource path="res://managers/KinematicGravity.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://managers/HitCountSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://managers/SoundManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/audio/sfx/damage_stone.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/sfx/giant_footstep_2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/sfx/giant_footstep_1.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/sfx/giant_footstep_3.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio/sfx/giant_attack_1.ogg" type="AudioStream" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.6, 1.2, 0.5 )
@@ -55,4 +59,6 @@ transform = Transform( 2.3, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 3.19, 0 )
 shape = SubResource( 2 )
 
 [node name="SoundManager" parent="." instance=ExtResource( 8 )]
+grass_steps_sounds = [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ]
+attack_sounds = [ ExtResource( 13 ) ]
 damage_sounds = [ ExtResource( 9 ) ]

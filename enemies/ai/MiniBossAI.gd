@@ -41,6 +41,9 @@ var frame_state_changed = 0
 var amount_hit_ground_effect = 4
 var hit_ground_effect_preload = preload("res://enemies/bosses/BossPowerEffect.tscn")
 
+var play_step_sound = false
+var play_ground_hit_sound = false
+
 func _ready():
 	chase_speed *= boss_speed_modifier
 	floor_hit_delay /= boss_speed_modifier
@@ -57,6 +60,7 @@ func _ready():
 func _physics_process(delta):
 	apply_current_state()
 	play_animations()
+	play_sounds()
 	
 	boss.move_and_slide(Vector3((move_dir * move_speed), boss.gravity_manager.y_velo, 0), Vector3(0,1,0))
 
@@ -195,6 +199,14 @@ func play_animations():
 			boss.play_anim("throw_miss", 1.5 * boss_speed_modifier)
 		states.THREW:
 			boss.play_anim("throw_success", 1.5 * boss_speed_modifier)
+			
+func play_sounds():
+	if play_step_sound:
+		play_step_sound = false
+		boss.sound_manager.play_grass_step(0, 2)
+	if play_ground_hit_sound:
+		play_ground_hit_sound = false
+		boss.sound_manager.play_attack(10, 1.2)
 
 func flip():
 	var degrees = 0
@@ -206,8 +218,9 @@ func flip():
 func shake_on_step_timer():
 	yield(get_tree().create_timer(1.3/boss_speed_modifier),"timeout")
 	if state == states.CHASING:
-		GlobalState.camera.add_trauma(0.2)
+		GlobalState.camera.add_trauma(0.3)
 		shake_on_step_timer()
+		play_step_sound = true
 	
 func chasing_timer(time):
 	yield(get_tree().create_timer(time),"timeout")
@@ -240,7 +253,8 @@ func spawn_hit_delay(time, iteration):
 	
 func floor_hit_timer(time):
 	yield(get_tree().create_timer(time),"timeout")
-	GlobalState.camera.add_trauma(0.6)
+	GlobalState.camera.add_trauma(0.7)
+	play_ground_hit_sound = true
 	spawn_hit_ground_effect()
 	
 func _start_boss(boss_name, _focal_point):
