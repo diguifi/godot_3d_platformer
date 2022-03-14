@@ -18,22 +18,26 @@ var x_axis_damage_kick = 0
 var dead = false
 var vulnerable = false
 var play_damage_sound = false
+var flies = false
 
 func _ready():
 	Signals.connect("damage_enemy", self, "_damage_enemy")
 	max_hp = hp
+	if !gravity_manager:
+		flies = true
 
 func _physics_process(delta):
 	transform.origin.z = 0
-	if is_on_floor():
+	if is_on_floor() and !flies:
 		 gravity_manager.y_velo = -0.1
 	play_animations()
 	play_sounds()
 		
 func apply_damage_kick(direction):
 	if !damaged:
+		if !flies:
+			gravity_manager.y_velo = DAMAGE_KICK
 		damaged = true
-		gravity_manager.y_velo = DAMAGE_KICK
 		x_axis_damage_kick = DAMAGE_KICK * direction
 		damage_time(damage_timer)
 		

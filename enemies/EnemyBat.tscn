@@ -1,8 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://managers/KinematicGravity.tscn" type="PackedScene" id=2]
-[ext_resource path="res://enemies/ai/SimpleChaseAI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemies/ai/FlyChaseAI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://managers/DamageArea.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/glb/enemies/enemyrocky.tscn" type="PackedScene" id=5]
 [ext_resource path="res://managers/HealthBar3D.tscn" type="PackedScene" id=6]
@@ -10,23 +9,26 @@
 [ext_resource path="res://managers/SoundManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/audio/sfx/damage_stone.ogg" type="AudioStream" id=9]
 
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 4, 4, 1 )
+
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.5, 0.5 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.274953, 0.397653, 1 )
 
-[node name="EnemyRocky" type="KinematicBody"]
+[node name="EnemyBat" type="KinematicBody"]
 script = ExtResource( 1 )
-hp = 6
+hp = 4
 
 [node name="HealthBar3D" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14724, 0 )
 
-[node name="KinematicGravity" parent="." instance=ExtResource( 2 )]
+[node name="FlyChaseAI" parent="." instance=ExtResource( 3 )]
 
-[node name="SimpleChaseAI" parent="." instance=ExtResource( 3 )]
-chase_speed = 4
+[node name="CollisionShape" type="CollisionShape" parent="FlyChaseAI"]
+shape = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.260022, 0 )

@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/meshes/door_mesh.tres" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/meshes/1-meio001_mesh.tres" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/meshes/1-cantodir001_mesh.tres" type="ArrayMesh" id=4]
-[ext_resource path="res://assets/materials/bound.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/meshes/bounds_mesh.tres" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/materials/Material.material" type="Material" id=6]
 [ext_resource path="res://assets/materials/Material_014.material" type="Material" id=7]
 [ext_resource path="res://assets/materials/Material_007.material" type="Material" id=8]
@@ -62,7 +62,7 @@ material/1 = null
 material/2 = null
 
 [node name="StaticBody" type="StaticBody" parent="Bounds"]
-transform = Transform( -0.00573581, -6.66032e-10, -1.16959, 3.54877e-08, 1.47826, 5.26962e-10, 1.7815, 2.64492e-08, 0.00338192, 0.0156689, 0, -0.622127 )
+transform = Transform( -0.00573581, -6.66113e-10, -1.16959, 3.54877e-08, 1.47826, 5.2699e-10, 1.7815, 2.64492e-08, 0.00338192, -0.00200961, 2.38419e-07, 0.0797925 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bounds/StaticBody"]
 transform = Transform( 2.02701, 0, 0, 0, 1.46473, 0, 0, 0, 2.02701, 0, 0, 0 )

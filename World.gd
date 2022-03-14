@@ -31,7 +31,8 @@ func _ready():
 		var is_valid = true
 		if !(child is KinematicBody):
 			is_valid = false
-			
+		if ("Room" in child.name):
+			child.visible = false
 		if is_valid:
 			valid_children.append(child)
 	
