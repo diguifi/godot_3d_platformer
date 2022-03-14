@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Cenario 1 caverna2.glb-3ed1632e29b59ff152cdfdb458991941.scn"
+path="res://.import/bound1.glb-b4b9397de188f98d26e052f843393a41.scn"
 
 [deps]
 
-source_file="res://assets/meshlib_scenes/Cenario 1 caverna2.glb"
-dest_files=[ "res://.import/Cenario 1 caverna2.glb-3ed1632e29b59ff152cdfdb458991941.scn" ]
+source_file="res://assets/meshlibs/bound1.glb"
+dest_files=[ "res://.import/bound1.glb-b4b9397de188f98d26e052f843393a41.scn" ]
 
 [params]
 
