@@ -8,6 +8,7 @@ var show_health_bars = false
 var show_hit_amount = true
 var music_volume = 0.5
 var sfx_volume = 1
+var already_watched_intro = false
 
 func _ready():
 	_update_configs()

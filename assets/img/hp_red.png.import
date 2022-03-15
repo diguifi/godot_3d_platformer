@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barHorizontal_yellow.png-eddc850f67bccd1fd5ab5a9ef0e964bd.stex"
+path="res://.import/hp_red.png-1eb414e57fe17fb52f7af076f9342b08.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/barHorizontal_yellow.png"
-dest_files=[ "res://.import/barHorizontal_yellow.png-eddc850f67bccd1fd5ab5a9ef0e964bd.stex" ]
+source_file="res://assets/img/hp_red.png"
+dest_files=[ "res://.import/hp_red.png-1eb414e57fe17fb52f7af076f9342b08.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

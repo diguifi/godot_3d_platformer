@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/audio/music/bg_music.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/music/boss_music.ogg" type="AudioStream" id=2]
 [ext_resource path="res://managers/MusicManager.gd" type="Script" id=3]
 
 [node name="MusicManager" type="Node2D"]
@@ -15,6 +16,8 @@ volume_db = -10.0
 bus = "Music"
 
 [node name="Boss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -50.0
 bus = "Music"
 
 [node name="Lose" type="AudioStreamPlayer" parent="."]

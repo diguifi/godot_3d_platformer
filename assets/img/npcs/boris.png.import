@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/barHorizontal_green.png-f03696b553ee0e46e3383a2efeabbfb4.s3tc.stex"
-path.etc="res://.import/barHorizontal_green.png-f03696b553ee0e46e3383a2efeabbfb4.etc.stex"
+path.s3tc="res://.import/boris.png-0a8fd28ee988a214adeee9e7b2b166e6.s3tc.stex"
+path.etc="res://.import/boris.png-0a8fd28ee988a214adeee9e7b2b166e6.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/img/barHorizontal_green.png"
-dest_files=[ "res://.import/barHorizontal_green.png-f03696b553ee0e46e3383a2efeabbfb4.s3tc.stex", "res://.import/barHorizontal_green.png-f03696b553ee0e46e3383a2efeabbfb4.etc.stex" ]
+source_file="res://assets/img/npcs/boris.png"
+dest_files=[ "res://.import/boris.png-0a8fd28ee988a214adeee9e7b2b166e6.s3tc.stex", "res://.import/boris.png-0a8fd28ee988a214adeee9e7b2b166e6.etc.stex" ]
 
 [params]
 
@@ -30,7 +30,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

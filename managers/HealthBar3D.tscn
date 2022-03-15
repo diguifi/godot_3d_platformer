@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/img/barHorizontal_green.png" type="Texture" id=1]
+[ext_resource path="res://assets/img/hp_green.png" type="Texture" id=1]
 [ext_resource path="res://managers/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://managers/HealthBar3D.gd" type="Script" id=3]
 
@@ -10,7 +10,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 200, 26 )
+size = Vector2( 200, 16 )
 transparent_bg = true
 usage = 0
 render_target_v_flip = true

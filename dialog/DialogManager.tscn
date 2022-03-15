@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://dialog/DialogManager.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/OROTUND.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/img/buttons/next_button.png" type="Texture" id=3]
 [ext_resource path="res://assets/img/buttons/next_button_click.png" type="Texture" id=4]
 [ext_resource path="res://assets/img/buttons/next_button_hover.png" type="Texture" id=5]

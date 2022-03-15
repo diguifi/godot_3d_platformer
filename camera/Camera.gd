@@ -77,14 +77,20 @@ func play_cutscene(delta):
 	translation = lerp(translation, cutscene_step_translation, current_step_smooth_speed * delta)
 		
 func start_cutscene(script):
-	if !on_cutscene:
-		current_cutscene_script = script
-		current_cutscene_step = -1
-		current_cutscene_size = current_cutscene_script.size()
-		go_to_next_scene = true
-		on_cutscene = true
+	#tirar na proxima versao
+	if !GlobalState.already_watched_intro:
+
+		if !on_cutscene:
+			current_cutscene_script = script
+			current_cutscene_step = -1
+			current_cutscene_size = current_cutscene_script.size()
+			go_to_next_scene = true
+			on_cutscene = true
 		
 func finish_cutscene():
+	#tirar na proxima versao
+	GlobalState.already_watched_intro = true
+	
 	on_cutscene = false
 	go_to_next_scene = false
 	current_cutscene_step = 0
@@ -119,9 +125,11 @@ func get_noise_from_seed(_seed) -> float:
 
 # signals
 func _start_boss(boss_name, focal_point):
+	MusicManager.change_music("Boss")
 	on_boss = true
 	boss_focal_point = focal_point
 	
 func _finish_boss():
+	MusicManager.change_music("Game")
 	on_boss = false
 	boss_focal_point = Vector3(0,0,0)

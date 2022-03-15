@@ -2,27 +2,32 @@
 
 [ext_resource path="res://managers/AttackArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/items/attack/SlashEffect.gd" type="Script" id=2]
-[ext_resource path="res://assets/img/slash_effect.png" type="Texture" id=3]
+[ext_resource path="res://assets/img/slash-sword.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
+flags = 7
 atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 0, 0, 90, 89 )
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 7
 atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 0, 89, 90, 89 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 7
 atlas = ExtResource( 3 )
-region = Rect2( 0, 64, 32, 32 )
+region = Rect2( 0, 178, 90, 89 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 7
 atlas = ExtResource( 3 )
-region = Rect2( 0, 96, 32, 32 )
+region = Rect2( 0, 267, 90, 89 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 7
 atlas = ExtResource( 3 )
-region = Rect2( 0, 128, 32, 32 )
+region = Rect2( 0, 356, 90, 89 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -41,8 +46,9 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.654213, 0.75631, 0, -0.75631, 0.654213, 0, 0, 0 )
-pixel_size = 0.12
+pixel_size = 0.04
 frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="AttackArea" parent="." instance=ExtResource( 1 )]

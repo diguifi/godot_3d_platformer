@@ -23,8 +23,8 @@ onready var children = get_children()
 var valid_children = []
 
 func _ready():
-	#GlobalState.camera.start_cutscene(play_cutscene)
 	MusicManager.change_music("Game")
+	GlobalState.camera.start_cutscene(play_cutscene)
 	if test_ligh:
 		test_ligh.visible = false
 	for child in children:

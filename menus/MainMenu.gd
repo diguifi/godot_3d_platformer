@@ -1,18 +1,10 @@
-extends Spatial
+extends Control
 
-onready var camera = $Camera
-var play_cutscene = {
-	"0": {
-		"position": Vector3(0, 2.8, -10),
-		"speed": 0.1,
-		"duration": 10
-	}
-}
+func _ready():
+	MusicManager.change_music("Game")
 
 func _on_PlayBtn_pressed():
-	#camera.start_cutscene(play_cutscene)
 	Transition.fade_to("res://World.tscn")
 
-func wait_time(time):
-	yield(get_tree().create_timer(time),"timeout")
-	Transition.fade_to("res://World.tscn")
+func _on_QuitBtn_pressed():
+	get_tree().quit()

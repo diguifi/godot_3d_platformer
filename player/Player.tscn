@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://managers/HitCountSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/audio/sfx/grass_step_1.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/sfx/grass_step_3.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/sfx/grass_step_2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://managers/HealthBar3D.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/audio/sfx/damage_player.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/sfx/player_pain_1.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/audio/sfx/player_pain_2.ogg" type="AudioStream" id=12]
@@ -23,6 +24,9 @@ extents = Vector3( 0.275079, 0.397436, 1 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
+
+[node name="HealthBar3D" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60315, 0 )
 
 [node name="KinematicGravity" parent="." instance=ExtResource( 3 )]
 automatic_fall = false

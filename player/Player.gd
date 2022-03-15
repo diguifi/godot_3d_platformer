@@ -14,6 +14,7 @@ onready var area_left = $AreaLeft
 onready var area_bottom = $AreaBottom
 onready var hit_count_spawner = $HitCountSpawner
 onready var sound_manager = $SoundManager
+onready var health_bar = $HealthBar3D
 
 # constants
 const WALK_SPEED = 7
@@ -40,6 +41,7 @@ var x_axis_damage_kick = 0
 var attacking = false
 var play_attack_sound = false
 var attack_anim_speed = 1
+var max_hp = 10
 
 # animation
 var facing_right = true
@@ -63,6 +65,7 @@ var items = {
 func _ready():
 	Signals.connect("get_power_up", self, "_get_power_up")
 	Signals.connect("damage_player", self, "_damage_player")
+	max_hp = hp
 	equip_weapon(items.sword1)
  
 func _physics_process(delta):
@@ -259,6 +262,8 @@ func _damage_player(damage, on_right, strenght):
 		apply_damage_kick(1, strenght)
 	play_damaged_sound = true
 	hp -= damage
+	if is_instance_valid(health_bar):
+			health_bar.update_healthbar(hp, max_hp)
 	if is_instance_valid(hit_count_spawner):
 		hit_count_spawner.spawn_hit_count(damage)
 	if hp <= 0:

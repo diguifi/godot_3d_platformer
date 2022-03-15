@@ -3,16 +3,32 @@
     {
         "npc_img": "res://assets/img/npcs/test.jpeg",
         "text": {
-                "pt": "Cuidado que ali em cima o bixo pega" ,
-                "en": "Hi, welcome to the first version of the dialog"
+                "pt": "Ha quantos anos nao vejo um jovem aventureiro" ,
+                "en": "It's been so long since I last seen an adventurer"
             }
     },
     "1" : 
     {
         "npc_img": "res://assets/img/npcs/test.jpeg",
         "text": {
-                "pt": "Tem o primeiro miniboss bolado 60hp" ,
-                "en": "In the future this might get prettier"
+                "pt": "Esse lugar emana um poder alem da sua imaginacao" ,
+                "en": "This place holds powers beyond you imagination"
+            }
+    },
+    "2" : 
+    {
+        "npc_img": "res://assets/img/npcs/test.jpeg",
+        "text": {
+                "pt": "Te desejo toda a sorte do mundo" ,
+                "en": "I wish you the best of luck"
+            }
+    },
+    "3" : 
+    {
+        "npc_img": "res://assets/img/npcs/test.jpeg",
+        "text": {
+                "pt": "Voce vai precisar..." ,
+                "en": "You'll need it..."
             }
     }
 }

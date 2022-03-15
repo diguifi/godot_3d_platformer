@@ -1,9 +1,9 @@
 extends TextureProgress
 
 onready var animation = $AnimationPlayer
-var bar_red = preload("res://assets/img/barHorizontal_red.png")
-var bar_green = preload("res://assets/img/barHorizontal_green.png")
-var bar_yellow = preload("res://assets/img/barHorizontal_yellow.png")
+var bar_red = preload("res://assets/img/hp_red.png")
+var bar_green = preload("res://assets/img/hp_green.png")
+var bar_yellow = preload("res://assets/img/hp_yellow.png")
 
 func _ready():
 	tint_progress.a = 0.0

@@ -1,14 +1,17 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/img/MENU-BG.png" type="Texture" id=1]
-[ext_resource path="res://assets/img/Quit-button.png" type="Texture" id=2]
-[ext_resource path="res://assets/img/Start-button.png" type="Texture" id=3]
-[ext_resource path="res://assets/img/Start-button-hover.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/OROTUND.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/img/Quit-button.png" type="Texture" id=3]
 [ext_resource path="res://assets/img/Quit-button-hover.png" type="Texture" id=5]
 [ext_resource path="res://assets/img/LOGO.png" type="Texture" id=6]
 [ext_resource path="res://menus/MainMenu.gd" type="Script" id=7]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="DynamicFont" id=1]
+size = 42
+font_data = ExtResource( 2 )
+
+[node name="FakeEnding" type="Control"]
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -24,19 +27,22 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 640, 240 )
-scale = Vector2( 0.749204, 0.749204 )
+position = Vector2( 659.575, 153.065 )
+scale = Vector2( 0.420259, 0.420259 )
 texture = ExtResource( 6 )
 
-[node name="PlayBtn" type="TextureButton" parent="."]
-margin_left = 29.0
-margin_top = 523.0
-margin_right = 645.0
-margin_bottom = 595.0
-rect_scale = Vector2( 0.8, 0.8 )
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 417.52
+margin_top = 287.0
+margin_right = 917.52
+margin_bottom = 682.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "A work in progress created for Metroidvania XV by:
+
+Diguifi - Programer
+Chris - 3D modeler
+Mateus - Designer
+Thiago - Story"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,12 +53,11 @@ margin_top = 615.049
 margin_right = 644.951
 margin_bottom = 687.049
 rect_scale = Vector2( 0.8, 0.8 )
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="PlayBtn" to="." method="_on_PlayBtn_pressed"]
 [connection signal="pressed" from="QuitBtn" to="." method="_on_QuitBtn_pressed"]
