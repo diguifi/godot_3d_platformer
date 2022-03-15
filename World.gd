@@ -12,9 +12,9 @@ var play_cutscene = {
 		"duration": 2
 	},
 	"2": {
-		"position": Vector3(35, 0, 7),
+		"position": Vector3(34, 0, 6),
 		"speed": 0.7,
-		"duration": 3
+		"duration": 2
 	},
 }
 

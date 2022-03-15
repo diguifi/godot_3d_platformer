@@ -1,7 +1,7 @@
 extends Camera
 
 onready var player = get_parent().get_node("Player")
-export var smooth_speed = 1.5
+export var smooth_speed = 1.4
 export var offset: Vector3
 export var dialog_zoom_amount = 3
 var offset_x = 3
@@ -40,6 +40,8 @@ func _ready():
 func _physics_process(delta):
 	check_and_apply_shake(delta)
 	if (player != null):
+		var player_falling = player.gravity_manager.y_velo < -18
+		var falling_speed = 1
 		var new_offset = offset
 		if !on_boss:
 			if player.facing_right:
@@ -57,7 +59,10 @@ func _physics_process(delta):
 			new_offset.x = offset.x
 			
 		if !on_cutscene and !on_boss:
-			translation = lerp(translation, player.translation + new_offset, smooth_speed * delta)
+			if player_falling:
+				falling_speed = smooth_speed * 1.5
+				new_offset.y -= 10
+			translation = lerp(translation, player.translation + new_offset, falling_speed * smooth_speed * delta)
 		if on_boss:
 			translation = lerp(translation, boss_focal_point + new_offset, smooth_speed * delta)
 	if on_cutscene:
@@ -86,10 +91,13 @@ func start_cutscene(script):
 			current_cutscene_size = current_cutscene_script.size()
 			go_to_next_scene = true
 			on_cutscene = true
+	else:
+		Signals.emit_signal("update_hud", player.hp, player.max_hp)
 		
 func finish_cutscene():
 	#tirar na proxima versao
 	GlobalState.already_watched_intro = true
+	Signals.emit_signal("update_hud", player.hp, player.max_hp)
 	
 	on_cutscene = false
 	go_to_next_scene = false

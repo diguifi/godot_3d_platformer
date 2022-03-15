@@ -8,3 +8,4 @@ signal next_step_dialog
 signal hide_dialog
 signal start_boss
 signal kill_boss
+signal update_hud

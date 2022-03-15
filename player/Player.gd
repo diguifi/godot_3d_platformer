@@ -14,7 +14,6 @@ onready var area_left = $AreaLeft
 onready var area_bottom = $AreaBottom
 onready var hit_count_spawner = $HitCountSpawner
 onready var sound_manager = $SoundManager
-onready var health_bar = $HealthBar3D
 
 # constants
 const WALK_SPEED = 7
@@ -248,6 +247,10 @@ func equip_weapon(preloadedItem):
 func equip_shield(preloadedItem):
 	shield = preloadedItem.instance()
 	right_hand_holder.add_child(shield)
+	
+func heal_player(hp_given):
+	hp += hp_given
+	Signals.emit_signal("update_hud", hp, max_hp)
 
 
 # ------ signals ------
@@ -262,8 +265,7 @@ func _damage_player(damage, on_right, strenght):
 		apply_damage_kick(1, strenght)
 	play_damaged_sound = true
 	hp -= damage
-	if is_instance_valid(health_bar):
-			health_bar.update_healthbar(hp, max_hp)
+	Signals.emit_signal("update_hud", hp, max_hp)
 	if is_instance_valid(hit_count_spawner):
 		hit_count_spawner.spawn_hit_count(damage)
 	if hp <= 0:

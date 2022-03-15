@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gulp.ogg-973c8a393c1f9cd0f29543cb40c11687.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/gulp.ogg"
+dest_files=[ "res://.import/gulp.ogg-973c8a393c1f9cd0f29543cb40c11687.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

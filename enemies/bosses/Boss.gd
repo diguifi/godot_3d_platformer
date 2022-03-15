@@ -45,6 +45,8 @@ func play_animations():
 		visible = false if Engine.get_frames_drawn() % 4 == 0 else true
 	if !damaged:
 		visible = true
+#	if dead:
+#		anim_player.play()
 		
 func play_sounds():
 	if play_damage_sound:
@@ -54,6 +56,10 @@ func play_sounds():
 func damage_time():
 	yield(get_tree().create_timer(damage_timer),"timeout")
 	damaged = false
+	
+func queue_free_time():
+	yield(get_tree().create_timer(damage_timer),"timeout")
+	queue_free()
 
 func _damage_enemy(unique_name, damage, _direction):
 	if unique_name == name and vulnerable:
@@ -65,6 +71,7 @@ func _damage_enemy(unique_name, damage, _direction):
 		if is_instance_valid(health_bar):
 			health_bar.update_healthbar(hp, max_hp)
 		if hp <= 0:
-			queue_free()
+			dead = true
 			Signals.emit_signal("kill_boss")
+			queue_free()
 		apply_damage_effect()
