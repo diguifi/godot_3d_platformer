@@ -1,6 +1,7 @@
 extends Camera
 
 onready var player = get_parent().get_node("Player")
+export var remove_all_firula = false
 export var smooth_speed = 1.4
 export var offset: Vector3
 export var dialog_zoom_amount = 3
@@ -62,7 +63,12 @@ func _physics_process(delta):
 			if player_falling:
 				falling_speed = smooth_speed * 1.5
 				new_offset.y -= 10
-			translation = lerp(translation, player.translation + new_offset, falling_speed * smooth_speed * delta)
+			if remove_all_firula:
+				new_offset.x = 0
+				new_offset.y = 1.2
+				translation = player.translation + new_offset
+			else:
+				translation = lerp(translation, player.translation + new_offset, falling_speed * smooth_speed * delta)
 		if on_boss:
 			translation = lerp(translation, boss_focal_point + new_offset, smooth_speed * delta)
 	if on_cutscene:

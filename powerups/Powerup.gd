@@ -1,6 +1,7 @@
 extends Spatial
 
 export var power_up = "double_jump"
+export (NodePath) var player_ref = ""
 onready var mesh = $MeshInstance
 onready var label = $Sprite3D
 onready var timer = $Timer
@@ -10,6 +11,10 @@ var initial_y = 0
 
 func _ready():
 	initial_y = global_transform.origin.y
+	if player_ref:
+		var has_double = get_node(player_ref).has_double_jump
+		if has_double:
+			queue_free()
 
 func _physics_process(delta):
 	transform.origin.z = 0

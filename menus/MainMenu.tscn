@@ -10,9 +10,6 @@
 
 [node name="MainMenu" type="Control"]
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 1920.0

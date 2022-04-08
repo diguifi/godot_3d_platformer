@@ -66,6 +66,7 @@ func _ready():
 	Signals.connect("damage_player", self, "_damage_player")
 	max_hp = hp
 	equip_weapon(items.sword1)
+	load_checkpoint()
  
 func _physics_process(delta):
 	transform.origin.z = 0
@@ -252,6 +253,11 @@ func heal_player(hp_given):
 	hp += hp_given
 	Signals.emit_signal("update_hud", hp, max_hp)
 
+func load_checkpoint():
+	if GlobalState.checkpoint_save.has_saved:
+		global_transform.origin.x = GlobalState.checkpoint_save.checkpoint_x
+		global_transform.origin.y = GlobalState.checkpoint_save.checkpoint_y
+		has_double_jump = GlobalState.checkpoint_save.player.has_double_jump
 
 # ------ signals ------
 func _get_power_up(power):

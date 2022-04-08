@@ -75,3 +75,5 @@ func _damage_enemy(unique_name, damage, _direction):
 			Signals.emit_signal("kill_boss")
 			queue_free()
 		apply_damage_effect()
+	if !vulnerable:
+		hit_count_spawner.spawn_hit_count(0)
