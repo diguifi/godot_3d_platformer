@@ -19,29 +19,27 @@ font_data = ExtResource( 2 )
 
 [node name="FakeEnding" type="Control"]
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
-rect_scale = Vector2( 0.68, 0.68 )
+rect_scale = Vector2( 0.34, 0.34 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 659.575, 120.065 )
-scale = Vector2( 0.420259, 0.420259 )
+position = Vector2( 348, 47 )
+scale = Vector2( 0.24, 0.24 )
 texture = ExtResource( 6 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 431.52
-margin_top = 254.0
-margin_right = 931.52
-margin_bottom = 649.0
+margin_left = 198.0
+margin_top = 102.0
+margin_right = 700.0
+margin_bottom = 410.0
+rect_scale = Vector2( 0.6, 0.6 )
 custom_fonts/normal_font = SubResource( 1 )
 text = "A work in progress created for Metroidvania XV by:
 
@@ -49,28 +47,23 @@ Diguifi - Programer
 Chris - 3D modeler
 Mateus - Designer
 Thiago - Story"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="QuitBtn" type="TextureButton" parent="."]
-margin_left = 21.3919
-margin_top = 662.926
-margin_right = 637.392
-margin_bottom = 734.926
+margin_left = 9.0
+margin_top = 324.0
+margin_right = 625.0
+margin_bottom = 396.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
-margin_left = 363.484
-margin_top = 606.953
-margin_right = 959.484
-margin_bottom = 680.953
+margin_left = 191.0
+margin_top = 301.0
+margin_right = 787.0
+margin_bottom = 375.0
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = SubResource( 2 )
 text = "Thanks for playing!"
 __meta__ = {

@@ -14,35 +14,32 @@ script = ExtResource( 7 )
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
-rect_scale = Vector2( 0.68, 0.68 )
+rect_scale = Vector2( 0.34, 0.34 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 640, 240 )
-scale = Vector2( 0.749204, 0.749204 )
+position = Vector2( 308, 87 )
+scale = Vector2( 0.34, 0.34 )
 texture = ExtResource( 6 )
 
 [node name="PlayBtn" type="TextureButton" parent="."]
-margin_left = 29.0
-margin_top = 523.0
-margin_right = 645.0
-margin_bottom = 595.0
+margin_left = -45.0
+margin_top = 198.0
+margin_right = 571.0
+margin_bottom = 270.0
 rect_scale = Vector2( 0.8, 0.8 )
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="QuitBtn" type="TextureButton" parent="."]
-margin_left = 28.9514
-margin_top = 615.049
-margin_right = 644.951
-margin_bottom = 687.049
+margin_left = -45.0
+margin_top = 290.049
+margin_right = 571.0
+margin_bottom = 362.049
 rect_scale = Vector2( 0.8, 0.8 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 5 )

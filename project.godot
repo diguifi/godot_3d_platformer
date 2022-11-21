@@ -39,8 +39,8 @@ MusicManager="*res://managers/MusicManager.tscn"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=640
+window/size/height=360
 window/size/test_width=985
 window/size/test_height=554
 window/stretch/mode="viewport"
@@ -90,7 +90,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 quality/directional_shadow/size=1024

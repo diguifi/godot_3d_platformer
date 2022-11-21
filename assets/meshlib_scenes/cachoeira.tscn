@@ -42,33 +42,27 @@ scale_amount_curve = SubResource( 3 )
 [node name="pedraP" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( 2.98053, 0, 0, 0, 2.91999, 0.597676, 0, -0.597676, 2.91999, -3.97589, -0.0195351, -1.46459 )
 mesh = ExtResource( 2 )
-material/0 = null
 
 [node name="pedraP2" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( -2.24009, -2.31317, -0.988347, 2.51546, -2.05995, -0.880152, 0, -1.32344, 3.09744, 3.22008, 0.0420456, -1.62587 )
 mesh = ExtResource( 2 )
 skeleton = NodePath("../pedraP")
-material/0 = null
 
 [node name="pedraG" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( 3.74793, 0, 0, 0, 3.74793, 0, 0, 0, 2.60973, -0.372745, 2.34893, -2.27208 )
 mesh = ExtResource( 3 )
-material/0 = null
 
 [node name="pedraG2" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( 3.74793, 0, 0, 0, 3.74793, 0, 0, 0, 2.60973, 0.157758, -3.22136, -2.27208 )
 mesh = ExtResource( 3 )
-material/0 = null
 
 [node name="PedraM" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( 2.2897, 0, 0, 0, -0.0233378, 2.28958, 0, -2.28958, -0.0233378, -4.67234, 2.41947, -1.72554 )
 mesh = ExtResource( 1 )
-material/0 = null
 
 [node name="PedraM2" type="MeshInstance" parent="CPUParticles"]
 transform = Transform( -2.24149, -0.0718794, 0.461841, 0.415704, 0.727679, 2.13082, -0.213667, 2.1698, -0.699306, 3.9122, 3.41962, -2.25682 )
 mesh = ExtResource( 1 )
-material/0 = null
 
 [node name="VisibilityManager" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429131, 0.701065, 0 )
