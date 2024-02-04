@@ -1,13 +1,15 @@
-extends Area
+extends Area3D
 
-onready var player = get_node("/root/World/Player")
-onready var parent = get_parent()
-export var damage = 1
+@onready var player = get_node("/root/World/Player")
+@onready var parent = get_parent()
+@onready var collision = $CollisionShape3D
+@export var damage = 1
 var damage_timer = 1
 var already_damaged = false
 
 func _physics_process(delta):
 	check_player_in_area()
+	collision.disabled = parent.dead
 		
 func check_player_in_area():
 	if !already_damaged:
@@ -24,8 +26,9 @@ func cause_damage(body):
 		damage_time()
 
 func damage_time():
-	yield(get_tree().create_timer(damage_timer),"timeout")
-	already_damaged = false
+	if (get_tree() != null):
+		await get_tree().create_timer(damage_timer).timeout
+		already_damaged = false
 
 func _on_DamageArea_body_entered(body):
 	if !already_damaged:

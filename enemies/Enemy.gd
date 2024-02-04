@@ -1,15 +1,15 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var gravity_manager = $KinematicGravity
-onready var right_floor_ray = $FloorCheckRight
-onready var left_floor_ray = $FloorCheckLeft
-onready var collision = $CollisionShape
-onready var graphics = $Graphics
-onready var anim_player = $Graphics/AnimationPlayer
-onready var health_bar = $HealthBar3D
-onready var hit_count_spawner = $HitCountSpawner
-onready var sound_manager = $SoundManager
-export var hp = 10
+@onready var gravity_manager = $KinematicGravity
+@onready var right_floor_ray = $FloorCheckRight
+@onready var left_floor_ray = $FloorCheckLeft
+@onready var collision = $CollisionShape3D
+@onready var graphics = $Graphics
+@onready var anim_player = $Graphics/AnimationPlayer
+@onready var health_bar = $HealthBar3D
+@onready var hit_count_spawner = $HitCountSpawner
+@onready var sound_manager = $SoundManager
+@export var hp = 10
 var max_hp = 10
 const DAMAGE_KICK = 10
 var damage_timer = 0.5
@@ -21,7 +21,7 @@ var play_damage_sound = false
 var flies = false
 
 func _ready():
-	Signals.connect("damage_enemy", self, "_damage_enemy")
+	Signals.connect("damage_enemy", _damage_enemy)
 	max_hp = hp
 	if !gravity_manager:
 		flies = true
@@ -29,7 +29,7 @@ func _ready():
 func _physics_process(delta):
 	transform.origin.z = 0
 	if is_on_floor() and !flies:
-		 gravity_manager.y_velo = -0.1
+		gravity_manager.y_velo = -0.1
 	play_animations()
 	play_sounds()
 		
@@ -60,18 +60,18 @@ func play_sounds():
 		sound_manager.play_damage(5)
 		
 func die():
-	collision.disabled = true
+	collision.call_deferred("set_disabled", true)
 	dead = true
 	play_anim("Die")
 	wait_before_free(1.5)
 		
 func damage_time(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	damaged = false
 	x_axis_damage_kick = 0
 	
 func wait_before_free(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	queue_free()
 
 func _damage_enemy(unique_name, damage, on_right):

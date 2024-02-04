@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sword_slash_raw.ogg-a956b8b6272bfb0d955f881fe0c7dfd0.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d1xl86jetla1i"
+path="res://.godot/imported/sword_slash_raw.ogg-a956b8b6272bfb0d955f881fe0c7dfd0.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/sfx/sword_slash_raw.ogg"
-dest_files=[ "res://.import/sword_slash_raw.ogg-a956b8b6272bfb0d955f881fe0c7dfd0.oggstr" ]
+dest_files=["res://.godot/imported/sword_slash_raw.ogg-a956b8b6272bfb0d955f881fe0c7dfd0.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

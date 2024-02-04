@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 enum states {
 	IDLE,
@@ -11,23 +11,23 @@ enum states {
 	THREW
 }
 
-export var boss_speed_modifier = 1.0
-export var chase_speed = 1.8
-export var throw_damage = 2
-export var floor_hit_damage = 2
-export var floor_hit_delay = 0.4
-export var throw_start_time = 0.5
-export var throw_miss_time = 1.6
-export var throwing_time = 2.1
-export var floor_hit_time = 2.3
-export var stuck_time = 3.3
-export var releasing_time = 2.2
-export var chasing_time = 6
-onready var player_node = get_node("/root/World/Player")
-onready var boss: KinematicBody = get_parent()
-onready var claw = get_parent().get_node("Graphics/Armature/Skeleton/Claw")
-onready var ray_right = $RayCastRight
-onready var ray_left = $RayCastLeft
+@export var boss_speed_modifier = 1.0
+@export var chase_speed = 1.8
+@export var throw_damage = 2
+@export var floor_hit_damage = 2
+@export var floor_hit_delay = 0.4
+@export var throw_start_time = 0.5
+@export var throw_miss_time = 1.6
+@export var throwing_time = 2.1
+@export var floor_hit_time = 2.3
+@export var stuck_time = 3.3
+@export var releasing_time = 2.2
+@export var chasing_time = 6
+@onready var player_node = get_node("/root/World/Player")
+@onready var boss: CharacterBody3D = get_parent()
+@onready var claw = get_parent().get_node("Graphics/Armature/Skeleton3D/Claw")
+@onready var ray_right = $RayCastRight
+@onready var ray_left = $RayCastLeft
 var grab_distance = 5
 var grabbing = false
 var default_chase_speed = 0
@@ -54,7 +54,7 @@ func _ready():
 	stuck_time /= boss_speed_modifier
 	releasing_time /= boss_speed_modifier
 	default_chase_speed = chase_speed
-	Signals.connect("start_boss", self, "_start_boss")
+	Signals.connect("start_boss", Callable(self, "_start_boss"))
 	boss.play_anim("idle", 1)
 
 func _physics_process(delta):
@@ -62,7 +62,10 @@ func _physics_process(delta):
 	play_animations()
 	play_sounds()
 	
-	boss.move_and_slide(Vector3((move_dir * move_speed), boss.gravity_manager.y_velo, 0), Vector3(0,1,0))
+	boss.set_velocity(Vector3((move_dir * move_speed), boss.gravity_manager.y_velo, 0))
+	boss.set_up_direction(Vector3(0,1,0))
+	boss.move_and_slide()
+	boss.velocity
 
 func pursuit_player():
 	if state == states.CHASING:
@@ -135,7 +138,7 @@ func spawn_hit_ground_effect():
 	spawn_next_hit(amount_hit_ground_effect)
 
 func spawn_next_hit(i):
-	var effect = hit_ground_effect_preload.instance()
+	var effect = hit_ground_effect_preload.instantiate()
 	effect.flip = !facing_right
 	effect.attack_damage = floor_hit_damage
 	effect.distance_modifier = amount_hit_ground_effect - i
@@ -216,25 +219,25 @@ func flip():
 	boss.graphics.rotation_degrees.y = degrees
 	
 func shake_on_step_timer():
-	yield(get_tree().create_timer(1.3/boss_speed_modifier),"timeout")
+	await get_tree().create_timer(1.3/boss_speed_modifier).timeout
 	if state == states.CHASING:
 		GlobalState.camera.add_trauma(0.3)
 		shake_on_step_timer()
 		play_step_sound = true
 	
 func chasing_timer(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	if is_player_close():
 		set_state(states.THROW_START)
 	else:
 		set_state(states.FLOOR_HIT)
 		
 func next_state_timer(time, next_state):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	set_state(next_state)
 	
 func throw_check_timer(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	if is_player_close():
 		check_throw_side()
 		set_state(states.THREW)
@@ -242,17 +245,17 @@ func throw_check_timer(time):
 		set_state(states.THROW_MISS)
 	
 func grab_timer(time, flag):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	grabbing = flag
 	if !flag:
 		Signals.emit_signal("damage_player", throw_damage, !facing_right, 2)
 	
 func spawn_hit_delay(time, iteration):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	spawn_next_hit(iteration)
 	
 func floor_hit_timer(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	GlobalState.camera.add_trauma(0.7)
 	play_ground_hit_sound = true
 	spawn_hit_ground_effect()

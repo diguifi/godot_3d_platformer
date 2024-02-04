@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/giant_footstep_2.ogg-cd865f40590355be05f15b9369183f2d.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5vug633j11rd"
+path="res://.godot/imported/giant_footstep_2.ogg-cd865f40590355be05f15b9369183f2d.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/sfx/giant_footstep_2.ogg"
-dest_files=[ "res://.import/giant_footstep_2.ogg-cd865f40590355be05f15b9369183f2d.oggstr" ]
+dest_files=["res://.godot/imported/giant_footstep_2.ogg-cd865f40590355be05f15b9369183f2d.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

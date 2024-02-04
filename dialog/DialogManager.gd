@@ -1,12 +1,12 @@
-extends Spatial
+extends Node3D
 
-onready var label = $CanvasLayer/Control/Label
-onready var control = $CanvasLayer/Control
+@onready var label = $CanvasLayer/Control/Label
+@onready var control = $CanvasLayer/Control
 var is_pt = false
 
 func _ready():
-	Signals.connect("show_dialog", self, "_show_dialog")
-	Signals.connect("hide_dialog", self, "_hide_dialog")
+	Signals.connect("show_dialog", Callable(self, "_show_dialog"))
+	Signals.connect("hide_dialog", Callable(self, "_hide_dialog"))
 	is_pt = OS.get_locale() == 'pt' || OS.get_locale() == 'pt_BR' || OS.get_locale() == 'pt-BR'
 	
 func _process(delta):

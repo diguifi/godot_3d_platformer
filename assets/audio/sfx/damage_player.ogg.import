@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/damage_player.ogg-ae72a416ca8b12fcf7f50f2065787d83.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bcnci88s7pate"
+path="res://.godot/imported/damage_player.ogg-ae72a416ca8b12fcf7f50f2065787d83.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/sfx/damage_player.ogg"
-dest_files=[ "res://.import/damage_player.ogg-ae72a416ca8b12fcf7f50f2065787d83.oggstr" ]
+dest_files=["res://.godot/imported/damage_player.ogg-ae72a416ca8b12fcf7f50f2065787d83.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 enum states {
 	IDLE,
@@ -6,12 +6,12 @@ enum states {
 	CHASING
 }
 
-export var view_distance = 10
-export var chasing_view_distance_modifier = 1.2
-export var patrol_speed = 1.5
-export var chase_speed = 3
-onready var player_node = get_node("/root/World/Player")
-onready var enemy: KinematicBody = get_parent()
+@export var view_distance = 10
+@export var chasing_view_distance_modifier = 1.2
+@export var patrol_speed = 1.5
+@export var chase_speed = 3
+@onready var player_node = get_node("/root/World/Player")
+@onready var enemy: CharacterBody3D = get_parent()
 var y_check_speed = 20
 var y_max_range_check = 8
 var range_check_going_up = true
@@ -35,7 +35,10 @@ func _physics_process(delta):
 		apply_current_state()
 		play_animations()
 	
-		enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, 0, 0), Vector3(0,1,0))
+		enemy.set_velocity(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, 0, 0))
+		enemy.set_up_direction(Vector3(0,1,0))
+		enemy.move_and_slide()
+		enemy.velocity
 	
 func check_move_dir():
 	on_ledge_or_wall = false

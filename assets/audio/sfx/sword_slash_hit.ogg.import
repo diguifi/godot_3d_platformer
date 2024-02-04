@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sword_slash_hit.ogg-05bd90241da537f0c5bce6bf84afd1da.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b25bnahowgydg"
+path="res://.godot/imported/sword_slash_hit.ogg-05bd90241da537f0c5bce6bf84afd1da.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/sfx/sword_slash_hit.ogg"
-dest_files=[ "res://.import/sword_slash_hit.ogg-05bd90241da537f0c5bce6bf84afd1da.oggstr" ]
+dest_files=["res://.godot/imported/sword_slash_hit.ogg-05bd90241da537f0c5bce6bf84afd1da.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

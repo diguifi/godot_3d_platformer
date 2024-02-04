@@ -1,8 +1,8 @@
-extends TextureProgress
+extends TextureProgressBar
 
-onready var animation = $AnimationPlayer
-export var persistent_visibility = false
-export var max_alpha = 255.0
+@onready var animation = $AnimationPlayer
+@export var persistent_visibility = false
+@export var max_alpha = 225.0
 var bar_red = preload("res://assets/img/hp_red.png")
 var bar_green = preload("res://assets/img/hp_green.png")
 var bar_yellow = preload("res://assets/img/hp_yellow.png")

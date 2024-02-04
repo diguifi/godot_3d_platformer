@@ -1,13 +1,10 @@
-extends Area
+extends Area3D
 
-export (Array, NodePath) var boss_gate_spawns = []
-export (NodePath) var boss_path = null
-export (NodePath) var boss_focal_point_path = null
+@export var boss_gate_spawns: Array[NodePath] = []
+@export var boss_path: NodePath
+@export var boss_focal_point_path: NodePath
 var boss_gate = preload("res://enemies/bosses/BossGate.tscn")
 var player_on_area = false
-
-func _ready():
-	pass
 	
 func start_boss_fight():
 	player_on_area = true
@@ -17,7 +14,7 @@ func start_boss_fight():
 func close_gates():
 	for spawn in boss_gate_spawns:
 		var node = get_node(spawn)
-		var gate = boss_gate.instance()
+		var gate = boss_gate.instantiate()
 		gate.global_transform = node.global_transform
 		get_node("/root/World").add_child(gate)
 		

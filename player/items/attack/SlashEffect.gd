@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-onready var animated_sprite = $AnimatedSprite3D
-onready var attack_area = $AttackArea
+@onready var animated_sprite = $AnimatedSprite3D
+@onready var attack_area = $AttackArea
 var attack_damage = 0
 var flip = false
 
@@ -10,6 +10,7 @@ func _ready():
 	if flip:
 		animated_sprite.flip_h = true
 		transform.origin.x *= -1
+	animated_sprite.play("default")
 
-func _on_AnimatedSprite3D_animation_finished():
+func _on_animated_sprite_3d_animation_finished():
 	queue_free()

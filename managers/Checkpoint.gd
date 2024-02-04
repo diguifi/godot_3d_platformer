@@ -1,6 +1,6 @@
-extends Spatial
+extends Node3D
 
-onready var sprite = $Sprite3D
+@onready var sprite = $Sprite3D
 var current_checkpoint = false
 var sprite_current_checkpoint = preload("res://assets/img/campfire_lit.png")
 

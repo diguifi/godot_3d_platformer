@@ -1,6 +1,6 @@
-extends Area
+extends Area3D
 
-export var attack_damage = 1
+@export var attack_damage = 1
 
 func _on_AttackArea_body_entered(body):
 	if body.name == "Player":

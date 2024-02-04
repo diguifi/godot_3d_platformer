@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dtsu1r6fkqonv"]
 
-[ext_resource path="res://managers/VisibilityManager.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://managers/VisibilityManager.gd" id="1"]
 
-[node name="VisibilityManager" type="VisibilityNotifier"]
-script = ExtResource( 1 )
+[node name="VisibilityManager" type="VisibleOnScreenNotifier3D"]
+script = ExtResource("1")
 
-[connection signal="camera_entered" from="." to="." method="_on_VisibilityManager_camera_entered"]
-[connection signal="camera_exited" from="." to="." method="_on_VisibilityManager_camera_exited"]
+[connection signal="screen_entered" from="." to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

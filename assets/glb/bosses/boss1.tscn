@@ -5,26 +5,26 @@
 [node name="boss1" instance=ExtResource( 1 )]
 
 [node name="Armature" parent="." index="0"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3, 0 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.3, 0 )
 
-[node name="Claw" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
-transform = Transform( -0.992223, 0.124159, -0.00881714, -0.0830262, -0.6074, 0.790045, 0.0927355, 0.784633, 0.612985, 1.55428, -0.631071, 0.208756 )
+[node name="Claw" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D( -0.992223, 0.124159, -0.00881714, -0.0830262, -0.6074, 0.790045, 0.0927355, 0.784633, 0.612985, 1.55428, -0.631071, 0.208756 )
 bone_name = "garra2"
 
-[node name="RightFoot" type="BoneAttachment" parent="Armature/Skeleton" index="2"]
-transform = Transform( 0.125566, 0.124991, -0.984254, -0.831264, -0.528242, -0.173096, -0.541516, 0.839851, 0.0375666, -0.478318, -2.01943, -0.817966 )
+[node name="RightFoot" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D( 0.125566, 0.124991, -0.984254, -0.831264, -0.528242, -0.173096, -0.541516, 0.839851, 0.0375666, -0.478318, -2.01943, -0.817966 )
 bone_name = "perna2.r.001"
 
-[node name="RayCast" type="RayCast" parent="Armature/Skeleton/RightFoot" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999996, 0, -7.45058e-09, 0 )
+[node name="RayCast3D" type="RayCast3D" parent="Armature/Skeleton3D/RightFoot" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 0.999996, 0, -7.45058e-09, 0 )
 enabled = true
-cast_to = Vector3( 0.3, 0, 0 )
+target_position = Vector3( 0.3, 0, 0 )
 
-[node name="LeftFoot" type="BoneAttachment" parent="Armature/Skeleton" index="3"]
-transform = Transform( 0.104968, -0.133101, 0.985601, 0.992581, 0.0751071, -0.0955705, -0.0612965, 0.988255, 0.140002, 0.478331, -2.06762, 0.169368 )
+[node name="LeftFoot" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D( 0.104968, -0.133101, 0.985601, 0.992581, 0.0751071, -0.0955705, -0.0612965, 0.988255, 0.140002, 0.478331, -2.06762, 0.169368 )
 bone_name = "perna2.l.001"
 
-[node name="RayCast" type="RayCast" parent="Armature/Skeleton/LeftFoot" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999996, 0, -7.45058e-09, 0 )
+[node name="RayCast3D" type="RayCast3D" parent="Armature/Skeleton3D/LeftFoot" index="0"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 0.999996, 0, -7.45058e-09, 0 )
 enabled = true
-cast_to = Vector3( -0.3, 0, 0 )
+target_position = Vector3( -0.3, 0, 0 )

@@ -1,14 +1,14 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var gravity_manager = $KinematicGravity
-onready var graphics = $Graphics
-onready var anim_player = $Graphics/AnimationPlayer
-onready var health_bar = $HealthBar3D
-onready var right_foot = $Graphics/Armature/Skeleton/RightFoot/RayCast
-onready var left_foot = $Graphics/Armature/Skeleton/LeftFoot/RayCast
-onready var hit_count_spawner = $HitCountSpawner
-onready var sound_manager = $SoundManager
-export var hp = 60
+@onready var gravity_manager = $KinematicGravity
+@onready var graphics = $Graphics
+@onready var anim_player = $Graphics/AnimationPlayer
+@onready var health_bar = $HealthBar3D
+@onready var right_foot = $Graphics/Armature/Skeleton3D/RightFoot/RayCast3D
+@onready var left_foot = $Graphics/Armature/Skeleton3D/LeftFoot/RayCast3D
+@onready var hit_count_spawner = $HitCountSpawner
+@onready var sound_manager = $SoundManager
+@export var hp = 60
 var max_hp = 60
 var damage_timer = 0.5
 var damaged = false
@@ -18,13 +18,13 @@ var vulnerable = false
 var play_damage_sound = false
 
 func _ready():
-	Signals.connect("damage_enemy", self, "_damage_enemy")
+	Signals.connect("damage_enemy", Callable(self, "_damage_enemy"))
 	max_hp = hp
 
 func _physics_process(delta):
 	transform.origin.z = 0
 	if is_on_floor():
-		 gravity_manager.y_velo = -0.1
+		gravity_manager.y_velo = -0.1
 	play_animations()
 	play_sounds()
 		
@@ -54,11 +54,11 @@ func play_sounds():
 		sound_manager.play_damage(5,0.5)
 		
 func damage_time():
-	yield(get_tree().create_timer(damage_timer),"timeout")
+	await get_tree().create_timer(damage_timer).timeout
 	damaged = false
 	
 func queue_free_time():
-	yield(get_tree().create_timer(damage_timer),"timeout")
+	await get_tree().create_timer(damage_timer).timeout
 	queue_free()
 
 func _damage_enemy(unique_name, damage, _direction):

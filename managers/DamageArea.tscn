@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dbirmvv1k8mkx"]
 
-[ext_resource path="res://managers/DamageArea.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://managers/DamageArea.gd" id="1"]
 
-[node name="DamageArea" type="Area"]
-script = ExtResource( 1 )
+[node name="DamageArea" type="Area3D"]
+script = ExtResource("1")
 
 [connection signal="body_entered" from="." to="." method="_on_DamageArea_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_DamageArea_body_exited"]

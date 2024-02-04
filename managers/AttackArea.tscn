@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cycln62fy1orf"]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Area
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Area3D
 
-onready var player = get_node(\"/root/World/Player\")
+@onready var player = get_node(\"/root/World/Player\")
 var attack_damage = 1
 
 func _on_AttackArea_body_entered(body):
@@ -12,7 +12,7 @@ func _on_AttackArea_body_entered(body):
 		Signals.emit_signal(\"damage_enemy\", body.name, attack_damage, difference >= 0)
 "
 
-[node name="AttackArea" type="Area"]
-script = SubResource( 1 )
+[node name="AttackArea" type="Area3D"]
+script = SubResource("1")
 
 [connection signal="body_entered" from="." to="." method="_on_AttackArea_body_entered"]

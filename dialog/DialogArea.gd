@@ -1,12 +1,12 @@
-extends Spatial
+extends Node3D
 
-export var dialog_path = ""
+@export var dialog_path = ""
 var parsed_dialog = null
 var total_steps = 0
 var current_step = 0
 
 func _ready():
-	Signals.connect("next_step_dialog", self, "_next_step_dialog")
+	Signals.connect("next_step_dialog", Callable(self, "_next_step_dialog"))
 	parsed_dialog = load_dialogue(dialog_path)
 	total_steps = parsed_dialog.size()
 
@@ -16,12 +16,11 @@ func _process(delta):
 		_next_step_dialog()
 		
 func load_dialogue(file_path):
-	var file = File.new()
-	assert(file.file_exists(file_path))
-
-	file.open(file_path, file.READ)
-	var json_result = JSON.parse(file.get_as_text())
-	var dialog = json_result.result
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(file.get_as_text())
+	var json_result = test_json_conv.get_data()
+	var dialog = json_result
 	assert(dialog.size() > 0)
 	return dialog
 
@@ -33,7 +32,7 @@ func _next_step_dialog():
 	else:
 		GlobalState.dialog_happening = true
 		var last_dialog = current_step == total_steps - 1
-		Signals.emit_signal("show_dialog", parsed_dialog[String(current_step)], last_dialog)
+		Signals.emit_signal("show_dialog", parsed_dialog[str(current_step)], last_dialog)
 		current_step += 1
 
 func _on_Area_body_entered(body):

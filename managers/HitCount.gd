@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-onready var animation = $AnimationPlayer
-onready var label = $CanvasLayer/Label
+@onready var animation = $AnimationPlayer
+@onready var label = $CanvasLayer/Label
 var rng = RandomNumberGenerator.new()
 var hit_value = 0
 var spawner_ref = null
@@ -18,7 +18,7 @@ func _ready():
 		visible = false
 		queue_free()
 	animation.play("default")
-	label.text = String(hit_value)
+	label.text = str(hit_value)
 	rng.randomize()
 	x_velo = rng.randi_range(-20, 20)
 	starting_x = -x_velo
@@ -30,18 +30,18 @@ func _physics_process(delta):
 	if (y_velo > max_y_velo) and !falling:
 		y_velo -= gravity * delta
 	elif (y_velo > max_y_velo - 2) and !falling:
-		y_velo = lerp(y_velo, max_y_velo - 4, 0.1)
+		y_velo = lerpf(y_velo, max_y_velo - 4.0, 0.1)
 	else:
 		falling = true
 		y_velo += gravity * delta
 	
-	x_velo = lerp(x_velo, 0, 0.1)
+	x_velo = lerpf(x_velo, 0.0, 0.1)
 	set_label_pos()
 	
 func set_label_pos():
 	var viewport_position = GlobalState.camera.unproject_position(spawner_ref.global_transform.origin)
-	label.rect_global_position.x = viewport_position.x + ((x_velo + starting_x) * gravity_effect_strength)
-	label.rect_global_position.y = viewport_position.y + (y_velo * gravity_effect_strength)
+	label.global_position.x = viewport_position.x + ((x_velo + starting_x) * gravity_effect_strength)
+	label.global_position.y = viewport_position.y + (y_velo * gravity_effect_strength)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	queue_free()

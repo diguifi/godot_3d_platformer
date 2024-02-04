@@ -1,411 +1,352 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=23 format=3 uid="uid://c3dumbjv5tx2q"]
 
-[ext_resource path="res://assets/meshlibs/Caverna final1.meshlib" type="MeshLibrary" id=1]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://powerups/DoubleJump.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/res/world.tres" type="Environment" id=5]
-[ext_resource path="res://FakeEndingManager.gd" type="Script" id=6]
-[ext_resource path="res://enemies/EnemyRocky.tscn" type="PackedScene" id=7]
-[ext_resource path="res://dialog/DialogManager.tscn" type="PackedScene" id=8]
-[ext_resource path="res://npcs/Test.tscn" type="PackedScene" id=9]
-[ext_resource path="res://World.gd" type="Script" id=10]
-[ext_resource path="res://enemies/bosses/BossArea.tscn" type="PackedScene" id=11]
-[ext_resource path="res://enemies/bosses/pedreguio/Pedreguio.tscn" type="PackedScene" id=12]
-[ext_resource path="res://managers/VisibilityManager.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/meshlib_scenes/tocha.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/meshlib_scenes/cachoeira.tscn" type="PackedScene" id=15]
-[ext_resource path="res://items/consumables/SmallPotion.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/meshes/fundo1_mesh.tres" type="ArrayMesh" id=17]
-[ext_resource path="res://assets/meshes/fundo2_mesh.tres" type="ArrayMesh" id=18]
-[ext_resource path="res://managers/HealthBar.tscn" type="PackedScene" id=19]
-[ext_resource path="res://HudMock.gd" type="Script" id=20]
-[ext_resource path="res://managers/Checkpoint.tscn" type="PackedScene" id=21]
+[ext_resource type="MeshLibrary" path="res://assets/meshlibs/Caverna final1.meshlib" id="1"]
+[ext_resource type="PackedScene" uid="uid://dqd6rb6w36qht" path="res://player/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cbcauruxfr60h" path="res://camera/Camera.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://t2ooiilsitd6" path="res://powerups/DoubleJump.tscn" id="4"]
+[ext_resource type="Environment" uid="uid://cilvolhta6ylj" path="res://assets/res/world.tres" id="5"]
+[ext_resource type="Script" path="res://FakeEndingManager.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://bxni15cxxxvf6" path="res://enemies/EnemyRocky.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://chbjigjdxmdh7" path="res://dialog/DialogManager.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://npcs/Test.tscn" id="9"]
+[ext_resource type="Script" path="res://World.gd" id="10"]
+[ext_resource type="PackedScene" path="res://enemies/bosses/BossArea.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://enemies/bosses/pedreguio/Pedreguio.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bxici6405ou17" path="res://assets/meshlib_scenes/tocha.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://d47ufsyb4i6r" path="res://assets/meshlib_scenes/cachoeira.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://items/consumables/SmallPotion.tscn" id="16"]
+[ext_resource type="ArrayMesh" uid="uid://caex5pwngr8kh" path="res://assets/meshes/fundo1_mesh.tres" id="17"]
+[ext_resource type="ArrayMesh" uid="uid://dfh3v8djduris" path="res://assets/meshes/fundo2_mesh.tres" id="18"]
+[ext_resource type="PackedScene" uid="uid://c032a3n1j0fee" path="res://managers/HealthBar.tscn" id="19"]
+[ext_resource type="Script" path="res://HudMock.gd" id="20"]
+[ext_resource type="PackedScene" path="res://managers/Checkpoint.tscn" id="21"]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(26.3389, 15.6923, 1)
 
-[sub_resource type="SpatialMaterial" id=2]
-flags_unshaded = true
-albedo_color = Color( 0.105882, 0.109804, 0.121569, 1 )
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(5.5044, 8.138, 2)
 
-[sub_resource type="SpatialMaterial" id=3]
-flags_unshaded = true
-albedo_color = Color( 0.172549, 0.172549, 0.239216, 1 )
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 2.7522, 4.069, 1 )
-
-[node name="World" type="Spatial"]
-script = ExtResource( 10 )
+[node name="World" type="Node3D"]
+script = ExtResource("10")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 5 )
+environment = ExtResource("5")
 
-[node name="DialogManager" parent="." instance=ExtResource( 8 )]
+[node name="DialogManager" parent="." instance=ExtResource("8")]
 
-[node name="Camera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+[node name="Camera3D" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 remove_all_firula = true
-offset = Vector3( 0, 2.8, 9 )
+offset = Vector3(0, 2.8, 9)
 
-[node name="TestNpc" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3422, 8.93251, 0 )
+[node name="TestNpc" parent="." instance=ExtResource("9")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3422, 8.93251, 0)
 
-[node name="SmallPotion" parent="." instance=ExtResource( 16 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2662, 30.2416, 0 )
+[node name="SmallPotion" parent="." instance=ExtResource("16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2662, 30.2416, 0)
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2595, -1.98994, 0 )
+[node name="Player" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2595, -1.98994, 0)
 
-[node name="EnemyRocky2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.00743, 0 )
+[node name="EnemyRocky2" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.00743, 0)
 
-[node name="EnemyRocky3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1036, 17.7285, 0 )
+[node name="EnemyRocky3" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1036, 17.7285, 0)
 
-[node name="EnemyRocky4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02828, 22.7003, 0 )
+[node name="EnemyRocky4" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02828, 22.7003, 0)
 
-[node name="EnemyRocky6" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4306, 29.9493, 0 )
+[node name="EnemyRocky6" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4306, 29.9493, 0)
 
-[node name="EnemyRocky7" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.81068, 29.9793, 0 )
+[node name="EnemyRocky7" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.81068, 29.9793, 0)
 
-[node name="EnemyRocky8" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9938, 29.8295, 0 )
+[node name="EnemyRocky8" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9938, 29.8295, 0)
 
-[node name="EnemyRocky9" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7244, 26.8341, 0 )
+[node name="EnemyRocky9" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7244, 26.8341, 0)
 
-[node name="EnemyRocky11" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.50932, 8.99787, 0 )
+[node name="EnemyRocky11" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.50932, 8.99787, 0)
 
-[node name="EnemyRocky13" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.49097, -7.0442, 0 )
+[node name="EnemyRocky13" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.49097, -7.0442, 0)
 
-[node name="EnemyRocky14" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5534, -7.0442, 0 )
+[node name="EnemyRocky14" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5534, -7.0442, 0)
 
-[node name="EnemyRocky17" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3034, 5.71858, 0 )
+[node name="EnemyRocky17" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3034, 5.71858, 0)
 
-[node name="EnemyRocky18" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.29988, 4.7723, 0 )
+[node name="EnemyRocky18" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.29988, 4.7723, 0)
 
-[node name="EnemyRocky19" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95847, 0.761873, 0 )
+[node name="EnemyRocky19" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95847, 0.761873, 0)
 
-[node name="PowerDoubleJump" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4028, 3.40963, 0 )
+[node name="PowerDoubleJump" parent="." instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4028, 3.40963, 0)
 player_ref = NodePath("../Player")
 
-[node name="BossArea" parent="." instance=ExtResource( 11 )]
-transform = Transform( 7.45917, 0, 0, 0, 7.95645, 0, 0, 0, 0.994556, 45.5, 22.5, 0 )
-boss_gate_spawns = [ NodePath("Position3D"), NodePath("Position3D2") ]
+[node name="BossArea" parent="." instance=ExtResource("11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.5, 22.5, 0)
+boss_gate_spawns = Array[NodePath]([NodePath("Marker3D"), NodePath("Position3D2")])
 boss_path = NodePath("../EnemyPedreguio")
 boss_focal_point_path = NodePath("Position3D3")
 
-[node name="CollisionShape" type="CollisionShape" parent="BossArea"]
-shape = SubResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BossArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4642, 0.745644, 0)
+shape = SubResource("1")
 
-[node name="Position3D" type="Position3D" parent="BossArea"]
-transform = Transform( 0.12, 0, 0, 0, 0.125, 0, 0, 0, 1, -1.49438, -0.376263, 0 )
+[node name="Marker3D" type="Marker3D" parent="BossArea"]
+transform = Transform3D(0.12, 0, 0, 0, 0.125, 0, 0, 0, 1, -1.49438, -0.376263, 0)
 
-[node name="Position3D2" type="Position3D" parent="BossArea"]
-transform = Transform( 0.12, 0, 0, 0, 0.125, 0, 0, 0, 1, 2.33029, -0.376263, 0 )
+[node name="Position3D2" type="Marker3D" parent="BossArea"]
+transform = Transform3D(0.12, 0, 0, 0, 0.125, 0, 0, 0, 1, 2.33029, -0.376263, 0)
 
-[node name="Position3D3" type="Position3D" parent="BossArea"]
-transform = Transform( 0.133333, 0, 0, 0, 0.125, 0, 0, 0, 1, 0.475, -0.843, 5 )
+[node name="Position3D3" type="Marker3D" parent="BossArea"]
+transform = Transform3D(0.133333, 0, 0, 0, 0.125, 0, 0, 0, 1, 0.475, -0.843, 5)
 
-[node name="EnemyPedreguio" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2358, 16.1031, 0 )
+[node name="EnemyPedreguio" parent="." instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2358, 16.1031, 0)
 
-[node name="Room1" type="Spatial" parent="."]
+[node name="Room1" type="Node3D" parent="."]
 
 [node name="Top left" type="GridMap" parent="Room1"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 1507305, 0, 5, 1638377, 0, 5, 1769449, 0, 5, 1835008, 0, 0, 1835010, 0, 0, 1835012, 0, 2, 1900521, 0, 5, 1900528, 0, 0, 1900530, 0, 0, 1900532, 0, 0, 1900534, 0, 0, 1900536, 0, 0, 1900538, 0, 0, 1900540, 0, 0, 1900542, 0, 0, 1966063, 0, 720901, 2031593, 0, 5, 2097135, 0, 720901, 2162665, 0, 5, 2228207, 0, 720901, 2293737, 0, 5, 2359279, 0, 720901, 2424809, 0, 5, 2490345, 0, 5, 2490351, 0, 720901, 2621417, 0, 5, 2686953, 0, 5, 2752489, 0, 5, 1441795, 65534, 1441797, 1507306, 65534, 1441797, 1507312, 65534, 1441797, 1507326, 65534, 1441797, 1507335, 65534, 1441797, 1572842, 65534, 1441797, 1572847, 65534, 1441797, 1572858, 65534, 1441797, 1572870, 65534, 1441797, 1638380, 65534, 1441797, 1638395, 65534, 1441797, 1638404, 65534, 1441797, 1703927, 65534, 1441797, 1703935, 65534, 1441797, 1769460, 65534, 1441797, 1769467, 65534, 1441797, 1769471, 65534, 1441797, 1769475, 65534, 1441797, 1900529, 65534, 1441797, 1966059, 65534, 1441797, 1966062, 65534, 1441797, 1966071, 65534, 1441797, 2031620, 65534, 1441797, 2097132, 65534, 1441797, 2097141, 65534, 1441797, 2097152, 65534, 1441797, 2228212, 65534, 1441797, 2228217, 65534, 1441797, 2228230, 65534, 1441797, 2293743, 65534, 1441797, 2293748, 65534, 1441797, 2293749, 65534, 1441797, 2359299, 65534, 1441797, 2424819, 65534, 1441797, 2424832, 65534, 1441797, 2490358, 65534, 1441797, 2490363, 65534, 1441797 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(1507305, 0, 5, 1638377, 0, 5, 1769449, 0, 5, 1835008, 0, 0, 1835010, 0, 0, 1835012, 0, 2, 1900521, 0, 5, 1900528, 0, 0, 1900530, 0, 0, 1900532, 0, 0, 1900534, 0, 0, 1900536, 0, 0, 1900538, 0, 0, 1900540, 0, 0, 1900542, 0, 0, 1966063, 0, 720901, 2031593, 0, 5, 2097135, 0, 720901, 2162665, 0, 5, 2228207, 0, 720901, 2293737, 0, 5, 2359279, 0, 720901, 2424809, 0, 5, 2490345, 0, 5, 2490351, 0, 720901, 2621417, 0, 5, 2686953, 0, 5, 2752489, 0, 5, 1441795, 65534, 1441797, 1507306, 65534, 1441797, 1507312, 65534, 1441797, 1507326, 65534, 1441797, 1507335, 65534, 1441797, 1572842, 65534, 1441797, 1572847, 65534, 1441797, 1572858, 65534, 1441797, 1572870, 65534, 1441797, 1638380, 65534, 1441797, 1638395, 65534, 1441797, 1638404, 65534, 1441797, 1703927, 65534, 1441797, 1703935, 65534, 1441797, 1769460, 65534, 1441797, 1769467, 65534, 1441797, 1769471, 65534, 1441797, 1769475, 65534, 1441797, 1900529, 65534, 1441797, 1966059, 65534, 1441797, 1966062, 65534, 1441797, 1966071, 65534, 1441797, 2031620, 65534, 1441797, 2097132, 65534, 1441797, 2097141, 65534, 1441797, 2097152, 65534, 1441797, 2228212, 65534, 1441797, 2228217, 65534, 1441797, 2228230, 65534, 1441797, 2293743, 65534, 1441797, 2293748, 65534, 1441797, 2293749, 65534, 1441797, 2359299, 65534, 1441797, 2424819, 65534, 1441797, 2424832, 65534, 1441797, 2490358, 65534, 1441797, 2490363, 65534, 1441797)
 }
 
-[node name="VisibilityManager" parent="Room1" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26235, 32.1557, 0 )
-aabb = AABB( -14.1011, -8.26525, -1, 28.2022, 16.5305, 2 )
-
-[node name="Room2" type="Spatial" parent="."]
+[node name="Room2" type="Node3D" parent="."]
 
 [node name="Top Right" type="GridMap" parent="Room2"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 1507340, 0, 720901, 1638408, 0, 1, 1638410, 0, 0, 1638412, 0, 720901, 1638423, 0, 1, 1638425, 0, 2, 1638433, 0, 720901, 1703969, 0, 720901, 1769484, 0, 720901, 1835018, 0, 1, 1835020, 0, 0, 1835022, 0, 2, 1507335, 65534, 1441797, 1507336, 65534, 1441797, 1507346, 65534, 1441797, 1507347, 65534, 1441797, 1572882, 65534, 1441797, 1572883, 65534, 1441797, 1638409, 65534, 1441797, 1703947, 65534, 1441797, 1703958, 65534, 1441797, 1769480, 65534, 1441797, 1769506, 65534, 1441797, 1835016, 65534, 1441797, 1835017, 65534, 1441797, 1835033, 65534, 1441797, 1835041, 65534, 1441797, 1900552, 65534, 1441797, 1900553, 65534, 1441797, 1900570, 65534, 1441797, 1966087, 65534, 1441797, 1966089, 65534, 1441797, 1966096, 65534, 1441797, 1966105, 65534, 1441797, 2031624, 65534, 1441797, 2031648, 65534, 1441797, 2097164, 65534, 1441797, 2162696, 65534, 1441797, 2162710, 65534, 1441797, 2162720, 65534, 1441797, 2293775, 65534, 1441797, 2293789, 65534, 1441797, 2293791, 65534, 1441797, 2359312, 65534, 1441797, 2359315, 65534, 1441797, 2424849, 65534, 1441797, 2424850, 65534, 1441797 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(1507340, 0, 720901, 1638408, 0, 1, 1638410, 0, 0, 1638412, 0, 720901, 1638423, 0, 1, 1638425, 0, 2, 1638433, 0, 720901, 1703969, 0, 720901, 1769484, 0, 720901, 1835018, 0, 1, 1835020, 0, 0, 1835022, 0, 2, 1507335, 65534, 1441797, 1507336, 65534, 1441797, 1507346, 65534, 1441797, 1507347, 65534, 1441797, 1572882, 65534, 1441797, 1572883, 65534, 1441797, 1638409, 65534, 1441797, 1703947, 65534, 1441797, 1703958, 65534, 1441797, 1769480, 65534, 1441797, 1769506, 65534, 1441797, 1835016, 65534, 1441797, 1835017, 65534, 1441797, 1835033, 65534, 1441797, 1835041, 65534, 1441797, 1900552, 65534, 1441797, 1900553, 65534, 1441797, 1900570, 65534, 1441797, 1966087, 65534, 1441797, 1966089, 65534, 1441797, 1966096, 65534, 1441797, 1966105, 65534, 1441797, 2031624, 65534, 1441797, 2031648, 65534, 1441797, 2097164, 65534, 1441797, 2162696, 65534, 1441797, 2162710, 65534, 1441797, 2162720, 65534, 1441797, 2293775, 65534, 1441797, 2293789, 65534, 1441797, 2293791, 65534, 1441797, 2359312, 65534, 1441797, 2359315, 65534, 1441797, 2424849, 65534, 1441797, 2424850, 65534, 1441797)
 }
 
-[node name="VisibilityManager" parent="Room2" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4216, 29.8677, 0 )
-aabb = AABB( -12.4818, -6.42251, -1, 24.9636, 12.845, 2 )
-
-[node name="Room3" type="Spatial" parent="."]
+[node name="Room3" type="Node3D" parent="."]
 
 [node name="Boss" type="GridMap" parent="Room3"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 458786, 0, 720901, 589858, 0, 720901, 720930, 0, 720901, 852002, 0, 720901, 917537, 0, 0, 917539, 0, 0, 917541, 0, 0, 917543, 0, 0, 917545, 0, 0, 917547, 0, 0, 917549, 0, 0, 917551, 0, 0, 917553, 0, 0, 917555, 0, 0, 917557, 0, 0, 917559, 0, 0, 917561, 0, 0, 917563, 0, 0, 917565, 0, 0, 917567, 0, 0, 917569, 0, 0, 917571, 0, 0, 917573, 0, 0, 917575, 0, 0, 917577, 0, 0, 917579, 0, 0, 917581, 0, 0, 917583, 0, 0, 917585, 0, 0, 917587, 0, 2, 1179682, 0, 720901, 1179711, 0, 720901, 1245247, 0, 720901, 1310754, 0, 720901, 1376319, 0, 720901, 1376320, 0, 720901, 1376321, 0, 720901, 1376323, 0, 720901, 1376324, 0, 720901, 1376326, 0, 720901, 1376327, 0, 720901, 1376329, 0, 4, 1376331, 0, 4, 1376332, 0, 5, 1376334, 0, 4, 1376336, 0, 5, 1441826, 0, 720901, 1507380, 0, 1, 1507382, 0, 2, 1507391, 0, 720901, 1572898, 0, 720901, 1638461, 0, 1, 1638463, 0, 720901, 1769506, 0, 720901, 1769535, 0, 720901, 1900578, 0, 720901, 1900607, 0, 720901, 2031650, 0, 720901, 2031679, 0, 720901, 2162722, 0, 720901, 2162751, 0, 720901, 2228259, 0, 720901, 2228260, 0, 720901, 2228262, 0, 720901, 2228264, 0, 720901, 2228266, 0, 720901, 2228267, 0, 720901, 2228269, 0, 720901, 2228271, 0, 720901, 2228273, 0, 720901, 2228275, 0, 720901, 2228277, 0, 720901, 2228278, 0, 720901, 2228280, 0, 720901, 2228281, 0, 720901, 2228283, 0, 720901, 2228285, 0, 720901, 2293794, 0, 720901, 917538, 65530, 1, 917540, 65530, 0, 917542, 65530, 0, 917544, 65530, 0, 917546, 65530, 0, 917548, 65530, 0, 917550, 65530, 0, 917552, 65530, 0, 917554, 65530, 0, 917556, 65530, 0, 917558, 65530, 0, 917560, 65530, 0, 917562, 65530, 0, 917564, 65530, 0, 917566, 65530, 0, 917568, 65530, 2, 917540, 65533, 1, 917542, 65533, 0, 917544, 65533, 0, 917546, 65533, 0, 917548, 65533, 0, 917550, 65533, 0, 917552, 65533, 0, 917554, 65533, 0, 917556, 65533, 0, 917558, 65533, 0, 917560, 65533, 0, 917562, 65533, 0, 917564, 65533, 0, 917566, 65533, 0, 917568, 65533, 2, 1179683, 65534, 1441797, 1245218, 65534, 1441797, 1310754, 65534, 1441797 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(458786, 0, 720901, 589858, 0, 720901, 720930, 0, 720901, 852002, 0, 720901, 917537, 0, 0, 917539, 0, 0, 917541, 0, 0, 917543, 0, 0, 917545, 0, 0, 917547, 0, 0, 917549, 0, 0, 917551, 0, 0, 917553, 0, 0, 917555, 0, 0, 917557, 0, 0, 917559, 0, 0, 917561, 0, 0, 917563, 0, 0, 917565, 0, 0, 917567, 0, 0, 917569, 0, 0, 917571, 0, 0, 917573, 0, 0, 917575, 0, 0, 917577, 0, 0, 917579, 0, 0, 917581, 0, 0, 917583, 0, 0, 917585, 0, 0, 917587, 0, 2, 1179682, 0, 720901, 1179711, 0, 720901, 1245247, 0, 720901, 1310754, 0, 720901, 1376319, 0, 720901, 1376320, 0, 720901, 1376321, 0, 720901, 1376323, 0, 720901, 1376324, 0, 720901, 1376326, 0, 720901, 1376327, 0, 720901, 1376329, 0, 4, 1376331, 0, 4, 1376332, 0, 5, 1376334, 0, 4, 1376336, 0, 5, 1441826, 0, 720901, 1507380, 0, 1, 1507382, 0, 2, 1507391, 0, 720901, 1572898, 0, 720901, 1638461, 0, 1, 1638463, 0, 720901, 1769506, 0, 720901, 1769535, 0, 720901, 1900578, 0, 720901, 1900607, 0, 720901, 2031650, 0, 720901, 2031679, 0, 720901, 2162722, 0, 720901, 2162751, 0, 720901, 2228259, 0, 720901, 2228260, 0, 720901, 2228262, 0, 720901, 2228264, 0, 720901, 2228266, 0, 720901, 2228267, 0, 720901, 2228269, 0, 720901, 2228271, 0, 720901, 2228273, 0, 720901, 2228275, 0, 720901, 2228277, 0, 720901, 2228278, 0, 720901, 2228280, 0, 720901, 2228281, 0, 720901, 2228283, 0, 720901, 2228285, 0, 720901, 2293794, 0, 720901, 917538, 65530, 1, 917540, 65530, 0, 917542, 65530, 0, 917544, 65530, 0, 917546, 65530, 0, 917548, 65530, 0, 917550, 65530, 0, 917552, 65530, 0, 917554, 65530, 0, 917556, 65530, 0, 917558, 65530, 0, 917560, 65530, 0, 917562, 65530, 0, 917564, 65530, 0, 917566, 65530, 0, 917568, 65530, 2, 917540, 65533, 1, 917542, 65533, 0, 917544, 65533, 0, 917546, 65533, 0, 917548, 65533, 0, 917550, 65533, 0, 917552, 65533, 0, 917554, 65533, 0, 917556, 65533, 0, 917558, 65533, 0, 917560, 65533, 0, 917562, 65533, 0, 917564, 65533, 0, 917566, 65533, 0, 917568, 65533, 2, 1179683, 65534, 1441797, 1245218, 65534, 1441797, 1310754, 65534, 1441797)
 }
 
-[node name="VisibilityManager" parent="Room3" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5383, 23.7851, 0 )
-aabb = AABB( -17.2372, -9.05826, -1, 34.4744, 18.1165, 2 )
-
-[node name="Room4" type="Spatial" parent="."]
+[node name="Room4" type="Node3D" parent="."]
 
 [node name="Mid right" type="GridMap" parent="Room4"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 458760, 0, 0, 458762, 0, 0, 458764, 0, 2, 458774, 0, 1, 458776, 0, 0, 458778, 0, 0, 458780, 0, 0, 458782, 0, 0, 458784, 0, 0, 917512, 0, 720901, 917514, 0, 0, 917516, 0, 2, 917527, 0, 1, 917529, 0, 0, 917531, 0, 0, 917533, 0, 0, 917535, 0, 0, 917537, 0, 0, 1048584, 0, 720901, 1179656, 0, 720901, 1310728, 0, 720901, 1376264, 0, 0, 1376266, 0, 0, 1376268, 0, 720901, 1376270, 0, 2, 524300, 65533, 983045, 524301, 65533, 983045, 524302, 65533, 983045, 589833, 65533, 983045, 589834, 65533, 983045, 589835, 65533, 983045, 589836, 65533, 983045, 589838, 65533, 983045, 655367, 65533, 983045, 655368, 65533, 983045, 655369, 65533, 983045, 720902, 65533, 983045, 720903, 65533, 983045, 786436, 65533, 983045, 786437, 65533, 983045, 786438, 65533, 983045, 851972, 65533, 983045, 458767, 65534, 1441797, 458769, 65534, 1441797, 458776, 65534, 1441797, 524311, 65534, 1441797, 524312, 65534, 1441797, 524315, 65534, 1441797, 589840, 65534, 1441797, 589847, 65534, 1441797, 589852, 65534, 1441797, 655382, 65534, 1441797, 655387, 65534, 1441797, 655388, 65534, 1441797, 655389, 65534, 1441797, 720918, 65534, 1441797, 720919, 65534, 1441797, 720921, 65534, 1441797, 720926, 65534, 1441797, 786453, 65534, 1441797, 1179683, 65534, 1441797 )
+"cells": PackedInt32Array(458760, 0, 0, 458762, 0, 0, 458764, 0, 2, 458774, 0, 1, 458776, 0, 0, 458778, 0, 0, 458780, 0, 0, 458782, 0, 0, 458784, 0, 0, 917512, 0, 720901, 917514, 0, 0, 917516, 0, 2, 917527, 0, 1, 917529, 0, 0, 917531, 0, 0, 917533, 0, 0, 917535, 0, 0, 917537, 0, 0, 1048584, 0, 720901, 1179656, 0, 720901, 1310728, 0, 720901, 1376264, 0, 0, 1376266, 0, 0, 1376268, 0, 720901, 1376270, 0, 2, 524300, 65533, 983045, 524301, 65533, 983045, 524302, 65533, 983045, 589833, 65533, 983045, 589834, 65533, 983045, 589835, 65533, 983045, 589836, 65533, 983045, 589838, 65533, 983045, 655367, 65533, 983045, 655368, 65533, 983045, 655369, 65533, 983045, 720902, 65533, 983045, 720903, 65533, 983045, 786436, 65533, 983045, 786437, 65533, 983045, 786438, 65533, 983045, 851972, 65533, 983045, 458767, 65534, 1441797, 458769, 65534, 1441797, 458776, 65534, 1441797, 524311, 65534, 1441797, 524312, 65534, 1441797, 524315, 65534, 1441797, 589840, 65534, 1441797, 589847, 65534, 1441797, 589852, 65534, 1441797, 655382, 65534, 1441797, 655387, 65534, 1441797, 655388, 65534, 1441797, 655389, 65534, 1441797, 720918, 65534, 1441797, 720919, 65534, 1441797, 720921, 65534, 1441797, 720926, 65534, 1441797, 786453, 65534, 1441797, 1179683, 65534, 1441797)
 }
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 0, 0 )
-}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="VisibilityManager" parent="Room4" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7491, 15.1617, 0 )
-aabb = AABB( -14.8261, -8.48902, -1, 29.6523, 16.978, 2 )
-
-[node name="Room5" type="Spatial" parent="."]
+[node name="Room5" type="Node3D" parent="."]
 
 [node name="Mid left" type="GridMap" parent="Room5"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 458752, 0, 0, 458754, 0, 0, 458756, 0, 0, 458758, 0, 0, 524282, 0, 1, 524284, 0, 0, 524286, 0, 0, 589801, 0, 5, 589808, 0, 1, 589810, 0, 2, 589811, 0, 5, 720873, 0, 5, 720883, 0, 5, 851945, 0, 5, 851952, 0, 1, 851954, 0, 2, 851955, 0, 5, 983017, 0, 5, 983027, 0, 5, 1048563, 0, 5, 1114089, 0, 5, 1114097, 0, 1, 1114099, 0, 0, 1114101, 0, 0, 1114103, 0, 0, 1114105, 0, 2, 1114115, 0, 1, 1114117, 0, 0, 1114119, 0, 0, 1245161, 0, 5, 1376233, 0, 5, 1376262, 0, 1, 589806, 65534, 1441797, 589809, 65534, 1441797, 655339, 65534, 1441797, 655341, 65534, 1441797, 655343, 65534, 1441797, 655345, 65534, 1441797, 720874, 65534, 1441797, 720876, 65534, 1441797, 720880, 65534, 1441797, 786411, 65534, 1441797, 786417, 65534, 1441797, 786423, 65534, 1441797, 851946, 65534, 1441797, 851954, 65534, 1441797, 851958, 65534, 1441797, 917491, 65534, 1441797, 917494, 65534, 1441797, 983019, 65534, 1441797, 983030, 65534, 1441797, 1048556, 65534, 1441797, 1048562, 65534, 1441797, 1114093, 65534, 1441797, 1114095, 65534, 1441797 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(458752, 0, 0, 458754, 0, 0, 458756, 0, 0, 458758, 0, 0, 524282, 0, 1, 524284, 0, 0, 524286, 0, 0, 589801, 0, 5, 589808, 0, 1, 589810, 0, 2, 589811, 0, 5, 720873, 0, 5, 720883, 0, 5, 851945, 0, 5, 851952, 0, 1, 851954, 0, 2, 851955, 0, 5, 983017, 0, 5, 983027, 0, 5, 1048563, 0, 5, 1114089, 0, 5, 1114097, 0, 1, 1114099, 0, 0, 1114101, 0, 0, 1114103, 0, 0, 1114105, 0, 2, 1114115, 0, 1, 1114117, 0, 0, 1114119, 0, 0, 1245161, 0, 5, 1376233, 0, 5, 1376262, 0, 1, 589806, 65534, 1441797, 589809, 65534, 1441797, 655339, 65534, 1441797, 655341, 65534, 1441797, 655343, 65534, 1441797, 655345, 65534, 1441797, 720874, 65534, 1441797, 720876, 65534, 1441797, 720880, 65534, 1441797, 786411, 65534, 1441797, 786417, 65534, 1441797, 786423, 65534, 1441797, 851946, 65534, 1441797, 851954, 65534, 1441797, 851958, 65534, 1441797, 917491, 65534, 1441797, 917494, 65534, 1441797, 983019, 65534, 1441797, 983030, 65534, 1441797, 1048556, 65534, 1441797, 1048562, 65534, 1441797, 1114093, 65534, 1441797, 1114095, 65534, 1441797)
 }
 
-[node name="VisibilityManager" parent="Room5" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69847, 14.3153, 0 )
-aabb = AABB( -13.6509, -7.48924, -1, 27.3021, 14.9785, 2 )
-
-[node name="Room6" type="Spatial" parent="."]
+[node name="Room6" type="Node3D" parent="."]
 
 [node name="Low" type="GridMap" parent="Room6"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 65570, 0, 720901, 196642, 0, 720901, 327714, 0, 720901, -589820, 0, 720901, -589819, 0, 0, -589817, 0, 0, -589815, 0, 0, -589813, 0, 0, -589811, 0, 0, -589809, 0, 0, -589807, 0, 0, -589805, 0, 0, -589803, 0, 0, -589801, 0, 0, -524263, 0, 720901, -458748, 0, 720901, -393210, 0, 2, -393191, 0, 720901, -327676, 0, 720901, -262143, 0, 0, -262141, 0, 0, -262139, 0, 2, -262119, 0, 720901, -131047, 0, 720901, -65528, 0, 1, -65526, 0, 0, -65524, 0, 0, -65522, 0, 2, -65514, 0, 1, -65512, 0, 0, -65510, 0, 0, -65508, 0, 0, -65506, 0, 0, -65504, 0, 0, -65502, 0, 720901, 17, 65533, 4, 131091, 65533, 4, 196628, 65533, 4, 262165, 65533, 4, 327699, 65533, 4, 393237, 65533, 4, -131056, 65533, 4, -65521, 65533, 4, 7, 65534, 983045, 65541, 65534, 983045, 131076, 65534, 983045, 196610, 65534, 983045, 262144, 65534, 983045, 327680, 65534, 983045, 393217, 65534, 983045, 393240, 65534, 1441797, -196593, 65534, 983045, -131062, 65534, 983045, -131060, 65534, 4, -65528, 65534, 983045 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(65570, 0, 720901, 196642, 0, 720901, 327714, 0, 720901, -589820, 0, 720901, -589819, 0, 0, -589817, 0, 0, -589815, 0, 0, -589813, 0, 0, -589811, 0, 0, -589809, 0, 0, -589807, 0, 0, -589805, 0, 0, -589803, 0, 0, -589801, 0, 0, -524263, 0, 720901, -458748, 0, 720901, -393210, 0, 2, -393191, 0, 720901, -327676, 0, 720901, -262143, 0, 0, -262141, 0, 0, -262139, 0, 2, -262119, 0, 720901, -131047, 0, 720901, -65528, 0, 1, -65526, 0, 0, -65524, 0, 0, -65522, 0, 2, -65514, 0, 1, -65512, 0, 0, -65510, 0, 0, -65508, 0, 0, -65506, 0, 0, -65504, 0, 0, -65502, 0, 720901, 17, 65533, 4, 131091, 65533, 4, 196628, 65533, 4, 262165, 65533, 4, 327699, 65533, 4, 393237, 65533, 4, -131056, 65533, 4, -65521, 65533, 4, 7, 65534, 983045, 65541, 65534, 983045, 131076, 65534, 983045, 196610, 65534, 983045, 262144, 65534, 983045, 327680, 65534, 983045, 393217, 65534, 983045, 393240, 65534, 1441797, -196593, 65534, 983045, -131062, 65534, 983045, -131060, 65534, 4, -65528, 65534, 983045)
 }
 
-[node name="VisibilityManager" parent="Room6" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1123, -0.352613, 0 )
-aabb = AABB( -15.2771, -7.1021, -1, 30.5543, 14.2042, 2 )
-
-[node name="Room7" type="Spatial" parent="."]
+[node name="Room7" type="Node3D" parent="."]
 
 [node name="Low" type="GridMap" parent="Room7"]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 0.995, 1, 1 )
+mesh_library = ExtResource("1")
+cell_size = Vector3(0.995, 1, 1)
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 65513, 0, 5, 65520, 0, 1, 65522, 0, 2, 65523, 0, 5, 65532, 0, 1, 65534, 0, 2, 196585, 0, 5, 196595, 0, 5, 262133, 0, 0, 262135, 0, 0, 262137, 0, 2, 327657, 0, 5, 327659, 0, 1, 327661, 0, 2, 327667, 0, 5, 458729, 0, 5, 458739, 0, 5, -196629, 0, 0, -196627, 0, 0, -196625, 0, 0, -196623, 0, 0, -196621, 0, 0, -196619, 0, 0, -196617, 0, 0, -196615, 0, 0, -196613, 0, 0, -196611, 0, 0, -196609, 0, 0, -131095, 0, 5, -23, 0, 5, 65530, 65534, 1441797, 131068, 65534, 1441797, 196605, 65534, 1441797, 196606, 65534, 1441797, 262122, 65534, 1441797, 262143, 65534, 1441797, 393202, 65534, 4, -131091, 65534, 1441797, -131089, 65534, 1441797, -131087, 65534, 1441797, -131085, 65534, 1441797 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"cells": PackedInt32Array(65513, 0, 5, 65520, 0, 1, 65522, 0, 2, 65523, 0, 5, 65532, 0, 1, 65534, 0, 2, 196585, 0, 5, 196595, 0, 5, 262133, 0, 0, 262135, 0, 0, 262137, 0, 2, 327657, 0, 5, 327659, 0, 1, 327661, 0, 2, 327667, 0, 5, 458729, 0, 5, 458739, 0, 5, -196629, 0, 0, -196627, 0, 0, -196625, 0, 0, -196623, 0, 0, -196621, 0, 0, -196619, 0, 0, -196617, 0, 0, -196615, 0, 0, -196613, 0, 0, -196611, 0, 0, -196609, 0, 0, -131095, 0, 5, -23, 0, 5, 65530, 65534, 1441797, 131068, 65534, 1441797, 196605, 65534, 1441797, 196606, 65534, 1441797, 262122, 65534, 1441797, 262143, 65534, 1441797, 393202, 65534, 4, -131091, 65534, 1441797, -131089, 65534, 1441797, -131087, 65534, 1441797, -131085, 65534, 1441797)
 }
 
-[node name="VisibilityManager" parent="Room7" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.213, -0.352613, 0 )
-aabb = AABB( -13.3191, -6.9463, -1, 26.6383, 13.8926, 2 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.845712, -0.112535, -0.521639, 0.443631, 0.691544, 0.570051, 0.296585, -0.713514, 0.634771, 0.0771523, 3.8147e-06, 9.16869 )
-light_indirect_energy = 0.0
-light_specular = 3.875
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.845712, -0.112536, -0.521639, 0.443631, 0.691544, 0.570051, 0.296585, -0.713514, 0.634772, 0.0771523, 3.8147e-06, 9.16869)
+light_bake_mode = 1
 shadow_enabled = true
-shadow_color = Color( 0.152941, 0.0588235, 0.0588235, 1 )
-shadow_bias = 1.058
+shadow_bias = 0.0
+shadow_opacity = 0.8
+directional_shadow_mode = 0
 directional_shadow_split_2 = 0.191
+directional_shadow_fade_start = 0.83
+sky_mode = 1
 
-[node name="Torches" type="Spatial" parent="."]
+[node name="Torches" type="Node3D" parent="."]
 
-[node name="Torch" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -7.54785, -2.76763, -0.355374 )
+[node name="Torch" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -7.54785, -2.76763, -0.355374)
 
-[node name="Torch2" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -17.9868, -2.76763, -0.355374 )
+[node name="Torch2" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -17.9868, -2.76763, -0.355374)
 
-[node name="Torch3" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -14.8917, 1.19822, -0.487656 )
+[node name="Torch3" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -14.8917, 1.19822, -0.487656)
 
-[node name="Torch4" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -18.7199, 5.0977, -0.355374 )
+[node name="Torch4" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -18.7199, 5.0977, -0.355374)
 
-[node name="Torch5" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -15.1298, 9.04233, -0.698933 )
+[node name="Torch5" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -15.1298, 9.04233, -0.698933)
 
-[node name="Torch6" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.52815, 0, 0, 0, 1.52815, 0, 0, 0, 1.52815, -15.3873, 12.9368, -0.578484 )
+[node name="Torch6" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.52815, 0, 0, 0, 1.52815, 0, 0, 0, 1.52815, -15.3873, 12.9368, -0.578484)
 
-[node name="Torch7" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -12.9025, 17.0308, -0.355374 )
+[node name="Torch7" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -12.9025, 17.0308, -0.355374)
 
-[node name="Torch8" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -7.47067, 17.0308, -0.355374 )
+[node name="Torch8" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -7.47067, 17.0308, -0.355374)
 
-[node name="Torch9" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 5.88695, 18.181, -0.355374 )
+[node name="Torch9" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 5.88695, 18.181, -0.355374)
 
-[node name="Torch10" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 8.99029, 22.0634, -0.887707 )
+[node name="Torch10" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 8.99029, 22.0634, -0.887707)
 
-[node name="Torch11" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 8.29925, 26.078, -0.940592 )
+[node name="Torch11" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 8.29925, 26.078, -0.940592)
 
-[node name="Torch12" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 3.16576, 29.2038, -1.01819 )
+[node name="Torch12" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 3.16576, 29.2038, -1.01819)
 
-[node name="Torch13" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -14.4008, 29.2223, -0.539168 )
+[node name="Torch13" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -14.4008, 29.2223, -0.539168)
 
-[node name="Torch14" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -4.04644, 29.2038, -0.539168 )
+[node name="Torch14" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -4.04644, 29.2038, -0.539168)
 
-[node name="Torch15" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 31.4997, 15.2882, -0.782541 )
+[node name="Torch15" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 31.4997, 15.2882, -0.782541)
 
-[node name="Torch16" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 23.626, 15.2882, -0.782541 )
+[node name="Torch16" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 23.626, 15.2882, -0.782541)
 
-[node name="Torch17" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.5853, 15.2882, -0.782541 )
+[node name="Torch17" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.5853, 15.2882, -0.782541)
 
-[node name="Torch18" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 24.3183, 26.1863, -1.01536 )
+[node name="Torch18" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 24.3183, 26.1863, -1.01536)
 
-[node name="Torch19" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 14.635, 22.1137, -0.673553 )
+[node name="Torch19" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 14.635, 22.1137, -0.673553)
 
-[node name="Torch20" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 12.4372, 29.1226, -1.01536 )
+[node name="Torch20" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 12.4372, 29.1226, -1.01536)
 
-[node name="Torch21" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.3911, 8.2697, -0.585647 )
+[node name="Torch21" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.3911, 8.2697, -0.585647)
 
-[node name="Torch22" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 9.42524, 0.235712, -0.585647 )
+[node name="Torch22" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 9.42524, 0.235712, -0.585647)
 
-[node name="Torch23" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 13.4692, 0.235712, -0.585647 )
+[node name="Torch23" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 13.4692, 0.235712, -0.585647)
 
-[node name="Torch24" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 22.4848, 0.235712, -0.585647 )
+[node name="Torch24" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 22.4848, 0.235712, -0.585647)
 
-[node name="Torch25" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 26.6092, 0.235712, -0.585647 )
+[node name="Torch25" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 26.6092, 0.235712, -0.585647)
 
-[node name="Torch26" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 31.3876, 0.235712, -0.585647 )
+[node name="Torch26" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 31.3876, 0.235712, -0.585647)
 
-[node name="Torch27" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 5.5109, 8.2697, -0.62692 )
+[node name="Torch27" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 5.5109, 8.2697, -0.62692)
 
-[node name="Torch28" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 19.5591, -8.24241, -0.913002 )
+[node name="Torch28" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 19.5591, -8.24241, -0.913002)
 
-[node name="Torch29" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.0079, -8.24241, -0.913002 )
+[node name="Torch29" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, 11.0079, -8.24241, -0.913002)
 
-[node name="Torch30" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -0.945357, 8.2697, -0.698433 )
+[node name="Torch30" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -0.945357, 8.2697, -0.698433)
 
-[node name="Torch31" parent="Torches" instance=ExtResource( 14 )]
-transform = Transform( 1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -5.53676, 8.2697, -0.621859 )
+[node name="Torch31" parent="Torches" instance=ExtResource("14")]
+transform = Transform3D(1.53066, 0, 0, 0, 1.53066, 0, 0, 0, 1.53066, -5.53676, 8.2697, -0.621859)
 
-[node name="Waterfalls" type="Spatial" parent="."]
+[node name="Waterfalls" type="Node3D" parent="."]
 
-[node name="Waterfall" parent="Waterfalls" instance=ExtResource( 15 )]
-transform = Transform( 0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, -11.3118, -1.84822, 1.34046 )
+[node name="Waterfall" parent="Waterfalls" instance=ExtResource("15")]
+transform = Transform3D(0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, -11.3118, -1.84822, 1.34046)
 
-[node name="Waterfall2" parent="Waterfalls" instance=ExtResource( 15 )]
-transform = Transform( 0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, -11.3118, -1.84822, 1.34046 )
+[node name="Waterfall2" parent="Waterfalls" instance=ExtResource("15")]
+transform = Transform3D(0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, -11.3118, -1.84822, 1.34046)
 
-[node name="Waterfall4" parent="Waterfalls" instance=ExtResource( 15 )]
-transform = Transform( 0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, 34.9962, 15.5186, 1.34046 )
+[node name="Waterfall4" parent="Waterfalls" instance=ExtResource("15")]
+transform = Transform3D(0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, 34.9962, 15.5186, 1.34046)
 
-[node name="Waterfall5" parent="Waterfalls" instance=ExtResource( 15 )]
-transform = Transform( 0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, 13.238, 15.9495, 1.34046 )
+[node name="Waterfall5" parent="Waterfalls" instance=ExtResource("15")]
+transform = Transform3D(0.994349, -0.105638, 0.0105689, 0.105995, 0.993459, -0.0424775, -0.0060125, 0.0433578, 0.999042, 13.238, 15.9495, 1.34046)
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1.44871, 0, 0, 0, 1.44871, 0, 0, 0, 1, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.44871, 0, 0, 0, 1.44871, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="fundo2" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 10.9665, 0, 0, 0, -4.79363e-07, -10.9665, 0, 1, -4.37114e-08, -73.9419, -18.4469, -30.6411 )
+[node name="fundo2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(10.9665, 0, 0, 0, -4.79363e-07, -10.9665, 0, 1, -4.37114e-08, -73.9419, -18.4469, -30.6411)
 cast_shadow = 0
-mesh = ExtResource( 17 )
+mesh = ExtResource("17")
 skeleton = NodePath("../fundo1")
-material/0 = SubResource( 2 )
 
-[node name="fundo1" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 9, 0, 0, 0, -4.37114e-08, -9, 0, 1, -3.93403e-07, 164.85, -23, -80 )
-mesh = ExtResource( 18 )
-material/0 = SubResource( 3 )
+[node name="fundo1" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(18, 0, 0, 0, -8.74228e-08, -18, 0, 2, -7.86805e-07, 164.85, -7.89195, -80)
+mesh = ExtResource("18")
 
-[node name="Checkpoint" parent="." instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2463, 16.7114, 0 )
+[node name="Checkpoint" parent="." instance=ExtResource("21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2463, 16.7114, 0)
 
-[node name="FakeEnding" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.7659, 17.7735, 0 )
-script = ExtResource( 6 )
+[node name="FakeEnding" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8873, 17.7735, 0)
+script = ExtResource("6")
 
-[node name="CollisionShape" type="CollisionShape" parent="FakeEnding"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35866, 0, 0 )
-shape = SubResource( 4 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FakeEnding"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35866, 0, 0)
+shape = SubResource("4")
 
 [node name="HudMock" type="CanvasLayer" parent="."]
 layer = 3
-script = ExtResource( 20 )
+script = ExtResource("20")
 
 [node name="HudItems" type="Control" parent="HudMock"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1291.0
-margin_bottom = 737.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 649.0
+offset_bottom = 367.0
 
-[node name="HealthBar" parent="HudMock/HudItems" instance=ExtResource( 19 )]
+[node name="HealthBar" parent="HudMock/HudItems" instance=ExtResource("19")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 262.0
+offset_bottom = 29.0
 persistent_visibility = true
-max_alpha = 128.0
 
 [connection signal="body_entered" from="FakeEnding" to="FakeEnding" method="_on_Area_body_entered"]

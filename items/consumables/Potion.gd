@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
-onready var gulp_sound = $AudioStreamPlayer3D
-onready var collision = $Area/CollisionShape
-export var hp_given = 5
+@onready var gulp_sound = $AudioStreamPlayer3D
+@onready var collision = $Area3D/CollisionShape3D
+@export var hp_given = 5
 var going_up = true
 var initial_y = 0
 

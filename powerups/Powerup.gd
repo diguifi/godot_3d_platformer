@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
-export var power_up = "double_jump"
-export (NodePath) var player_ref = ""
-onready var mesh = $MeshInstance
-onready var label = $Sprite3D
-onready var timer = $Timer
-onready var audio = $AudioStreamPlayer3D
+@export var power_up = "double_jump"
+@export var player_ref: NodePath = ""
+@onready var mesh = $MeshInstance3D
+@onready var label = $Sprite3D
+@onready var timer = $Timer
+@onready var audio = $AudioStreamPlayer3D
 var going_up = true
 var initial_y = 0
 

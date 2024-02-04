@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var play_cutscene = {
 	"0": {
@@ -18,26 +18,10 @@ var play_cutscene = {
 	},
 }
 
-onready var children = get_children()
+@onready var children = get_children()
 var valid_children = []
 
 func _ready():
 	MusicManager.change_music("Game")
-	GlobalState.camera.start_cutscene(play_cutscene)
-	for child in children:
-		var is_valid = true
-		if !(child is KinematicBody):
-			is_valid = false
-		if ("Room" in child.name):
-			child.visible = false
-		if is_valid:
-			valid_children.append(child)
+	#GlobalState.camera.start_cutscene(play_cutscene)
 	
-func _process(delta):
-	for child in valid_children:
-		if is_instance_valid(child):
-			if "dead" in child:
-				if !child.dead:
-					child.visible = false
-			else:
-				child.visible = false

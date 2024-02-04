@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-onready var camera = get_parent().get_node("Camera")
-onready var sprite = $AnimatedSprite3D
+@onready var camera = get_parent().get_node("Camera3D")
+@onready var sprite = $AnimatedSprite3D
 var starting_z = 0
 var starting_distance_z = 0
 

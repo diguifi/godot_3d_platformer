@@ -1,15 +1,16 @@
-extends VisibilityNotifier
+extends VisibleOnScreenNotifier3D
 
-onready var parent = get_parent()
+@onready var parent = get_parent()
 
-func _on_VisibilityManager_camera_entered(_camera):
-	parent.visible = true
-	var particles = parent.get_node("CPUParticles")
+func _on_screen_entered():
+	var particles = parent.get_node("CPUParticles3D")
 	if particles:
 		particles.emitting = true
+		particles.visible = true
 
-func _on_VisibilityManager_camera_exited(_camera):
-	parent.visible = false
-	var particles = parent.get_node("CPUParticles")
+
+func _on_screen_exited():
+	var particles = parent.get_node("CPUParticles3D")
 	if particles:
 		particles.emitting = false
+		particles.visible = false

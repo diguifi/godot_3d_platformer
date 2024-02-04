@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 enum states {
 	IDLE,
@@ -6,14 +6,14 @@ enum states {
 	CHASING
 }
 
-export var view_distance = 10
-export var chasing_view_distance_modifier = 1.2
-export var patrol_speed = 1.5
-export var chase_speed = 3
-onready var player_node = get_node("/root/World/Player")
-onready var front_check = $FrontRayCast
-onready var rear_check = $RearRayCast
-onready var enemy: KinematicBody = get_parent()
+@export var view_distance = 10
+@export var chasing_view_distance_modifier = 1.2
+@export var patrol_speed = 1.5
+@export var chase_speed = 3
+@onready var player_node = get_node("/root/World/Player")
+@onready var front_check = $FrontRayCast
+@onready var rear_check = $RearRayCast
+@onready var enemy: CharacterBody3D = get_parent()
 var y_check_speed = 20
 var y_max_range_check = 8
 var range_check_going_up = true
@@ -28,8 +28,8 @@ var move_speed = 1.5
 var state = states.PATROLLING
 
 func _ready():
-	front_check.cast_to = Vector3( view_distance, 0, 0 )
-	rear_check.cast_to = Vector3( -(view_distance * 0.4), 0, 0 )
+	front_check.target_position = Vector3( view_distance, 0, 0 )
+	rear_check.target_position = Vector3( -(view_distance * 0.4), 0, 0 )
 	default_chase_speed = chase_speed
 
 func _physics_process(delta):
@@ -40,7 +40,10 @@ func _physics_process(delta):
 		apply_current_state()
 		play_animations()
 	
-		enemy.move_and_slide(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0), Vector3(0,1,0))
+		enemy.set_velocity(Vector3((move_dir * move_speed) + enemy.x_axis_damage_kick, enemy.gravity_manager.y_velo, 0))
+		enemy.set_up_direction(Vector3(0,1,0))
+		enemy.move_and_slide()
+		enemy.velocity
 	
 func check_move_dir():
 	on_ledge_or_wall = false
@@ -60,12 +63,12 @@ func update_y_range_check(delta):
 	var new_factor = delta * y_check_speed
 	if range_check_going_up:
 		current_y_check += 2
-		front_check.cast_to = Vector3( view_distance, current_y_check, 0 )
+		front_check.target_position = Vector3( view_distance, current_y_check, 0 )
 		if current_y_check >= y_max_range_check:
 			range_check_going_up = false
 	else:
 		current_y_check -= new_factor
-		front_check.cast_to = Vector3( view_distance, current_y_check, 0 )
+		front_check.target_position = Vector3( view_distance, current_y_check, 0 )
 		if current_y_check <= 0:
 			range_check_going_up = true
 

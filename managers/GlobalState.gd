@@ -4,7 +4,7 @@ var is_player_alive = true
 var on_dialog_area = false
 var dialog_happening = false
 var camera = null
-var show_health_bars = false
+var show_health_bars = true
 var show_hit_amount = true
 var music_volume = 0.5
 var sfx_volume = 1
@@ -22,8 +22,8 @@ func _ready():
 	_update_configs()
 
 func _update_configs():
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(music_volume))
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(sfx_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_volume))
 
 func set_checkpoint(x, y, player):
 	checkpoint_save.has_saved = true

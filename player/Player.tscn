@@ -1,92 +1,94 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://dqd6rb6w36qht"]
 
-[ext_resource path="res://managers/HitCountSpawner.tscn" type="PackedScene" id=1]
-[ext_resource path="res://player/Player.gd" type="Script" id=2]
-[ext_resource path="res://managers/KinematicGravity.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/glb/personagem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://managers/SoundManager.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/audio/sfx/grass_step_1.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/sfx/grass_step_3.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/sfx/grass_step_2.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/sfx/damage_player.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/audio/sfx/player_pain_1.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/audio/sfx/player_pain_2.ogg" type="AudioStream" id=12]
-[ext_resource path="res://assets/audio/sfx/sword_slash_raw.ogg" type="AudioStream" id=13]
+[ext_resource type="PackedScene" path="res://managers/HitCountSpawner.tscn" id="1"]
+[ext_resource type="Script" path="res://player/Player.gd" id="2"]
+[ext_resource type="PackedScene" path="res://managers/KinematicGravity.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://biptl74aa1pn" path="res://managers/SoundManager.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dwoxbba5sgvtb" path="res://assets/glb/personagem_mesh.tscn" id="5_5p51b"]
+[ext_resource type="AudioStream" uid="uid://ct0k1c4ywhdfk" path="res://assets/audio/sfx/grass_step_1.ogg" id="6"]
+[ext_resource type="AudioStream" uid="uid://dqjh4rw275tkl" path="res://assets/audio/sfx/grass_step_3.ogg" id="7"]
+[ext_resource type="AudioStream" uid="uid://ckntdt3mjscim" path="res://assets/audio/sfx/grass_step_2.ogg" id="8"]
+[ext_resource type="AudioStream" uid="uid://bcnci88s7pate" path="res://assets/audio/sfx/damage_player.ogg" id="10"]
+[ext_resource type="AudioStream" uid="uid://bbf0gpe8ileuq" path="res://assets/audio/sfx/player_pain_1.ogg" id="11"]
+[ext_resource type="AudioStream" uid="uid://cjygxnwm4in4c" path="res://assets/audio/sfx/player_pain_2.ogg" id="12"]
+[ext_resource type="AudioStream" uid="uid://d1xl86jetla1i" path="res://assets/audio/sfx/sword_slash_raw.ogg" id="13"]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.5, 1, 1 )
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(1, 2, 2)
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.275079, 0.397436, 1 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(0.550158, 0.794872, 2)
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape3D" id="3"]
 
-[node name="Player" type="KinematicBody"]
-script = ExtResource( 2 )
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("2")
 
-[node name="KinematicGravity" parent="." instance=ExtResource( 3 )]
+[node name="KinematicGravity" parent="." instance=ExtResource("3")]
 automatic_fall = false
 
-[node name="HitCountSpawner" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0 )
+[node name="HitCountSpawner" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
 
-[node name="Graphics" parent="." instance=ExtResource( 4 )]
-transform = Transform( 0.529922, 0.0016449, 0.000410943, -0.00164478, 0.529922, -0.000151616, -0.000411409, 0.000150346, 0.529925, 0, -0.0526297, 0 )
+[node name="Graphics" parent="." instance=ExtResource("5_5p51b")]
+transform = Transform3D(-2.3167e-08, 0, 0.53, 0, 0.53, 0, -0.53, 0, -2.3167e-08, 0, 0, 0)
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.710199, 0, 0, 0, 0.310584, 0, 0.624727, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.710199, 0, 0, 0, 0.310584, 0, 0.624727, 0)
+shape = SubResource("1")
 
-[node name="AreaRight" type="Area" parent="."]
-transform = Transform( 0.24, 0, 0, 0, 1.79, 0, 0, 0, 0.34, 0.32482, 0.626438, 0 )
+[node name="AreaRight" type="Area3D" parent="."]
+transform = Transform3D(0.24, 0, 0, 0, 1.79, 0, 0, 0, 0.34, 0.32482, 0.626438, 0)
 
-[node name="CollisionShape" type="CollisionShape" parent="AreaRight"]
-shape = SubResource( 2 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaRight"]
+shape = SubResource("2")
 
-[node name="AreaLeft" type="Area" parent="."]
-transform = Transform( 0.24, 0, 0, 0, 1.79, 0, 0, 0, 0.34, -0.32482, 0.626438, 0 )
+[node name="AreaLeft" type="Area3D" parent="."]
+transform = Transform3D(0.24, 0, 0, 0, 1.79, 0, 0, 0, 0.34, -0.32482, 0.626438, 0)
 
-[node name="CollisionShape" type="CollisionShape" parent="AreaLeft"]
-shape = SubResource( 2 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaLeft"]
+shape = SubResource("2")
 
-[node name="AreaBottom" type="Area" parent="."]
-transform = Transform( 0.9, 0, 0, 0, 0.05, 0, 0, 0, 0.35, 0, -0.1, 0 )
+[node name="AreaBottom" type="Area3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.05, 0, 0, 0, 0.35, 0, -0.1, 0)
 
-[node name="CollisionShape" type="CollisionShape" parent="AreaBottom"]
-transform = Transform( 0.278363, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaBottom"]
+transform = Transform3D(0.278363, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("3")
 
-[node name="GroundCheckRayRight" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.0756892, 0 )
-enabled = true
-cast_to = Vector3( 0, -0.1, 0 )
+[node name="GroundCheckRayRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.0756892, 0)
+target_position = Vector3(0, -0.1, 0)
 
-[node name="GroundCheckRayLeft" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.0756892, 0 )
-enabled = true
-cast_to = Vector3( 0, -0.1, 0 )
+[node name="GroundCheckRayLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.0756892, 0)
+target_position = Vector3(0, -0.1, 0)
 
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419443, 0.691956 )
-light_color = Color( 1, 0.701961, 0, 1 )
+[node name="HeadCheckRay" type="RayCast3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.29, 0)
+target_position = Vector3(0, -0.1, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419443, 0.691956)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 1.5
 shadow_enabled = true
 omni_range = 3.82511
 omni_attenuation = 0.366021
 
-[node name="OmniLight2" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419443, -0.840081 )
-light_color = Color( 1, 0.701961, 0, 1 )
+[node name="OmniLight2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419443, -0.840081)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 1.5
 shadow_enabled = true
 omni_range = 3.82511
 omni_attenuation = 0.366021
 
-[node name="SoundManager" parent="." instance=ExtResource( 5 )]
-grass_steps_sounds = [ ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ]
-attack_sounds = [ ExtResource( 13 ) ]
-damage_sounds = [ ExtResource( 10 ) ]
-pain_sounds = [ ExtResource( 11 ), ExtResource( 12 ) ]
+[node name="SoundManager" parent="." instance=ExtResource("5")]
+grass_steps_sounds = Array[AudioStream]([ExtResource("6"), ExtResource("8"), ExtResource("7")])
+attack_sounds = Array[AudioStream]([ExtResource("13")])
+damage_sounds = Array[AudioStream]([ExtResource("10")])
+pain_sounds = Array[AudioStream]([ExtResource("11"), ExtResource("12")])
 
 [connection signal="body_entered" from="AreaRight" to="." method="_on_AreaRight_body_entered"]
 [connection signal="body_exited" from="AreaRight" to="." method="_on_AreaRight_body_exited"]

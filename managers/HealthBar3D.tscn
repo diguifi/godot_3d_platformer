@@ -1,18 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://c0be31j2nvcwg"]
 
-[ext_resource path="res://assets/img/hp_green.png" type="Texture" id=1]
-[ext_resource path="res://managers/HealthBar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://managers/HealthBar3D.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://ctiid5lpcpws3" path="res://assets/img/hp_green.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://c032a3n1j0fee" path="res://managers/HealthBar.tscn" id="2"]
+[ext_resource type="Script" path="res://managers/HealthBar3D.gd" id="3"]
 
 [node name="HealthBar3D" type="Sprite3D"]
 billboard = 1
-texture = ExtResource( 1 )
-script = ExtResource( 3 )
+texture = ExtResource("1")
+script = ExtResource("3")
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 200, 16 )
+[node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-usage = 0
-render_target_v_flip = true
+size = Vector2i(200, 16)
 
-[node name="HealthBar" parent="Viewport" instance=ExtResource( 2 )]
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("2")]

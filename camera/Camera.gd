@@ -1,10 +1,10 @@
-extends Camera
+extends Camera3D
 
-onready var player = get_parent().get_node("Player")
-export var remove_all_firula = false
-export var smooth_speed = 1.4
-export var offset: Vector3
-export var dialog_zoom_amount = 3
+@onready var player = get_parent().get_node("Player")
+@export var remove_all_firula = false
+@export var smooth_speed = 1.4
+@export var offset: Vector3
+@export var dialog_zoom_amount = 3
 var offset_x = 3
 
 # cutscene variables
@@ -21,20 +21,20 @@ var on_boss = false
 var boss_focal_point = Vector3(0,0,0)
 
 # camera shake variables
-onready var initial_rotation := rotation_degrees as Vector3
-export var trauma_reduction_rate := 1.0
-export var max_x := 10.0
-export var max_y := 10.0
-export var max_z := 5.0
-export var noise : OpenSimplexNoise
-export var noise_speed := 50.0
+@onready var initial_rotation := rotation_degrees as Vector3
+@export var trauma_reduction_rate := 1.0
+@export var max_x := 10.0
+@export var max_y := 10.0
+@export var max_z := 5.0
+@export var noise : FastNoiseLite
+@export var noise_speed := 50.0
 var trauma := 0.0
 var time := 0.0
 
 # godot methods
 func _ready():
-	Signals.connect("start_boss", self, "_start_boss")
-	Signals.connect("kill_boss", self, "_finish_boss")
+	Signals.connect("start_boss", Callable(self, "_start_boss"))
+	Signals.connect("kill_boss", Callable(self, "_finish_boss"))
 	GlobalState.camera = self
 	set_process(false)
 
@@ -66,11 +66,11 @@ func _physics_process(delta):
 			if remove_all_firula:
 				new_offset.x = 0
 				new_offset.y = 1.2
-				translation = player.translation + new_offset
+				position = player.position + new_offset
 			else:
-				translation = lerp(translation, player.translation + new_offset, falling_speed * smooth_speed * delta)
+				position = lerp(position, player.position + new_offset, falling_speed * smooth_speed * delta)
 		if on_boss:
-			translation = lerp(translation, boss_focal_point + new_offset, smooth_speed * delta)
+			position = lerp(position, boss_focal_point + new_offset, smooth_speed * delta)
 	if on_cutscene:
 		play_cutscene(delta)
 
@@ -80,12 +80,12 @@ func play_cutscene(delta):
 		go_to_next_scene = false
 		current_cutscene_step += 1
 		if current_cutscene_step < current_cutscene_size:
-			cutscene_step_translation = current_cutscene_script[String(current_cutscene_step)].position
-			current_step_smooth_speed = current_cutscene_script[String(current_cutscene_step)].speed
-			cutscene_time(current_cutscene_script[String(current_cutscene_step)].duration)
+			cutscene_step_translation = current_cutscene_script[str(current_cutscene_step)].position
+			current_step_smooth_speed = current_cutscene_script[str(current_cutscene_step)].speed
+			cutscene_time(current_cutscene_script[str(current_cutscene_step)].duration)
 		else:
 			finish_cutscene()
-	translation = lerp(translation, cutscene_step_translation, current_step_smooth_speed * delta)
+	position = lerp(position, cutscene_step_translation, current_step_smooth_speed * delta)
 		
 func start_cutscene(script):
 	#tirar na proxima versao
@@ -114,7 +114,7 @@ func finish_cutscene():
 	cutscene_step_translation = Vector3(0,0,0)
 		
 func cutscene_time(time):
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	go_to_next_scene = true
 	
 # camera shake methods

@@ -2,5 +2,5 @@
 
 [ext_resource path="res://enemies/ai/FlyChaseAI.gd" type="Script" id=1]
 
-[node name="FlyChaseAI" type="Area"]
+[node name="FlyChaseAI" type="Area3D"]
 script = ExtResource( 1 )

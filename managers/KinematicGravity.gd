@@ -1,10 +1,10 @@
-extends Spatial
+extends Node3D
 
-onready var parent = get_parent()
-export var automatic_fall = true
-export var GRAVITY = 24
-export var MAX_FALL_SPEED = 70
-export var FALL_MULTIPLIER = 1.5
+@onready var parent = get_parent()
+@export var automatic_fall = true
+@export var GRAVITY = 24
+@export var MAX_FALL_SPEED = 70
+@export var FALL_MULTIPLIER = 1.5
 var gravity_multiplier = 1
 var y_velo = -0.15
 

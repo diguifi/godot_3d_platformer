@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/player_pain_1.ogg-24b72790cafa184ca24294cb9d170cc2.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bbf0gpe8ileuq"
+path="res://.godot/imported/player_pain_1.ogg-24b72790cafa184ca24294cb9d170cc2.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/audio/sfx/player_pain_1.ogg"
-dest_files=[ "res://.import/player_pain_1.ogg-24b72790cafa184ca24294cb9d170cc2.oggstr" ]
+dest_files=["res://.godot/imported/player_pain_1.ogg-24b72790cafa184ca24294cb9d170cc2.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

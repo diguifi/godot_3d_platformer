@@ -1,6 +1,6 @@
-extends Spatial
+extends Node3D
 
-onready var sprite = $Sprite3D
+@onready var sprite = $Sprite3D
 var attack_damage = 1
 var flip = false
 var distance_modifier = 1
@@ -17,5 +17,5 @@ func _ready():
 	spawn_time()
 
 func spawn_time():
-	yield(get_tree().create_timer(0.7),"timeout")
+	await get_tree().create_timer(0.7).timeout
 	queue_free()

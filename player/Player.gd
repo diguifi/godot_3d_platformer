@@ -1,19 +1,20 @@
-extends KinematicBody
+extends CharacterBody3D
 
 # ------ variables ------
-export var hp = 10
-export var coyote_timer = 0.05
-export var damage_timer = 0.15
-onready var graphics = $Graphics
-onready var anim_player = $Graphics/AnimationPlayer
-onready var gravity_manager = $KinematicGravity
-onready var ground_check_right = $GroundCheckRayRight
-onready var ground_check_left = $GroundCheckRayLeft
-onready var area_right = $AreaRight
-onready var area_left = $AreaLeft
-onready var area_bottom = $AreaBottom
-onready var hit_count_spawner = $HitCountSpawner
-onready var sound_manager = $SoundManager
+@export var hp = 10
+@export var coyote_timer = 0.05
+@export var damage_timer = 0.15
+@onready var graphics = $Graphics
+@onready var anim_player = $Graphics/AnimationPlayer
+@onready var gravity_manager = $KinematicGravity
+@onready var ground_check_right = $GroundCheckRayRight
+@onready var ground_check_left = $GroundCheckRayLeft
+@onready var headbump_check = $HeadCheckRay
+@onready var area_right = $AreaRight
+@onready var area_left = $AreaLeft
+@onready var area_bottom = $AreaBottom
+@onready var hit_count_spawner = $HitCountSpawner
+@onready var sound_manager = $SoundManager
 
 # constants
 const WALK_SPEED = 7
@@ -23,6 +24,7 @@ const D_JUMP_FORCE = 9
 const DAMAGE_KICK = 14
 
 # movement
+var headbump = false
 var grounded = false
 var previous_grounded = false
 var can_jump = false
@@ -52,8 +54,8 @@ var is_on_edge_right = false
 var has_double_jump = false
 
 # gear
-onready var right_hand_holder = $Graphics/Armature/Skeleton/RightHandPlaceholder
-onready var left_hand_holder = $Graphics/Armature/Skeleton/LeftHandPlaceholder
+@onready var right_hand_holder = $Graphics/Armature/Skeleton3D/RightHandPlaceholder
+@onready var left_hand_holder = $Graphics/Armature/Skeleton3D/LeftHandPlaceholder
 var weapon = null
 var shield = null
 var items = {
@@ -62,8 +64,8 @@ var items = {
 
 # ------ start and loop ------
 func _ready():
-	Signals.connect("get_power_up", self, "_get_power_up")
-	Signals.connect("damage_player", self, "_damage_player")
+	Signals.connect("get_power_up", _get_power_up)
+	Signals.connect("damage_player", _damage_player)
 	max_hp = hp
 	equip_weapon(items.sword1)
 	load_checkpoint()
@@ -79,6 +81,7 @@ func _physics_process(delta):
 	play_animations(move_dir)
 	play_sounds(move_dir)
 	check_grounded()
+	check_headbump()
  
 func play_anim(anim, speed = 1):
 	if anim_player.current_animation == anim and anim_player.get_playing_speed() == speed:
@@ -98,20 +101,23 @@ func apply_movement():
 		walk_anim_speed = 0.8
 		movement_modifier = CROUCH_SPEED
 	reset_damage_kick()
-	var move_result = move_and_slide(Vector3((move_dir * movement_modifier) + x_axis_damage_kick, gravity_manager.y_velo, 0), Vector3(0,1,0))
+	set_velocity(Vector3((move_dir * movement_modifier) + x_axis_damage_kick, gravity_manager.y_velo, 0))
+	set_up_direction(Vector3(0,1,0))
+	move_and_slide()
+	var move_result = velocity
 	return move_dir
 	
 func reset_damage_kick():
 	if !damaged and x_axis_damage_kick != 0:
-		x_axis_damage_kick = lerp(x_axis_damage_kick, 0, 0.1)
+		x_axis_damage_kick = lerpf(x_axis_damage_kick, 0.0, 0.1)
 		if x_axis_damage_kick > -0.1 and x_axis_damage_kick < 0.1:
 			x_axis_damage_kick = 0
 	
 func apply_jump(delta):
 	just_jumped = false
 	if jump_state == JumpStateEnum.JUMP or jump_state == JumpStateEnum.DOUBLE_JUMP:
-		released_jump = Input.is_action_just_released("jump")
-	elif Input.is_action_just_released("jump"):
+		released_jump = Input.is_action_just_released("jump") or headbump
+	elif Input.is_action_just_released("jump") or headbump:
 		released_jump = true
 		
 	if can_jump:
@@ -122,7 +128,7 @@ func apply_jump(delta):
 			can_jump = false
 			jump_state = JumpStateEnum.JUMP
 	else:
-		if Input.is_action_just_released("jump"):
+		if Input.is_action_just_released("jump") or headbump:
 			if jump_state == JumpStateEnum.JUMP:
 				jump_state = JumpStateEnum.JUMP_FALL
 			elif jump_state == JumpStateEnum.DOUBLE_JUMP:
@@ -139,7 +145,7 @@ func check_fall_modifiers():
 	var key_released = jump_state == JumpStateEnum.JUMP_FALL or jump_state == JumpStateEnum.DOUBLE_JUMP_FALL
 	if key_released:
 		if gravity_manager.y_velo > 0:
-			gravity_manager.y_velo = lerp(gravity_manager.y_velo, 0, 0.2)
+			gravity_manager.y_velo = lerpf(gravity_manager.y_velo, 0.0, 0.2)
 		else:
 			gravity_manager.gravity_multiplier = gravity_manager.FALL_MULTIPLIER
 	elif jump_state == JumpStateEnum.JUMP and gravity_manager.y_velo < -0.1:
@@ -215,38 +221,41 @@ func check_grounded():
 	if !grounded and can_jump and jump_state == JumpStateEnum.GROUNDED:
 		coyote_time()
 	previous_grounded = grounded
+	
+func check_headbump():
+	headbump = headbump_check.is_colliding()
 
 func flip():
-	var degrees = 0
+	var degrees = 90
 	facing_right = !facing_right
 	if !facing_right:
-		degrees = 180
+		degrees = -90
 	graphics.rotation_degrees.y = degrees
 
 func coyote_time():
-	yield(get_tree().create_timer(coyote_timer),"timeout")
+	await get_tree().create_timer(coyote_timer).timeout
 	can_jump = false
 	
 func damage_time():
-	yield(get_tree().create_timer(damage_timer),"timeout")
+	await get_tree().create_timer(damage_timer).timeout
 	damaged = false
 	
 func land_timer(time):
 	just_landed = true
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	just_landed = false
 	
 func attack_timer(time):
 	attacking = true
-	yield(get_tree().create_timer(time),"timeout")
+	await get_tree().create_timer(time).timeout
 	attacking = false
 	
 func equip_weapon(preloadedItem):
-	weapon = preloadedItem.instance()
+	weapon = preloadedItem.instantiate()
 	left_hand_holder.add_child(weapon)
 	
 func equip_shield(preloadedItem):
-	shield = preloadedItem.instance()
+	shield = preloadedItem.instantiate()
 	right_hand_holder.add_child(shield)
 	
 func heal_player(hp_given):
