@@ -7,7 +7,7 @@ var closed = false
 var boss_killed = false
 
 func _ready():
-	Signals.connect("kill_boss", Callable(self, "_kill_boss"))
+	Signals.connect("kill_boss", _kill_boss)
 	initial_y = global_transform.origin.y
 
 func _physics_process(delta):

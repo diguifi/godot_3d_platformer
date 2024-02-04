@@ -13,10 +13,10 @@ func start_boss_fight():
 	
 func close_gates():
 	for spawn in boss_gate_spawns:
+		print(spawn)
 		var node = get_node(spawn)
 		var gate = boss_gate.instantiate()
-		gate.global_transform = node.global_transform
-		get_node("/root/World").add_child(gate)
+		node.add_child(gate)
 		
 func awake_boss():
 	if boss_path:

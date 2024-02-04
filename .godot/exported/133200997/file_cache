@@ -5,9 +5,9 @@ res://assets/glb/enemies/enemyrocky.tscn::c41a4a41949563d2fb7e8d1a68b34c8e::1706
 res://assets/glb/dino.tscn::a8afff303bd3c701cbbe41e056edff0f::1706912268::res://.godot/exported/133200997/export-668c2c04eaba43a2bf5dbb2d22f12ead-dino.scn
 res://assets/glb/personagem.tscn::3dc4357f4d0e7862f5ddb245fe40a3cc::1706990523::res://.godot/exported/133200997/export-6c2593eb835dff6e2456f09a6c170f35-personagem.scn
 res://assets/glb/personagem_mesh.tscn::12005b2b9caafe309fe90c91bbf4f424::1706993852::res://.godot/exported/133200997/export-8c96f4037967db19b1d51415643b5459-personagem_mesh.scn
-res://assets/meshes/1-cantodir001_mesh.tres::d77eba32a84e8306ec91d846b17d5ba1::1707073434::res://.godot/exported/133200997/export-84492eb356a376f66219409f6ffb86ec-1-cantodir001_mesh.res
+res://assets/meshes/1-cantodir001_mesh.tres::d77eba32a84e8306ec91d846b17d5ba1::1707076172::res://.godot/exported/133200997/export-84492eb356a376f66219409f6ffb86ec-1-cantodir001_mesh.res
 res://assets/meshes/1-cantoesq001_mesh.tres::b089ef078ccfb23049c8342949b47838::1706912267::res://.godot/exported/133200997/export-77244c915afd4cbac5a2d2744446592e-1-cantoesq001_mesh.res
-res://assets/meshes/1-meio001_mesh.tres::9f12c5a5476cd988bd41974cdbc46851::1707073434::res://.godot/exported/133200997/export-bebdcaed59c60d7ad5aec35d5014c3c1-1-meio001_mesh.res
+res://assets/meshes/1-meio001_mesh.tres::9f12c5a5476cd988bd41974cdbc46851::1707076172::res://.godot/exported/133200997/export-bebdcaed59c60d7ad5aec35d5014c3c1-1-meio001_mesh.res
 res://assets/meshes/bounds_mesh.tres::164f0917ee0e1e44a3c027908c11a5e9::1706912267::res://.godot/exported/133200997/export-fdd47f4469d2b1638898fdceb86acf07-bounds_mesh.res
 res://assets/meshes/cogumeloamarelo_mesh.tres::aba1c3d53d39288ca552fe431ff9a9d6::1706912267::res://.godot/exported/133200997/export-de0a809b9c7e113505d3b02913c5d3dc-cogumeloamarelo_mesh.res
 res://assets/meshes/cogumeloverde_mesh.tres::48de21d00cc5ed0eef343bb6fa371b93::1706912267::res://.godot/exported/133200997/export-407cc52dea6c5d52a7b55af006cb5166-cogumeloverde_mesh.res
@@ -16,9 +16,9 @@ res://assets/meshes/cristal1_mesh.tres::9955cc2f5d28792d738d99e6d96fd2d2::170691
 res://assets/meshes/cristal2_mesh.tres::ff9c22f9a6ec6c7a281182c47b4f9a0e::1706912267::res://.godot/exported/133200997/export-2f04a079da7efd615db9fbf637115581-cristal2_mesh.res
 res://assets/meshes/door_mesh.tres::eb2af6e3f914253fb870c0657114afcc::1706912268::res://.godot/exported/133200997/export-28d4899671da2e3701c289c844f2df91-door_mesh.res
 res://assets/meshes/fundo1.tres::f576a1a5fbda3c3a7175d768050c95f3::1706912268::res://.godot/exported/133200997/export-aa19002364995b863769c4d3a559871f-fundo1.res
-res://assets/meshes/fundo1_mesh.tres::c8063064689d79286356778787fe39b7::1707074447::res://.godot/exported/133200997/export-ab586b3d0d331bc47ffea4ee22f9dca7-fundo1_mesh.res
+res://assets/meshes/fundo1_mesh.tres::c8063064689d79286356778787fe39b7::1707076172::res://.godot/exported/133200997/export-ab586b3d0d331bc47ffea4ee22f9dca7-fundo1_mesh.res
 res://assets/meshes/fundo2.tres::724bea35cdf7ba2aa227489826e089e5::1706912268::res://.godot/exported/133200997/export-cf67e9b0904e218933f63048a5eba81e-fundo2.res
-res://assets/meshes/fundo2_mesh.tres::771d485e5b86c239e8cbd8362fd40a4d::1707074553::res://.godot/exported/133200997/export-2c9faefc8d3194cf783fba890b01f66f-fundo2_mesh.res
+res://assets/meshes/fundo2_mesh.tres::771d485e5b86c239e8cbd8362fd40a4d::1707076172::res://.godot/exported/133200997/export-2c9faefc8d3194cf783fba890b01f66f-fundo2_mesh.res
 res://assets/meshes/pedraG_mesh.tres::e876b9d6a98ddc4f647e67bce497c285::1706912268::res://.godot/exported/133200997/export-e0404003ed64d52717e624c915efa740-pedraG_mesh.res
 res://assets/meshes/pedraM_mesh.tres::43e2d0f2968fd605b362f9ba27698278::1706912268::res://.godot/exported/133200997/export-fb121e72ff97ee359f0ebb5a964eecf6-pedraM_mesh.res
 res://assets/meshes/pedraP_mesh.tres::66035f3f7659ed876759231c804d2fcd::1706912268::res://.godot/exported/133200997/export-f8f33715a4a12621a628dc146646fcab-pedraP_mesh.res
@@ -35,7 +35,7 @@ res://assets/meshlibs/paredes1.tscn::fd3ea2e152c5e7d469d057088e616c86::170691226
 res://assets/meshlib_scenes/cachoeira.tscn::4f2c20092e481f662c0e4a5b277d85ce::1706994003::res://.godot/exported/133200997/export-65150e0d8943ec8b3aaa21594e73387e-cachoeira.scn
 res://assets/meshlib_scenes/paredes.tscn::d9ab7810c18e66a0b6a835c1aafc8c56::1707075420::res://.godot/exported/133200997/export-13642c06a8e1419ba50ef23c83ddd15a-paredes.scn
 res://assets/meshlib_scenes/tocha.tscn::8505128ae368529d43f15edc941dd951::1706993853::res://.godot/exported/133200997/export-1b6c085a7e5878ffa8f7d733d15b217e-tocha.scn
-res://assets/res/world.tres::f765f8b9e1ec06e3f674afce29b15c48::1707074567::res://.godot/exported/133200997/export-29883b4dddc4703e64603728b8e4c226-world.res
+res://assets/res/world.tres::f765f8b9e1ec06e3f674afce29b15c48::1707076172::res://.godot/exported/133200997/export-29883b4dddc4703e64603728b8e4c226-world.res
 res://assets/MainMenuSceneryTest.tscn::41f0f48859498cb40e8ab149f48b8d4c::1706912266::res://.godot/exported/133200997/export-eed5d65983efef5f21dfe8bee48e5952-MainMenuSceneryTest.scn
 res://camera/Camera.tscn::46b529a6e023238f12a95f2e03937d44::1707072554::res://.godot/exported/133200997/export-15d0230d27e70e06e553311e85722628-Camera.scn
 res://dialog/DialogArea.tscn::38af6c863ea2bbcfba436ff84a0c7687::1707073435::res://.godot/exported/133200997/export-c50aefe700d09e60badc63cbac1733ed-DialogArea.scn
@@ -45,7 +45,7 @@ res://enemies/ai/MiniBossAI.tscn::29dd21ee1f581267de86b0f2c59d7290::1706912266::
 res://enemies/ai/SimpleChaseAI.tscn::fe68936a9dfbcd3ebafc8886c6ee0687::1706912266::res://.godot/exported/133200997/export-34380025e86ed8ac5ee8f2e60dbb60f0-SimpleChaseAI.scn
 res://enemies/bosses/pedreguio/Pedreguio.tscn::96169559416613fa0cb6972ca8a67cca::1706912266::res://.godot/exported/133200997/export-bbb8e6eb2da7938d0b0581d238305251-Pedreguio.scn
 res://enemies/bosses/BossArea.tscn::d77a7ebb9d3b42d390a8ad4bdfcc0005::1706912265::res://.godot/exported/133200997/export-9609a8591c577e20ac5b3f903b215ea7-BossArea.scn
-res://enemies/bosses/BossGate.tscn::3580ba051a752f2df2d5c7a01d511f00::1706912266::res://.godot/exported/133200997/export-0092d02d0cc4ed1e8cf4fd203bff3879-BossGate.scn
+res://enemies/bosses/BossGate.tscn::0d18b026c5ad203037d4bd2f7e1dcbf0::1707077518::res://.godot/exported/133200997/export-0092d02d0cc4ed1e8cf4fd203bff3879-BossGate.scn
 res://enemies/bosses/BossPowerEffect.tscn::62ab6a5000aea0e6d4a4725798c08dd4::1706912266::res://.godot/exported/133200997/export-d51354cac5fb2980ff2e609b8a754e80-BossPowerEffect.scn
 res://enemies/EnemyBat.tscn::14d1609480ba834ee8c4952e274800ac::1706912265::res://.godot/exported/133200997/export-fbbad564c65a90bfc33dc8a993c88fab-EnemyBat.scn
 res://enemies/EnemyRocky.tscn::cd268d9c34c6bb6c0bf89bc0f07d0326::1706992527::res://.godot/exported/133200997/export-026cc7e366413a9535b9ca1e150b7111-EnemyRocky.scn
@@ -65,7 +65,7 @@ res://managers/MusicManager.tscn::3095bbb545d633d306d4bd098b3d0bcc::1706987882::
 res://managers/SoundManager.tscn::14096ae66e4063aac741d6ac96f27e9d::1706987882::res://.godot/exported/133200997/export-92b1751f0064efcb77a2e5b8fa40bd54-SoundManager.scn
 res://managers/VisibilityManager.tscn::21ca1e6c5945e7823835cc52c674687b::1706993853::res://.godot/exported/133200997/export-db33f163f95c0f098d2ac62e8a2e276c-VisibilityManager.scn
 res://menus/FakeEnding.tscn::ababee7fb0fb6cbb8e5b003f0d124397::1706912265::res://.godot/exported/133200997/export-eb793227a087d4c7d37e746812214208-FakeEnding.scn
-res://menus/MainMenu.tscn::f3f760f9e1420ace653db06aef9d12e5::1707075420::res://.godot/exported/133200997/export-818dc4ec707e2c2ac05a10d358cfbfc3-MainMenu.scn
+res://menus/MainMenu.tscn::f3f760f9e1420ace653db06aef9d12e5::1707077517::res://.godot/exported/133200997/export-818dc4ec707e2c2ac05a10d358cfbfc3-MainMenu.scn
 res://menus/Transition.tscn::8e24d82b523f6be1650dc487dd76f587::1706989556::res://.godot/exported/133200997/export-8bba4596f85bdf9d89bc7a0be50bee6a-Transition.scn
 res://npcs/Test.tscn::da8e910da421b36f70cf8940d00d49a8::1706912265::res://.godot/exported/133200997/export-7b7089e2aeaae42ff0ba37bf20c3a390-Test.scn
 res://player/items/attack/SlashEffect.tscn::b5b6090a90ffb12d642aa6fddc7dfdfd::1706993853::res://.godot/exported/133200997/export-511ad7a8d91129010553b44dd1b41041-SlashEffect.scn
@@ -73,5 +73,5 @@ res://player/items/attack/Sword.tscn::eb7dfae891cf6663ffe0fa840506986c::17069938
 res://player/Player.tscn::c5c978622e8ad7ce7ec675e929085dd2::1707075702::res://.godot/exported/133200997/export-23464e90032b607cf55b5bbb7efcb113-Player.scn
 res://powerups/DoubleJump.tscn::a79b311257bcb6f68128948f34d7146a::1707072874::res://.godot/exported/133200997/export-057d64b65fa93c8116a6b2e0de896d7e-DoubleJump.scn
 res://default_bus_layout.tres::491a1fa46981e0245b65e0548efe6518::1706912265::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
-res://default_env.tres::d54a83c4dc25c01d2a09e0c871c4b98e::1707075702::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
-res://World.tscn::41be4eaa20edae6a07e903a46327757a::1707075420::res://.godot/exported/133200997/export-73d50b7f59085c9a9ce28353ee849bb1-World.scn
+res://default_env.tres::d54a83c4dc25c01d2a09e0c871c4b98e::1707077608::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://World.tscn::9e90cc97acd566a02cfd0811b0eea3b6::1707077608::res://.godot/exported/133200997/export-73d50b7f59085c9a9ce28353ee849bb1-World.scn

@@ -1,13 +1,13 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1707075528
+::res://::1707077639
 default_bus_layout.tres::AudioBusLayout::-1::1706912265::0::1::::<><>::
-default_env.tres::Environment::7529808164619519072::1707075420::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1706994608::0::1::::<><>::
+default_env.tres::Environment::7529808164619519072::1707077608::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1707075761::0::1::::<><>::
 FakeEndingManager.gd::GDScript::-1::1706912265::0::1::::<>Area3D<>::
 HudMock.gd::GDScript::-1::1707073809::0::1::::<>CanvasLayer<>::
 icon.png::CompressedTexture2D::3923870829305737608::1665618916::1706912383::1::::<><>::
 World.gd::GDScript::-1::1707072812::0::1::::<>Node3D<>::
-World.tscn::PackedScene::6745557959317074394::1707075420::0::1::::<><>::res://assets/meshlibs/Caverna final1.meshlib<>uid://dqd6rb6w36qht::::res://player/Player.tscn<>uid://cbcauruxfr60h::::res://camera/Camera.tscn<>uid://t2ooiilsitd6::::res://powerups/DoubleJump.tscn<>uid://cilvolhta6ylj::::res://assets/res/world.tres<>res://FakeEndingManager.gd<>uid://bxni15cxxxvf6::::res://enemies/EnemyRocky.tscn<>uid://chbjigjdxmdh7::::res://dialog/DialogManager.tscn<>res://npcs/Test.tscn<>res://World.gd<>res://enemies/bosses/BossArea.tscn<>res://enemies/bosses/pedreguio/Pedreguio.tscn<>uid://bxici6405ou17::::res://assets/meshlib_scenes/tocha.tscn<>uid://d47ufsyb4i6r::::res://assets/meshlib_scenes/cachoeira.tscn<>res://items/consumables/SmallPotion.tscn<>uid://caex5pwngr8kh::::res://assets/meshes/fundo1_mesh.tres<>uid://dfh3v8djduris::::res://assets/meshes/fundo2_mesh.tres<>uid://c032a3n1j0fee::::res://managers/HealthBar.tscn<>res://HudMock.gd<>res://managers/Checkpoint.tscn
+World.tscn::PackedScene::6745557959317074394::1707077608::0::1::::<><>::res://assets/meshlibs/Caverna final1.meshlib<>uid://dqd6rb6w36qht::::res://player/Player.tscn<>uid://cbcauruxfr60h::::res://camera/Camera.tscn<>uid://t2ooiilsitd6::::res://powerups/DoubleJump.tscn<>uid://cilvolhta6ylj::::res://assets/res/world.tres<>res://FakeEndingManager.gd<>uid://bxni15cxxxvf6::::res://enemies/EnemyRocky.tscn<>uid://chbjigjdxmdh7::::res://dialog/DialogManager.tscn<>res://npcs/Test.tscn<>res://World.gd<>res://enemies/bosses/BossArea.tscn<>res://enemies/bosses/pedreguio/Pedreguio.tscn<>uid://bxici6405ou17::::res://assets/meshlib_scenes/tocha.tscn<>uid://d47ufsyb4i6r::::res://assets/meshlib_scenes/cachoeira.tscn<>res://items/consumables/SmallPotion.tscn<>uid://caex5pwngr8kh::::res://assets/meshes/fundo1_mesh.tres<>uid://dfh3v8djduris::::res://assets/meshes/fundo2_mesh.tres<>uid://c032a3n1j0fee::::res://managers/HealthBar.tscn<>res://HudMock.gd<>res://managers/Checkpoint.tscn
 ::res://assets/::1701101805
 MainMenuSceneryTest.tscn::PackedScene::-1::1706912266::0::1::::<><>::
 ::res://assets/audio/::1701101733
@@ -135,10 +135,10 @@ Material_008.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
 Material_009.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
 Material_012.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
 Material_014.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
-::res://assets/meshes/::1707074553
-1-cantodir001_mesh.tres::ArrayMesh::8258896115858100213::1707073434::0::1::::<><>::uid://3611ncsfqhqw::::res://assets/materials/Material.material
+::res://assets/meshes/::1707076172
+1-cantodir001_mesh.tres::ArrayMesh::8258896115858100213::1707076172::0::1::::<><>::uid://3611ncsfqhqw::::res://assets/materials/Material.material
 1-cantoesq001_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materials/Material.material
-1-meio001_mesh.tres::ArrayMesh::8429810185198262655::1707073434::0::1::::<><>::uid://3611ncsfqhqw::::res://assets/materials/Material.material
+1-meio001_mesh.tres::ArrayMesh::8429810185198262655::1707076172::0::1::::<><>::uid://3611ncsfqhqw::::res://assets/materials/Material.material
 bounds_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materials/Material_006.material<>res://assets/materials/Material_009.material<>res://assets/materials/Material_005.material
 cogumeloamarelo_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materials/assets plantas.material
 cogumeloverde_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materials/assets plantas.material
@@ -147,9 +147,9 @@ cristal1_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materi
 cristal2_mesh.tres::ArrayMesh::-1::1706912267::0::1::::<><>::res://assets/materials/Material_004.material<>res://assets/materials/Material_003.material
 door_mesh.tres::ArrayMesh::-1::1706912268::0::1::::<><>::res://assets/materials/Material_007.material<>res://assets/materials/Material_008.material<>res://assets/materials/Material_014.material
 fundo1.tres::ArrayMesh::-1::1706912268::0::1::::<><>::
-fundo1_mesh.tres::ArrayMesh::4782549765488551271::1707074447::0::1::::<><>::
+fundo1_mesh.tres::ArrayMesh::4782549765488551271::1707076172::0::1::::<><>::
 fundo2.tres::ArrayMesh::-1::1706912268::0::1::::<><>::
-fundo2_mesh.tres::ArrayMesh::7526396229336049174::1707074553::0::1::::<><>::
+fundo2_mesh.tres::ArrayMesh::7526396229336049174::1707076172::0::1::::<><>::
 pedraG_mesh.tres::ArrayMesh::-1::1706912268::0::1::::<><>::res://assets/materials/assets plantas.material
 pedraM_mesh.tres::ArrayMesh::-1::1706912268::0::1::::<><>::res://assets/materials/assets plantas.material
 pedraP_mesh.tres::ArrayMesh::-1::1706912268::0::1::::<><>::res://assets/materials/assets plantas.material
@@ -209,16 +209,16 @@ Material_012.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
 Material_014.material::StandardMaterial3D::-1::1665618915::0::1::::<><>::
 paredes.tscn::PackedScene::7038237491514262000::1707075420::0::1::::<><>::res://assets/meshes/1-cantoesq001_mesh.tres<>res://assets/meshes/door_mesh.tres<>uid://dsdp0h6b1m8a2::::res://assets/meshes/1-meio001_mesh.tres<>uid://dpww2ved2s6n6::::res://assets/meshes/1-cantodir001_mesh.tres<>res://assets/meshes/bounds_mesh.tres
 tocha.tscn::PackedScene::4017416503936828692::1706993853::0::1::::<><>::uid://dtsu1r6fkqonv::::res://managers/VisibilityManager.tscn
-::res://assets/res/::1707074567
+::res://assets/res/::1707076172
 background_test.jpeg::CompressedTexture2D::2137947195329968650::1665618915::1706994158::1::::<><>::
 back_menu.jpg::CompressedTexture2D::892131253161013879::1665618915::1706912383::1::::<><>::
 cape_hill_2k.exr::CompressedTexture2D::5679807291851436584::1665618916::1706912384::1::::<><>::
-world.tres::Environment::5358360919182885111::1707074567::0::1::::<><>::
+world.tres::Environment::5358360919182885111::1707076172::0::1::::<><>::
 ::res://build/::1706994112
-::res://build/web/::1707075540
-index.apple-touch-icon.png::CompressedTexture2D::7692471467829271206::1707075529::1707075541::1::::<><>::
-index.icon.png::CompressedTexture2D::5271227692823355260::1707075529::1707075541::1::::<><>::
-index.png::CompressedTexture2D::4218457433055914774::1707075529::1707075541::1::::<><>::
+::res://build/web/::1707077653
+index.apple-touch-icon.png::CompressedTexture2D::53069171700171348::1707077639::1707077672::1::::<><>::
+index.icon.png::CompressedTexture2D::771424108438342249::1707077639::1707077672::1::::<><>::
+index.png::CompressedTexture2D::7832155715301518069::1707077639::1707077672::1::::<><>::
 ::res://camera/::1707072554
 Camera.gd::GDScript::-1::1706987874::0::1::::<>Camera3D<>::
 Camera.tscn::PackedScene::4847195607255894029::1707072554::0::1::::<><>::res://camera/Camera.gd
@@ -241,12 +241,12 @@ MiniBossAI.gd::GDScript::-1::1706912266::0::1::::<>Node3D<>::
 MiniBossAI.tscn::PackedScene::-1::1706912266::0::1::::<><>::res://enemies/ai/MiniBossAI.gd
 SimpleChaseAI.gd::GDScript::-1::1706912266::0::1::::<>Node3D<>::
 SimpleChaseAI.tscn::PackedScene::-1::1706912266::0::1::::<><>::res://enemies/ai/SimpleChaseAI.gd
-::res://enemies/bosses/::1706986835
+::res://enemies/bosses/::1707077518
 Boss.gd::GDScript::-1::1706986835::0::1::::<>CharacterBody3D<>::
-BossArea.gd::GDScript::-1::1706986811::0::1::::<>Area3D<>::
+BossArea.gd::GDScript::-1::1707077297::0::1::::<>Area3D<>::
 BossArea.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://enemies/bosses/BossArea.gd
-BossGate.gd::GDScript::-1::1706912265::0::1::::<>Node3D<>::
-BossGate.tscn::PackedScene::-1::1706912266::0::1::::<><>::res://enemies/bosses/BossGate.gd<>res://assets/meshlibs/Material_014.material<>res://assets/meshlibs/Material_007.material<>res://assets/meshlibs/Material_008.material
+BossGate.gd::GDScript::-1::1707076310::0::1::::<>Node3D<>::
+BossGate.tscn::PackedScene::3616944721441630523::1707077518::0::1::::<><>::res://enemies/bosses/BossGate.gd<>res://assets/meshlibs/Material_014.material<>res://assets/meshlibs/Material_007.material<>res://assets/meshlibs/Material_008.material
 BossPowerEffect.gd::GDScript::-1::1706912266::0::1::::<>Node3D<>::
 BossPowerEffect.tscn::PackedScene::-1::1706912266::0::1::::<><>::res://assets/img/poder.png<>res://managers/DamageArea.tscn<>res://enemies/bosses/BossPowerEffect.gd
 ::res://enemies/bosses/pedreguio/::1701101817
@@ -261,7 +261,7 @@ Sword.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://player/items/attack
 ::res://items/consumables/::1701101808
 Potion.gd::GDScript::-1::1706912265::0::1::::<>Node3D<>::
 SmallPotion.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://assets/img/potion.png<>res://items/consumables/Potion.gd<>res://assets/audio/sfx/gulp.ogg
-::res://managers/::1707073746
+::res://managers/::1707077608
 AttackArea.gd::GDScript::-1::1706912265::0::1::::<>Area3D<>::
 AttackArea.tscn::PackedScene::6462195142642155183::1706993853::0::1::::<><>::
 Background.gd::GDScript::-1::1706912265::0::1::::<>Node3D<>::
@@ -270,7 +270,7 @@ Checkpoint.gd::GDScript::-1::1706912265::0::1::::<>Node3D<>::
 Checkpoint.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://assets/img/campfire_off.png<>res://managers/Checkpoint.gd
 DamageArea.gd::GDScript::-1::1706992388::0::1::::<>Area3D<>::
 DamageArea.tscn::PackedScene::7247020671780943811::1707073435::0::1::::<><>::res://managers/DamageArea.gd
-GlobalState.gd::GDScript::-1::1707073622::0::1::::<>Node<>::
+GlobalState.gd::GDScript::-1::1707077608::0::1::::<>Node<>::
 HealthBar3D.gd::GDScript::-1::1706912265::0::1::::<>Sprite3D<>::
 HealthBar3D.tscn::PackedScene::6529921087046775186::1707073716::0::1::::<><>::uid://ctiid5lpcpws3::::res://assets/img/hp_green.png<>uid://c032a3n1j0fee::::res://managers/HealthBar.tscn<>res://managers/HealthBar3D.gd
 HealthBar.gd::GDScript::-1::1707073746::0::1::::<>TextureProgressBar<>::
@@ -288,15 +288,15 @@ SoundManager.gd::GDScript::-1::1706986184::0::1::::<>Node3D<>::
 SoundManager.tscn::PackedScene::87649179154451347::1706987882::0::1::::<><>::res://managers/SoundManager.gd
 VisibilityManager.gd::GDScript::-1::1706993430::0::1::::<>VisibleOnScreenNotifier3D<>::
 VisibilityManager.tscn::PackedScene::8531270591298926343::1706993853::0::1::::<><>::res://managers/VisibilityManager.gd
-::res://menus/::1707075420
+::res://menus/::1707077517
 FakeEnding.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://assets/img/MENU-BG.png<>res://assets/fonts/OROTUND.TTF<>res://assets/img/Quit-button.png<>res://assets/img/Quit-button-hover.png<>res://assets/img/LOGO.png<>res://menus/MainMenu.gd
 MainMenu.gd::GDScript::-1::1706912265::0::1::::<>Control<>::
-MainMenu.tscn::PackedScene::6540670342013880578::1707075420::0::1::::<><>::uid://dsmq41nvotoga::::res://assets/img/MENU-BG.png<>uid://d12xjp1aedt3a::::res://assets/img/Quit-button.png<>uid://bnjjc7y865yks::::res://assets/img/Start-button.png<>uid://ccd247dyaacta::::res://assets/img/Start-button-hover.png<>uid://bvmof0nryuoto::::res://assets/img/Quit-button-hover.png<>uid://c7nmn3oq73kcn::::res://assets/img/LOGO.png<>res://menus/MainMenu.gd
+MainMenu.tscn::PackedScene::6540670342013880578::1707077517::0::1::::<><>::uid://dsmq41nvotoga::::res://assets/img/MENU-BG.png<>uid://d12xjp1aedt3a::::res://assets/img/Quit-button.png<>uid://bnjjc7y865yks::::res://assets/img/Start-button.png<>uid://ccd247dyaacta::::res://assets/img/Start-button-hover.png<>uid://bvmof0nryuoto::::res://assets/img/Quit-button-hover.png<>uid://c7nmn3oq73kcn::::res://assets/img/LOGO.png<>res://menus/MainMenu.gd
 Transition.gd::GDScript::-1::1706989045::0::1::::<>CanvasLayer<>::
 Transition.tscn::PackedScene::7860413911594757178::1706989556::0::1::::<><>::res://menus/Transition.gd
 ::res://npcs/::1701101805
 Test.tscn::PackedScene::-1::1706912265::0::1::::<><>::res://assets/img/npcs/boris.png<>res://dialog/DialogArea.tscn
-::res://player/::1707075420
+::res://player/::1707075702
 Boca.material::StandardMaterial3D::-1::1665618916::0::1::::<><>::
 Cabelo.material::StandardMaterial3D::-1::1665618916::0::1::::<><>::
 Corda.material::StandardMaterial3D::-1::1665618916::0::1::::<><>::
@@ -313,8 +313,8 @@ Material_015.material::StandardMaterial3D::-1::1665618916::0::1::::<><>::
 pano.material::StandardMaterial3D::-1::1665618916::0::1::::<><>::
 personagem3 .glb::PackedScene::8175568787140209629::1665618916::1706912388::1::::<><>::uid://dybu8pv76voq4::::res://player/personagem3 _boca.png
 personagem3 _boca.png::CompressedTexture2D::8847132768987678029::1706912387::1706912404::1::::<><>::
-Player.gd::GDScript::-1::1707075329::0::1::::<>CharacterBody3D<>::
-Player.tscn::PackedScene::8290389369272665209::1707075420::0::1::::<><>::res://managers/HitCountSpawner.tscn<>res://player/Player.gd<>res://managers/KinematicGravity.tscn<>uid://biptl74aa1pn::::res://managers/SoundManager.tscn<>uid://dwoxbba5sgvtb::::res://assets/glb/personagem_mesh.tscn<>uid://ct0k1c4ywhdfk::::res://assets/audio/sfx/grass_step_1.ogg<>uid://dqjh4rw275tkl::::res://assets/audio/sfx/grass_step_3.ogg<>uid://ckntdt3mjscim::::res://assets/audio/sfx/grass_step_2.ogg<>uid://bcnci88s7pate::::res://assets/audio/sfx/damage_player.ogg<>uid://bbf0gpe8ileuq::::res://assets/audio/sfx/player_pain_1.ogg<>uid://cjygxnwm4in4c::::res://assets/audio/sfx/player_pain_2.ogg<>uid://d1xl86jetla1i::::res://assets/audio/sfx/sword_slash_raw.ogg
+Player.gd::GDScript::-1::1707075702::0::1::::<>CharacterBody3D<>::
+Player.tscn::PackedScene::8290389369272665209::1707075702::0::1::::<><>::res://managers/HitCountSpawner.tscn<>res://player/Player.gd<>res://managers/KinematicGravity.tscn<>uid://biptl74aa1pn::::res://managers/SoundManager.tscn<>uid://dwoxbba5sgvtb::::res://assets/glb/personagem_mesh.tscn<>uid://ct0k1c4ywhdfk::::res://assets/audio/sfx/grass_step_1.ogg<>uid://dqjh4rw275tkl::::res://assets/audio/sfx/grass_step_3.ogg<>uid://ckntdt3mjscim::::res://assets/audio/sfx/grass_step_2.ogg<>uid://bcnci88s7pate::::res://assets/audio/sfx/damage_player.ogg<>uid://bbf0gpe8ileuq::::res://assets/audio/sfx/player_pain_1.ogg<>uid://cjygxnwm4in4c::::res://assets/audio/sfx/player_pain_2.ogg<>uid://d1xl86jetla1i::::res://assets/audio/sfx/sword_slash_raw.ogg
 ::res://player/items/::1701101733
 ::res://player/items/attack/::1706993853
 AttackItem.gd::GDScript::-1::1706991146::0::1::::<>Node3D<>::
